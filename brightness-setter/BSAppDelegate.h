@@ -12,6 +12,7 @@
     NSStatusItem *item;
     float lastBrightnessValue;
     NSTimer *pollTimer;
+    io_iterator_t service_iterator;
 }
 
 - (IBAction)updateValue:(id)sender;

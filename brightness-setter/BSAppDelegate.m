@@ -12,8 +12,17 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self loadIOServices];
     [self createDockIcon];
     lastBrightnessValue = [self getCurrentBrightness];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [pollTimer invalidate];
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+    [bar removeStatusItem:item];
+    [self releaseIOServices];
 }
 
 - (void)pollTimerFired:(NSTimer *)timer
@@ -29,11 +38,29 @@
     [_brightnessSlider setFloatValue:currentValue * 100];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)notification
+- (void)loadIOServices
 {
-    [pollTimer invalidate];
-    NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    [bar removeStatusItem:item];
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &service_iterator);
+    
+    if (result != kIOReturnSuccess)
+    {
+        NSLog(@"IOServiceGetMatchingServices failed.");
+        [NSException raise:@"IOServiceGetMatchingServices failed."
+                    format:@"IOServiceGetMatchingServices failed."];
+    }
+}
+
+- (void)releaseIOServices
+{
+    IOIteratorReset(service_iterator);
+    
+    io_object_t service;
+    while ((service = IOIteratorNext(service_iterator)))
+    {
+        IOObjectRelease(service);
+    }
 }
 
 - (void) createDockIcon
@@ -56,25 +83,16 @@
 
 - (float)getCurrentBrightness
 {
-    io_iterator_t iterator;
-    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
-                                                        IOServiceMatching("IODisplayConnect"),
-                                                        &iterator);
+    IOIteratorReset(service_iterator);
+    
+    io_object_t service;
+    float currentValue;
+    while ((service = IOIteratorNext(service_iterator))) {
+        IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
 
-    // If we were successful
-    if (result == kIOReturnSuccess)
-    {
-        io_object_t service;
-        float currentValue;
-        while ((service = IOIteratorNext(iterator))) {
-            IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
-            // Let the object go
-            IOObjectRelease(service);
-            
-            return currentValue;
-        }
+        return currentValue;
     }
-
+    
     NSLog(@"Brightness cannot be obtained.");
     
     return .5;
@@ -87,25 +105,15 @@
     
     NSLog(@"%f", brightness);
     
-    io_iterator_t iterator;
-    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
-                                                        IOServiceMatching("IODisplayConnect"),
-                                                        &iterator);
-    
-    // If we were successful
-    if (result == kIOReturnSuccess)
+    IOIteratorReset(service_iterator);
+
+    io_object_t service;
+    while ((service = IOIteratorNext(service_iterator)))
     {
-        io_object_t service;
-        while ((service = IOIteratorNext(iterator)))
-        {
-            IODisplaySetFloatParameter(service,
-                                       kNilOptions,
-                                       CFSTR(kIODisplayBrightnessKey),
-                                       brightness);
-            
-            // Let the object go
-            IOObjectRelease(service);
-        }
+        IODisplaySetFloatParameter(service,
+                                   kNilOptions,
+                                   CFSTR(kIODisplayBrightnessKey),
+                                   brightness);
     }
 }
 
@@ -122,7 +130,7 @@
         [pollTimer invalidate];
     }
     
-    pollTimer = [NSTimer timerWithTimeInterval:(1.0 / 5.0)
+    pollTimer = [NSTimer timerWithTimeInterval:(1.0 / 10.0)
                                         target:self
                                       selector:@selector(pollTimerFired:)
                                       userInfo:nil
@@ -146,6 +154,7 @@
     NSLog(@"Current brightness %f.", currentValue);
     
     lastBrightnessValue = currentValue;
+    
     [_brightnessSlider setFloatValue:currentValue * 100];
 
     [self schedulePollTimer];
