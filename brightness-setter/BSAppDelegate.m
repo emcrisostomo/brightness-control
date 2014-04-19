@@ -12,6 +12,29 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [self createDockIcon];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+    [bar removeStatusItem:item];
+}
+
+- (void) createDockIcon
+{
+    if (item != nil)
+    {
+        NSLog(@"Dock icon already set");
+        return;
+    }
+    
+    // set the slider to the current value
+    float currentValue = [self getCurrentBrightness] * 100;
+    NSLog(@"Current brightness %f.", currentValue);
+    
+    [_brightnessSlider setFloatValue:currentValue];
+    
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
     item = [bar statusItemWithLength:NSSquareStatusItemLength];
@@ -22,10 +45,28 @@
     [item setMenu:_dockMenu];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)notification
+- (float)getCurrentBrightness
 {
-    NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    [bar removeStatusItem:item];
+    io_iterator_t iterator;
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &iterator);
+    
+    // If we were successful
+    if (result == kIOReturnSuccess)
+    {
+        io_object_t service;
+        float currentValue;
+        while ((service = IOIteratorNext(iterator))) {
+            IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
+            // Let the object go
+            IOObjectRelease(service);
+            
+            return currentValue;
+        }
+    }
+
+    return .5;
 }
 
 - (IBAction)updateValue:(id)sender {

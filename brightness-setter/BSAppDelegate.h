@@ -16,5 +16,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
+@property (weak) IBOutlet NSSlider *brightnessSlider;
 
 @end
