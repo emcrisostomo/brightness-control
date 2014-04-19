@@ -18,12 +18,26 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <slider verticalHuggingPriority="750" id="RHi-Sg-RdX">
+            <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ebh-ej-qb2"/>
+            <connections>
+                <action selector="updateValue:" target="Voe-Tx-rLC" id="mVI-hB-kdE"/>
+            </connections>
+        </slider>
         <menu id="pU1-qF-Flg" userLabel="Dock Menu">
             <items>
+                <menuItem title="Slider" id="9S2-EL-NnB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <outlet property="view" destination="RHi-Sg-RdX" id="f4y-lA-Jae"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Quit" id="66c-wU-b33">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="terminate:" target="-3" id="CZ5-42-n0q"/>
+                        <action selector="terminate:" target="-1" id="jTn-bg-lnR"/>
                     </connections>
                 </menuItem>
             </items>
