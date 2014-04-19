@@ -30,6 +30,23 @@
 
 - (IBAction)updateValue:(id)sender {
     NSLog(@"%f", [sender doubleValue]);
+    
+    io_iterator_t iterator;
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &iterator);
+    
+    // If we were successful
+    if (result == kIOReturnSuccess)
+    {
+        io_object_t service;
+        while ((service = IOIteratorNext(iterator))) {
+            IODisplaySetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), [sender doubleValue]/100);
+            
+            // Let the object go
+            IOObjectRelease(service);
+        }
+    }
 }
 
 @end
