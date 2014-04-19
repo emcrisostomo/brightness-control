@@ -18,8 +18,8 @@
     [item setImage:[NSImage imageNamed:@"bs.png"]];
     [item setHighlightMode:YES];
     [item setEnabled:TRUE];
-    [item setToolTip:@"eSync"];
-    [item setMenu:statusMenu];
+    [item setToolTip:@"Brightness Setter"];
+    [item setMenu:_dockMenu];
 }
 
 @end

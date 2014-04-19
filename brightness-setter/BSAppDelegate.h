@@ -10,9 +10,9 @@
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate> {
     NSStatusItem *item;
-    IBOutlet NSMenu *statusMenu;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSMenu *dockMenu;
 
 @end
