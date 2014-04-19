@@ -12,6 +12,8 @@
     NSStatusItem *item;
 }
 
+- (IBAction)updateValue:(id)sender;
+
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
 
