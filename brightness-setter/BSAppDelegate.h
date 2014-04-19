@@ -10,6 +10,7 @@
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate> {
     NSStatusItem *item;
+    float lastBrightnessValue;
 }
 
 - (IBAction)updateValue:(id)sender;

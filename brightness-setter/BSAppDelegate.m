@@ -13,6 +13,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self createDockIcon];
+    lastBrightnessValue = [self getCurrentBrightness];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
@@ -45,7 +46,7 @@
     kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
                                                         IOServiceMatching("IODisplayConnect"),
                                                         &iterator);
-    
+
     // If we were successful
     if (result == kIOReturnSuccess)
     {
@@ -60,11 +61,17 @@
         }
     }
 
+    NSLog(@"Brightness cannot be obtained.");
+    
     return .5;
 }
 
-- (IBAction)updateValue:(id)sender {
-    NSLog(@"%f", [sender doubleValue]);
+- (void)setBrightness:(float)brightness
+{
+    if (lastBrightnessValue == brightness) return;
+    else lastBrightnessValue = brightness;
+    
+    NSLog(@"%f", brightness);
     
     io_iterator_t iterator;
     kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
@@ -75,8 +82,12 @@
     if (result == kIOReturnSuccess)
     {
         io_object_t service;
-        while ((service = IOIteratorNext(iterator))) {
-            IODisplaySetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), [sender doubleValue]/100);
+        while ((service = IOIteratorNext(iterator)))
+        {
+            IODisplaySetFloatParameter(service,
+                                       kNilOptions,
+                                       CFSTR(kIODisplayBrightnessKey),
+                                       brightness);
             
             // Let the object go
             IOObjectRelease(service);
@@ -84,15 +95,22 @@
     }
 }
 
+- (IBAction)updateValue:(id)sender
+{
+    [self setBrightness:[sender floatValue]/100];
+}
+
 - (void)menuWillOpen:(NSMenu *) menu
 {
     if (menu != _dockMenu) return;
     
     // set the slider to the current value
-    float currentValue = [self getCurrentBrightness] * 100;
+    float currentValue = [self getCurrentBrightness];
+    
     NSLog(@"Current brightness %f.", currentValue);
     
-    [_brightnessSlider setFloatValue:currentValue];
+    lastBrightnessValue = currentValue;
+    [_brightnessSlider setFloatValue:currentValue * 100];
 }
 
 @end
