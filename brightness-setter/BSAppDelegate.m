@@ -28,13 +28,7 @@
         NSLog(@"Dock icon already set");
         return;
     }
-    
-    // set the slider to the current value
-    float currentValue = [self getCurrentBrightness] * 100;
-    NSLog(@"Current brightness %f.", currentValue);
-    
-    [_brightnessSlider setFloatValue:currentValue];
-    
+
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
     item = [bar statusItemWithLength:NSSquareStatusItemLength];
@@ -88,6 +82,17 @@
             IOObjectRelease(service);
         }
     }
+}
+
+- (void)menuWillOpen:(NSMenu *) menu
+{
+    if (menu != _dockMenu) return;
+    
+    // set the slider to the current value
+    float currentValue = [self getCurrentBrightness] * 100;
+    NSLog(@"Current brightness %f.", currentValue);
+    
+    [_brightnessSlider setFloatValue:currentValue];
 }
 
 @end

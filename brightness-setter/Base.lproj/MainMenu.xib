@@ -42,6 +42,9 @@
                     </connections>
                 </menuItem>
             </items>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="SZV-lm-nBp"/>
+            </connections>
         </menu>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
