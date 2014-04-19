@@ -12,7 +12,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+    item = [bar statusItemWithLength:NSSquareStatusItemLength];
+    
+    [item setImage:[NSImage imageNamed:@"bs.png"]];
+    [item setHighlightMode:YES];
+    [item setEnabled:TRUE];
+    [item setToolTip:@"eSync"];
+    [item setMenu:statusMenu];
 }
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9078DEA61902C7A10036D2E1 /* bs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9078DEA51902C7A10036D2E1 /* bs.png */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D6504F1902C31F00A31E1A /* InfoPlist.strings */; };
 		90D650531902C31F00A31E1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D650521902C31F00A31E1A /* main.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9078DEA51902C7A10036D2E1 /* bs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bs.png; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* brightness-setter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brightness-setter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -73,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9078DEA71902C7AC0036D2E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9078DEA51902C7A10036D2E1 /* bs.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		90D6503A1902C31F00A31E1A = {
 			isa = PBXGroup;
 			children = (
@@ -117,8 +127,9 @@
 			children = (
 				90D650581902C31F00A31E1A /* BSAppDelegate.h */,
 				90D650591902C31F00A31E1A /* BSAppDelegate.m */,
-				90D6505B1902C31F00A31E1A /* MainMenu.xib */,
 				90D6505E1902C31F00A31E1A /* Images.xcassets */,
+				90D6505B1902C31F00A31E1A /* MainMenu.xib */,
+				9078DEA71902C7AC0036D2E1 /* Resources */,
 				90D6504D1902C31F00A31E1A /* Supporting Files */,
 			);
 			path = "brightness-setter";
@@ -231,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9078DEA61902C7A10036D2E1 /* bs.png in Resources */,
 				90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */,
 				90D6505F1902C31F00A31E1A /* Images.xcassets in Resources */,
 				90D650571902C31F00A31E1A /* Credits.rtf in Resources */,
@@ -467,6 +479,7 @@
 				90D650761902C31F00A31E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90D650771902C31F00A31E1A /* Build configuration list for PBXNativeTarget "brightness-setterTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +488,7 @@
 				90D650791902C31F00A31E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

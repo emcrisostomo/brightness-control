@@ -13,10 +13,21 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="BSAppDelegate">
             <connections>
+                <outlet property="statusMenu" destination="pU1-qF-Flg" id="1OU-Lf-wcL"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="pU1-qF-Flg" userLabel="Dock Menu">
+            <items>
+                <menuItem title="Quit" id="66c-wU-b33">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="terminate:" target="-3" id="CZ5-42-n0q"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="brightness-setter" id="1Xt-HY-uBw">
