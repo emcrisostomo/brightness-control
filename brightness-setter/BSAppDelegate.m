@@ -16,8 +16,22 @@
     lastBrightnessValue = [self getCurrentBrightness];
 }
 
+- (void)pollTimerFired:(NSTimer *)timer
+{
+    float currentValue = [self getCurrentBrightness];
+    
+    if (lastBrightnessValue == currentValue) return;
+    
+    lastBrightnessValue = currentValue;
+    
+    NSLog(@"Brightness change detected: %f.", lastBrightnessValue);
+    
+    [_brightnessSlider setFloatValue:currentValue * 100];
+}
+
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
+    [pollTimer invalidate];
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     [bar removeStatusItem:item];
 }
@@ -100,6 +114,28 @@
     [self setBrightness:[sender floatValue]/100];
 }
 
+- (void)schedulePollTimer
+{
+    if (pollTimer != nil)
+    {
+        NSLog(@"Warning: Poll timer was not null: invalidating it.");
+        [pollTimer invalidate];
+    }
+    
+    pollTimer = [NSTimer timerWithTimeInterval:(1.0 / 5.0)
+                                        target:self
+                                      selector:@selector(pollTimerFired:)
+                                      userInfo:nil
+                                       repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:pollTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)invalidatePollTimer
+{
+    [pollTimer invalidate];
+    pollTimer = nil;
+}
+
 - (void)menuWillOpen:(NSMenu *) menu
 {
     if (menu != _dockMenu) return;
@@ -111,6 +147,13 @@
     
     lastBrightnessValue = currentValue;
     [_brightnessSlider setFloatValue:currentValue * 100];
+
+    [self schedulePollTimer];
+}
+
+- (void)menuDidClose:(NSMenu *)menu
+{
+    [self invalidatePollTimer];
 }
 
 @end

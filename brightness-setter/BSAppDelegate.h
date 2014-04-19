@@ -8,9 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BSAppDelegate : NSObject <NSApplicationDelegate> {
+@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
     NSStatusItem *item;
     float lastBrightnessValue;
+    NSTimer *pollTimer;
 }
 
 - (IBAction)updateValue:(id)sender;
