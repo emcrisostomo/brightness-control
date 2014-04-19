@@ -10,18 +10,36 @@
 
 @implementation BSAppDelegate
 
+void handleUncaughtException(NSException * e)
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:@"Error"];
+    [alert setInformativeText:[e reason]];
+    [alert setAlertStyle:NSCriticalAlertStyle];
+    [alert runModal];
+
+    [NSApp terminate:nil];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self loadIOServices];
-    [self createDockIcon];
-    lastBrightnessValue = [self getCurrentBrightness];
+    NSSetUncaughtExceptionHandler(handleUncaughtException);
+    
+    @try {
+        [self loadIOServices];
+        [self createDockIcon];
+        lastBrightnessValue = [self getCurrentBrightness];
+    }
+    @catch (NSException * e)
+    {
+        handleUncaughtException(e);
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     [pollTimer invalidate];
-    NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    [bar removeStatusItem:item];
+    [[NSStatusBar systemStatusBar] removeStatusItem:item];
     [self releaseIOServices];
 }
 
@@ -35,7 +53,7 @@
     
     NSLog(@"Brightness change detected: %f.", lastBrightnessValue);
     
-    [_brightnessSlider setFloatValue:currentValue * 100];
+    [_brightnessSlider setFloatValue:lastBrightnessValue * 100];
 }
 
 - (void)loadIOServices
