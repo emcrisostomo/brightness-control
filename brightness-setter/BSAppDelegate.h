@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BSSaveBrightnessWindowController.h"
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
     NSStatusItem *item;
@@ -20,5 +21,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSSlider *brightnessSlider;
+@property (strong, nonatomic) BSSaveBrightnessWindowController *saveBrightnessController;
 
 @end
