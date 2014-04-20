@@ -26,6 +26,7 @@
     float lastBrightnessValue;
     NSTimer *pollTimer;
     io_iterator_t service_iterator;
+    NSModalSession modalSession;
 }
 
 - (IBAction)updateValue:(id)sender;

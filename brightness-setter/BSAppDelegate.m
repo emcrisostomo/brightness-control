@@ -39,9 +39,20 @@ void handleUncaughtException(NSException * e)
     if (self)
     {
         _saveBrightnessController = [[BSSaveBrightnessWindowController alloc] initWithWindowNibName:@"BSSaveBrightnessWindowController"];
+
+        __weak typeof(self) weakSelf = self;
+        _saveBrightnessController.closeCallback = ^( bool saved )
+        {
+            [weakSelf saveBrightness:saved];
+        };
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    _saveBrightnessController = nil;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -209,16 +220,29 @@ void handleUncaughtException(NSException * e)
 - (IBAction)saveCurrentBrightness:(id)sender
 {
     float brightness = [self getCurrentBrightness];
-
-    // TODO: check why this item is not disabled when the modal window runs.
-    //[_brightnessSlider setEnabled:NO];
-
-    NSModalSession session = [NSApp beginModalSessionForWindow:[_saveBrightnessController window]];
-    [NSApp runModalSession:session];
-    // [NSApp runModalForWindow:[_saveBrightnessController window]];
+    [_saveBrightnessController reset];
+    [_saveBrightnessController setBrightness:brightness];
+    
+    NSAssert(modalSession == nil, @"modalSession should be null.");
+    modalSession = [NSApp beginModalSessionForWindow:[_saveBrightnessController window]];
+    [NSApp runModalSession:modalSession];
     
     [NSApp activateIgnoringOtherApps:YES];
-    NSLog(@"MODAL");
+}
+
+- (void)saveBrightness:(bool)saved
+{
+    @try
+    {
+        if(!saved) return;
+        
+        // TODO: save value
+    }
+    @finally
+    {
+        [NSApp endModalSession:modalSession];
+        modalSession = nil;
+    }
 }
 
 @end
