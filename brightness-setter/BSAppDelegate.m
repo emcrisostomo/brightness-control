@@ -254,7 +254,7 @@ void handleUncaughtException(NSException * e)
     [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (IBAction)restoreBrightness:(id)sender
+- (void) doRestoreBrightness:(id)sender
 {
     const float savedBrightness = [self getSavedBrightnessValue];
     NSAlert *restoreDialog = [[NSAlert alloc]init];
@@ -269,6 +269,13 @@ void handleUncaughtException(NSException * e)
             [self setBrightness:savedBrightness];
             break;
     }
+}
+
+- (IBAction)restoreBrightness:(id)sender
+{
+    // This is apparently needed otherwise the blue highlighting in the dock
+    // menu would not go awa.
+    [self performSelectorInBackground:@selector(doRestoreBrightness:) withObject:self];
 }
 
 - (void)saveBrightness:(bool)saved
@@ -298,7 +305,7 @@ void handleUncaughtException(NSException * e)
     if (act == @selector(restoreBrightness:))
     {
         const float savedBrightness = [self getSavedBrightnessValue];
-        return savedBrightness >= 0 && savedBrightness <= 1;
+        return savedBrightness != lastBrightnessValue && savedBrightness >= 0 && savedBrightness <= 1;
     }
     
     return YES;
