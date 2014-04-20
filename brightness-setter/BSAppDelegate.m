@@ -20,6 +20,8 @@
 
 #import "BSAppDelegate.h"
 
+NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
+
 @implementation BSAppDelegate
 
 void handleUncaughtException(NSException * e)
@@ -138,7 +140,7 @@ void handleUncaughtException(NSException * e)
 - (void)getDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    float f = [defaults floatForKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
+    float f = [defaults floatForKey:kBSBrightnessPropertyName];
     NSLog(@"Value read: %f", f);
 }
 
@@ -146,7 +148,7 @@ void handleUncaughtException(NSException * e)
 {
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
     [defaults setObject:[NSNumber numberWithFloat:-1]
-                forKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
+                forKey:kBSBrightnessPropertyName];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
@@ -260,7 +262,8 @@ void handleUncaughtException(NSException * e)
         
         // TODO: save value
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSNumber numberWithFloat:[_saveBrightnessController brightness]] forKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
+        [defaults setObject:[NSNumber numberWithFloat:[_saveBrightnessController brightness]]
+                     forKey:kBSBrightnessPropertyName];
 
         NSLog(@"Setting name: %@", [_saveBrightnessController settingName]);
     }

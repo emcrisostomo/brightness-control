@@ -37,3 +37,5 @@
 @property (strong, nonatomic) BSSaveBrightnessWindowController *saveBrightnessController;
 
 @end
+
+NSString * const kBSBrightnessPropertyName;
