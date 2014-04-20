@@ -47,8 +47,8 @@
 
 - (void)reset
 {
-    _brightness = 0;
-    _settingName = @"";
+    [self setBrightness:0];
+    [self setSettingName:@""];
 }
 
 - (IBAction)saveBrightness:(id)sender
@@ -58,9 +58,7 @@
         if (sender == _cancelButton)
         {
             return;
-        }
-        
-        _settingName = [_txtSettingName stringValue];
+        }        
     }
     @finally
     {

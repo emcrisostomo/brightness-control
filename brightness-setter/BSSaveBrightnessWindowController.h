@@ -30,8 +30,6 @@ void ( ^ closeWnd )( );
 
 @property (weak) IBOutlet NSButton *cancelButton;
 @property (weak) IBOutlet NSButton *okButton;
-@property (weak) IBOutlet NSTextField *txtSettingName;
-//@property (weak) IBOutlet NSTextField *lblBrightness;
 @property (strong) void ( ^ closeCallback )( bool );
 @property (copy) NSString *settingName;
 @property float brightness;

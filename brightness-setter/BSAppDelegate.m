@@ -237,6 +237,7 @@ void handleUncaughtException(NSException * e)
         if(!saved) return;
         
         // TODO: save value
+        NSLog([_saveBrightnessController settingName]);
     }
     @finally
     {
