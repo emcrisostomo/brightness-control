@@ -58,6 +58,7 @@ void handleUncaughtException(NSException * e)
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSSetUncaughtExceptionHandler(handleUncaughtException);
+    [self setDefaults];
     
     @try {
         [self loadIOServices];
@@ -115,7 +116,7 @@ void handleUncaughtException(NSException * e)
     }
 }
 
-- (void) createDockIcon
+- (void)createDockIcon
 {
     if (item != nil)
     {
@@ -131,6 +132,18 @@ void handleUncaughtException(NSException * e)
     [item setEnabled:TRUE];
     [item setToolTip:@"Brightness Setter"];
     [item setMenu:_dockMenu];
+}
+
+- (void)getDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+}
+
+- (void)setDefaults
+{
+    NSDictionary *defaults = [[NSDictionary alloc] init];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 - (float)getCurrentBrightness
