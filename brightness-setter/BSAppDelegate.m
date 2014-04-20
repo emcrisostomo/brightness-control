@@ -59,6 +59,7 @@ void handleUncaughtException(NSException * e)
 {
     NSSetUncaughtExceptionHandler(handleUncaughtException);
     [self setDefaults];
+    [self getDefaults];
     
     @try {
         [self loadIOServices];
@@ -137,13 +138,20 @@ void handleUncaughtException(NSException * e)
 - (void)getDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    float f = [defaults floatForKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
+    NSLog(@"Value read: %f", f);
 }
 
 - (void)setDefaults
 {
-    NSDictionary *defaults = [[NSDictionary alloc] init];
+    NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
+    [defaults setObject:[NSNumber numberWithFloat:-1]
+                forKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    
+    // setting defaults in shared controller
+    [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaults];
 }
 
 - (float)getCurrentBrightness
@@ -152,7 +160,8 @@ void handleUncaughtException(NSException * e)
     
     io_object_t service;
     float currentValue;
-    while ((service = IOIteratorNext(service_iterator))) {
+    while ((service = IOIteratorNext(service_iterator)))
+    {
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
 
         return currentValue;
@@ -250,7 +259,7 @@ void handleUncaughtException(NSException * e)
         if(!saved) return;
         
         // TODO: save value
-        NSLog([_saveBrightnessController settingName]);
+        NSLog(@"Setting name: %@", [_saveBrightnessController settingName]);
     }
     @finally
     {
