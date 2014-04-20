@@ -43,6 +43,12 @@
                         <action selector="saveCurrentBrightness:" target="Voe-Tx-rLC" id="SFz-d9-76b"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Restore..." id="Rnn-cG-4EX">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="restoreBrightness:" target="Voe-Tx-rLC" id="VDP-LJ-c0M"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
                 <menuItem title="Quit" id="66c-wU-b33">
                     <modifierMask key="keyEquivalentModifierMask"/>

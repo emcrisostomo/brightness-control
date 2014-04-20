@@ -254,6 +254,9 @@ void handleUncaughtException(NSException * e)
     [NSApp activateIgnoringOtherApps:YES];
 }
 
+- (IBAction)restoreBrightness:(id)sender {
+}
+
 - (void)saveBrightness:(bool)saved
 {
     @try
@@ -272,6 +275,20 @@ void handleUncaughtException(NSException * e)
         [NSApp endModalSession:modalSession];
         modalSession = nil;
     }
+}
+
+- (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
+{
+    SEL act = [anItem action];
+    
+    if (act == @selector(restoreBrightness:))
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        const float savedBrightness = [defaults floatForKey:kBSBrightnessPropertyName];
+        return savedBrightness >= 0 && savedBrightness <= 1;
+    }
+    
+    return YES;
 }
 
 @end

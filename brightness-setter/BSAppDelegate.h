@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 #import "BSSaveBrightnessWindowController.h"
 
-@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
+@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations> {
     NSStatusItem *item;
     float lastBrightnessValue;
     NSTimer *pollTimer;
@@ -30,6 +30,8 @@
 }
 
 - (IBAction)updateValue:(id)sender;
+- (IBAction)saveCurrentBrightness:(id)sender;
+- (IBAction)restoreBrightness:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
