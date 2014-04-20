@@ -259,6 +259,9 @@ void handleUncaughtException(NSException * e)
         if(!saved) return;
         
         // TODO: save value
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSNumber numberWithFloat:[_saveBrightnessController brightness]] forKey:@"com.blogspot.thegreyblog.brightness-setter.brightness"];
+
         NSLog(@"Setting name: %@", [_saveBrightnessController settingName]);
     }
     @finally
