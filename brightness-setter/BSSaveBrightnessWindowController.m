@@ -29,9 +29,11 @@
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
-    if (self) {
+    if (self)
+    {
         // Initialization code here.
     }
+    
     return self;
 }
 
@@ -39,7 +41,36 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    // Implement this method to handle any initialization after your window
+    // controller's window has been loaded from its nib file.
+}
+
+- (void)reset
+{
+    _brightness = 0;
+    _settingName = @"";
+}
+
+- (IBAction)saveBrightness:(id)sender
+{
+    @try
+    {
+        if (sender == _cancelButton)
+        {
+            return;
+        }
+        
+        _settingName = [_txtSettingName stringValue];
+    }
+    @finally
+    {
+        [[self window] orderOut:self];
+
+        if (_closeCallback != nil)
+        {
+            _closeCallback(sender == _okButton);
+        }
+    }
 }
 
 @end

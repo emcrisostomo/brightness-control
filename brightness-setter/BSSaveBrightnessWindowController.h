@@ -20,6 +20,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+void ( ^ closeWnd )( );
+
 @interface BSSaveBrightnessWindowController : NSWindowController
+
+- (void)reset;
+- (void)setBrightness:(float)brightness;
+- (IBAction)saveBrightness:(id)sender;
+
+@property (weak) IBOutlet NSButton *cancelButton;
+@property (weak) IBOutlet NSButton *okButton;
+@property (weak) IBOutlet NSTextField *txtSettingName;
+//@property (weak) IBOutlet NSTextField *lblBrightness;
+@property (strong) void ( ^ closeCallback )( bool );
+@property (copy) NSString *settingName;
+@property float brightness;
 
 @end
