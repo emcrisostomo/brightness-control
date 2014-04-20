@@ -254,7 +254,21 @@ void handleUncaughtException(NSException * e)
     [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (IBAction)restoreBrightness:(id)sender {
+- (IBAction)restoreBrightness:(id)sender
+{
+    const float savedBrightness = [self getSavedBrightnessValue];
+    NSAlert *restoreDialog = [[NSAlert alloc]init];
+    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %f?", savedBrightness]];
+    [restoreDialog addButtonWithTitle:@"Ok"];
+    [restoreDialog addButtonWithTitle:@"Cancel"];
+    NSModalResponse res = [restoreDialog runModal];
+    
+    switch(res)
+    {
+        case NSAlertFirstButtonReturn:
+            [self setBrightness:savedBrightness];
+            break;
+    }
 }
 
 - (void)saveBrightness:(bool)saved
@@ -283,12 +297,17 @@ void handleUncaughtException(NSException * e)
     
     if (act == @selector(restoreBrightness:))
     {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        const float savedBrightness = [defaults floatForKey:kBSBrightnessPropertyName];
+        const float savedBrightness = [self getSavedBrightnessValue];
         return savedBrightness >= 0 && savedBrightness <= 1;
     }
     
     return YES;
+}
+
+- (float)getSavedBrightnessValue
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults floatForKey:kBSBrightnessPropertyName];
 }
 
 @end
