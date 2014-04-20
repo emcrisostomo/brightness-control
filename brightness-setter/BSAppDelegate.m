@@ -183,4 +183,11 @@ void handleUncaughtException(NSException * e)
     [self invalidatePollTimer];
 }
 
+- (IBAction)saveCurrentBrightness:(id)sender
+{
+    float brightness = [self getCurrentBrightness];
+    
+}
+
+
 @end

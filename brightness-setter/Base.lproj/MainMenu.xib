@@ -16,6 +16,7 @@
                 <outlet property="brightnessSlider" destination="RHi-Sg-RdX" id="TXN-DA-7yX"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
                 <outlet property="statusMenu" destination="pU1-qF-Flg" id="1OU-Lf-wcL"/>
+                <outlet property="window" destination="f7h-QG-8mZ" id="jeB-7G-SzC"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -35,6 +36,14 @@
                         <outlet property="view" destination="RHi-Sg-RdX" id="f4y-lA-Jae"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="tQb-Na-rTG"/>
+                <menuItem title="Save..." id="u0N-27-xp1">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="saveCurrentBrightness:" target="Voe-Tx-rLC" id="SFz-d9-76b"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
                 <menuItem title="Quit" id="66c-wU-b33">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -695,5 +704,26 @@
                 </menuItem>
             </items>
         </menu>
+        <button verticalHuggingPriority="750" id="0zk-jm-1V7">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Sn-29-0OZ">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+        </button>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="f7h-QG-8mZ">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="131" y="159" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" id="pUM-Cl-WEe">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="e9c-JI-HdV"/>
+            </connections>
+        </window>
     </objects>
 </document>
