@@ -37,6 +37,7 @@
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSSlider *brightnessSlider;
 @property (strong, nonatomic) BSSaveBrightnessWindowController *saveBrightnessController;
+@property (weak) IBOutlet NSMenuItem *RestoreMenuItem;
 
 @end
 

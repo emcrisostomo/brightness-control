@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="BSAppDelegate">
             <connections>
+                <outlet property="RestoreMenuItem" destination="Rnn-cG-4EX" id="Ml5-Eg-GBf"/>
                 <outlet property="brightnessSlider" destination="RHi-Sg-RdX" id="TXN-DA-7yX"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
                 <outlet property="window" destination="f7h-QG-8mZ" id="jeB-7G-SzC"/>

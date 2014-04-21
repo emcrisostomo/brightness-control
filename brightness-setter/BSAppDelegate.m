@@ -87,11 +87,10 @@ void handleUncaughtException(NSException * e)
     
     if (lastBrightnessValue == currentValue) return;
     
-    lastBrightnessValue = currentValue;
-    
-    NSLog(@"Brightness change detected: %f.", lastBrightnessValue);
-    
-    [_brightnessSlider setFloatValue:lastBrightnessValue * 100];
+    NSLog(@"Brightness change detected outside the application: %f.", lastBrightnessValue);
+
+    [_brightnessSlider setFloatValue:currentValue * 100];
+    [self setBrightness:currentValue];
 }
 
 - (void)loadIOServices
@@ -191,6 +190,8 @@ void handleUncaughtException(NSException * e)
                                    CFSTR(kIODisplayBrightnessKey),
                                    brightness);
     }
+
+    [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
 }
 
 - (IBAction)updateValue:(id)sender
@@ -304,11 +305,16 @@ void handleUncaughtException(NSException * e)
     
     if (act == @selector(restoreBrightness:))
     {
-        const float savedBrightness = [self getSavedBrightnessValue];
-        return savedBrightness != lastBrightnessValue && savedBrightness >= 0 && savedBrightness <= 1;
+        return [self isRestoreEnabled];
     }
     
     return YES;
+}
+
+- (BOOL)isRestoreEnabled
+{
+    const float savedBrightness = [self getSavedBrightnessValue];
+    return savedBrightness != lastBrightnessValue && savedBrightness >= 0 && savedBrightness <= 1;
 }
 
 - (float)getSavedBrightnessValue
