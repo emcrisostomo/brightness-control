@@ -255,28 +255,30 @@ void handleUncaughtException(NSException * e)
     [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (void) doRestoreBrightness:(id)sender
+- (void) askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    const float savedBrightness = [self getSavedBrightnessValue];
-    NSAlert *restoreDialog = [[NSAlert alloc]init];
-    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %f?", savedBrightness]];
-    [restoreDialog addButtonWithTitle:@"Ok"];
-    [restoreDialog addButtonWithTitle:@"Cancel"];
-    NSModalResponse res = [restoreDialog runModal];
-    
-    switch(res)
+    switch(returnCode)
     {
         case NSAlertFirstButtonReturn:
-            [self setBrightness:savedBrightness];
+            [self setBrightness:[self getSavedBrightnessValue]];
             break;
     }
+
 }
 
 - (IBAction)restoreBrightness:(id)sender
 {
     // This is apparently needed otherwise the blue highlighting in the dock
-    // menu would not go awa.
-    [self performSelectorInBackground:@selector(doRestoreBrightness:) withObject:self];
+    // menu would not go away.
+    const float savedBrightness = [self getSavedBrightnessValue];
+    NSAlert *restoreDialog = [[NSAlert alloc]init];
+    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %f?", savedBrightness]];
+    [restoreDialog addButtonWithTitle:@"Ok"];
+    [restoreDialog addButtonWithTitle:@"Cancel"];
+    [restoreDialog beginSheetModalForWindow:nil
+                              modalDelegate:self
+                             didEndSelector:@selector(askRestoreDone:returnCode:contextInfo:)
+                                contextInfo:nil];
 }
 
 - (void)saveBrightness:(bool)saved

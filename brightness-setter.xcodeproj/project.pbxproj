@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9075726A19055B990076EF2B /* bs.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9075726919055B990076EF2B /* bs.icns */; };
 		9078DEA61902C7A10036D2E1 /* bs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9078DEA51902C7A10036D2E1 /* bs.png */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D6504F1902C31F00A31E1A /* InfoPlist.strings */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9075726919055B990076EF2B /* bs.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bs.icns; sourceTree = "<group>"; };
 		9078DEA51902C7A10036D2E1 /* bs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bs.png; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* brightness-setter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brightness-setter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -86,6 +88,7 @@
 		9078DEA71902C7AC0036D2E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9075726919055B990076EF2B /* bs.icns */,
 				9078DEA51902C7A10036D2E1 /* bs.png */,
 			);
 			name = Resources;
@@ -255,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9075726A19055B990076EF2B /* bs.icns in Resources */,
 				9078DEA61902C7A10036D2E1 /* bs.png in Resources */,
 				90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */,
 				90DE962B1903D5FF00DF32F3 /* BSSaveBrightnessWindowController.xib in Resources */,
