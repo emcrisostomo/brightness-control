@@ -40,10 +40,10 @@ void handleUncaughtException(NSException * e)
     self = [super init];
     if (self)
     {
-        _saveBrightnessController = [[BSSaveBrightnessWindowController alloc] initWithWindowNibName:@"BSSaveBrightnessWindowController"];
+        self.saveBrightnessController = [[BSSaveBrightnessWindowController alloc] initWithWindowNibName:@"BSSaveBrightnessWindowController"];
 
         __weak typeof(self) weakSelf = self;
-        _saveBrightnessController.closeCallback = ^( bool saved )
+        self.saveBrightnessController.closeCallback = ^( bool saved )
         {
             [weakSelf saveBrightness:saved];
         };
@@ -54,7 +54,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)dealloc
 {
-    _saveBrightnessController = nil;
+    self.saveBrightnessController = nil;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -244,12 +244,12 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)saveCurrentBrightness:(id)sender
 {
-    float brightness = [self getCurrentBrightness];
-    [_saveBrightnessController reset];
-    [_saveBrightnessController setBrightness:brightness];
+    const float brightness = [self getCurrentBrightness];
+    [self.saveBrightnessController reset];
+    [self.saveBrightnessController setBrightness:brightness];
     
     NSAssert(modalSession == nil, @"modalSession should be null.");
-    modalSession = [NSApp beginModalSessionForWindow:[_saveBrightnessController window]];
+    modalSession = [NSApp beginModalSessionForWindow:[self.saveBrightnessController window]];
     [NSApp runModalSession:modalSession];
     
     [NSApp activateIgnoringOtherApps:YES];
@@ -289,10 +289,10 @@ void handleUncaughtException(NSException * e)
         
         // TODO: save value
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSNumber numberWithFloat:[_saveBrightnessController brightness]]
+        [defaults setObject:[NSNumber numberWithFloat:[self.saveBrightnessController brightness]]
                      forKey:kBSBrightnessPropertyName];
 
-        NSLog(@"Setting name: %@", [_saveBrightnessController settingName]);
+        NSLog(@"Setting name: %@", [self.saveBrightnessController settingName]);
     }
     @finally
     {
