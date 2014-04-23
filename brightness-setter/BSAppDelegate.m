@@ -35,28 +35,6 @@ void handleUncaughtException(NSException * e)
     [NSApp terminate:nil];
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self)
-    {
-        self.saveBrightnessController = [[BSSaveBrightnessWindowController alloc] initWithWindowNibName:@"BSSaveBrightnessWindowController"];
-
-        __weak typeof(self) weakSelf = self;
-        self.saveBrightnessController.closeCallback = ^( bool saved )
-        {
-            [weakSelf saveBrightness:saved];
-        };
-    }
-    
-    return self;
-}
-
-- (void)dealloc
-{
-    self.saveBrightnessController = nil;
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSSetUncaughtExceptionHandler(handleUncaughtException);
@@ -245,14 +223,27 @@ void handleUncaughtException(NSException * e)
 - (IBAction)saveCurrentBrightness:(id)sender
 {
     const float brightness = [self getCurrentBrightness];
-    [self.saveBrightnessController reset];
-    [self.saveBrightnessController setBrightness:brightness];
+    NSAlert *saveDialog = [[NSAlert alloc] init];
+    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %f?", brightness]];
+    [saveDialog addButtonWithTitle:@"Ok"];
+    [saveDialog addButtonWithTitle:@"Cancel"];
+    [saveDialog beginSheetModalForWindow:nil
+                           modalDelegate:self
+                          didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
+                             contextInfo:(__bridge_retained void *)[NSNumber numberWithFloat:brightness]];
+}
+
+- (void) askSaveDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    NSNumber *brightness = (__bridge_transfer NSNumber *)contextInfo;
     
-    NSAssert(modalSession == nil, @"modalSession should be null.");
-    modalSession = [NSApp beginModalSessionForWindow:[self.saveBrightnessController window]];
-    [NSApp runModalSession:modalSession];
-    
-    [NSApp activateIgnoringOtherApps:YES];
+    switch(returnCode)
+    {
+        case NSAlertFirstButtonReturn:
+            [self saveBrightness:[brightness floatValue]];
+            break;
+    }
+
 }
 
 - (void) askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -263,7 +254,6 @@ void handleUncaughtException(NSException * e)
             [self setBrightness:[self getSavedBrightnessValue]];
             break;
     }
-
 }
 
 - (IBAction)restoreBrightness:(id)sender
@@ -271,7 +261,7 @@ void handleUncaughtException(NSException * e)
     // This is apparently needed otherwise the blue highlighting in the dock
     // menu would not go away.
     const float savedBrightness = [self getSavedBrightnessValue];
-    NSAlert *restoreDialog = [[NSAlert alloc]init];
+    NSAlert *restoreDialog = [[NSAlert alloc] init];
     [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %f?", savedBrightness]];
     [restoreDialog addButtonWithTitle:@"Ok"];
     [restoreDialog addButtonWithTitle:@"Cancel"];
@@ -281,24 +271,13 @@ void handleUncaughtException(NSException * e)
                                 contextInfo:nil];
 }
 
-- (void)saveBrightness:(bool)saved
+- (void)saveBrightness:(float)brightness
 {
-    @try
-    {
-        if(!saved) return;
-        
-        // TODO: save value
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSNumber numberWithFloat:[self.saveBrightnessController brightness]]
-                     forKey:kBSBrightnessPropertyName];
-
-        NSLog(@"Setting name: %@", [self.saveBrightnessController settingName]);
-    }
-    @finally
-    {
-        [NSApp endModalSession:modalSession];
-        modalSession = nil;
-    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithFloat:brightness]
+                 forKey:kBSBrightnessPropertyName];
+    
+    NSLog(@"Saved brightness: %f.", brightness);
 }
 
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem

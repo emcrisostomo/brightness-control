@@ -19,14 +19,12 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "BSSaveBrightnessWindowController.h"
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations> {
     NSStatusItem *item;
     float lastBrightnessValue;
     NSTimer *pollTimer;
     io_iterator_t service_iterator;
-    NSModalSession modalSession;
 }
 
 - (IBAction)updateValue:(id)sender;
@@ -36,7 +34,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSSlider *brightnessSlider;
-@property (strong, nonatomic) BSSaveBrightnessWindowController *saveBrightnessController;
 @property (weak) IBOutlet NSMenuItem *RestoreMenuItem;
 
 @end
