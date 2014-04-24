@@ -124,8 +124,7 @@ void handleUncaughtException(NSException * e)
 - (void)setDefaults
 {
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
-    [defaults setObject:[NSNumber numberWithFloat:-1]
-                forKey:kBSBrightnessPropertyName];
+    defaults[kBSBrightnessPropertyName] = @-1.0f;
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
@@ -230,7 +229,7 @@ void handleUncaughtException(NSException * e)
     [saveDialog beginSheetModalForWindow:nil
                            modalDelegate:self
                           didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
-                             contextInfo:(__bridge_retained void *)[NSNumber numberWithFloat:brightness]];
+                             contextInfo:(__bridge_retained void *)@(brightness)];
 }
 
 - (void) askSaveDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -274,7 +273,7 @@ void handleUncaughtException(NSException * e)
 - (void)saveBrightness:(float)brightness
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithFloat:brightness]
+    [defaults setObject:@(brightness)
                  forKey:kBSBrightnessPropertyName];
     
     NSLog(@"Saved brightness: %f.", brightness);
