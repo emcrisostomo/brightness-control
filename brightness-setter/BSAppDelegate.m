@@ -31,7 +31,7 @@ void handleUncaughtException(NSException * e)
     [alert setInformativeText:[e reason]];
     [alert setAlertStyle:NSCriticalAlertStyle];
     [alert runModal];
-
+    
     [NSApp terminate:nil];
 }
 
@@ -41,7 +41,8 @@ void handleUncaughtException(NSException * e)
     [self setDefaults];
     [self getDefaults];
     
-    @try {
+    @try
+    {
         [self loadIOServices];
         [self createDockIcon];
         lastBrightnessValue = [self getCurrentBrightness];
@@ -71,8 +72,8 @@ void handleUncaughtException(NSException * e)
     
     if (lastBrightnessValue == currentValue) return;
     
-    NSLog(@"Brightness change detected outside the application: %f.", lastBrightnessValue);
-
+    NSLog(@"External brightness change detected while dock menu is open: %f.", lastBrightnessValue);
+    
     [self performSelectorOnMainThread:@selector(updateSliderAndSetBrightness:)
                            withObject:[NSNumber numberWithFloat:currentValue]
                         waitUntilDone:NO];
@@ -107,10 +108,10 @@ void handleUncaughtException(NSException * e)
 {
     if (item != nil)
     {
-        NSLog(@"Dock icon already set");
+        NSLog(@"Dock icon already set. This method should not be called twice.");
         return;
     }
-
+    
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
     item = [bar statusItemWithLength:NSSquareStatusItemLength];
@@ -125,7 +126,7 @@ void handleUncaughtException(NSException * e)
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     float f = [defaults floatForKey:kBSBrightnessPropertyName];
-    NSLog(@"Value read: %f", f);
+    NSLog(@"Currently saved brightness value: %f.", f);
 }
 
 - (void)setDefaults
@@ -148,11 +149,11 @@ void handleUncaughtException(NSException * e)
     while ((service = IOIteratorNext(service_iterator)))
     {
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
-
+        
         return currentValue;
     }
     
-    NSLog(@"Brightness cannot be obtained.");
+    NSLog(@"Brightness cannot be obtained, the default .5 value will be used. However, the application may not function properly.");
     
     return .5;
 }
@@ -162,10 +163,10 @@ void handleUncaughtException(NSException * e)
     if (lastBrightnessValue == brightness) return;
     else lastBrightnessValue = brightness;
     
-    NSLog(@"%f", brightness);
+    NSLog(@"Setting brightness value: %f.", brightness);
     
     IOIteratorReset(service_iterator);
-
+    
     io_object_t service;
     while ((service = IOIteratorNext(service_iterator)))
     {
@@ -174,7 +175,7 @@ void handleUncaughtException(NSException * e)
                                    CFSTR(kIODisplayBrightnessKey),
                                    brightness);
     }
-
+    
     [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
 }
 
@@ -187,7 +188,7 @@ void handleUncaughtException(NSException * e)
 {
     if (pollTimer != nil)
     {
-        NSLog(@"Warning: Poll timer was not null: invalidating it.");
+        NSLog(@"Warning: Poll timer was not null: invalidating it. This may be a bug.");
         [pollTimer invalidate];
     }
     
@@ -249,7 +250,6 @@ void handleUncaughtException(NSException * e)
             [self saveBrightness:[brightness floatValue]];
             break;
     }
-
 }
 
 - (void) askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
