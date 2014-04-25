@@ -154,21 +154,14 @@ void handleUncaughtException(NSException * e)
         ++servicesFound;
     }
 
-    if (servicesFound == 0)
-    {
-        NSLog(@"No service satisfying filter [IODisplayConnect] was found.");
-        [NSException raise:@"No service satisfying filter [IODisplayConnect] was found."
-                    format:@"No service satisfying filter [IODisplayConnect] was found."];
-    }
-    
-    if (servicesFound > 1)
+    if (servicesFound != 1)
     {
         NSString *msg = [NSString stringWithFormat:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
         NSLog(@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound);
         [NSException raise:msg
                     format:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
     }
-    
+        
     return currentValue;
 }
 
