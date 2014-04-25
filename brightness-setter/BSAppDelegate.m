@@ -145,17 +145,31 @@ void handleUncaughtException(NSException * e)
     IOIteratorReset(service_iterator);
     
     io_object_t service;
-    float currentValue;
+    float currentValue = .5;
+    unsigned int servicesFound = 0;
+    
     while ((service = IOIteratorNext(service_iterator)))
     {
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
-        
-        return currentValue;
+        ++servicesFound;
+    }
+
+    if (servicesFound == 0)
+    {
+        NSLog(@"No service satisfying filter [IODisplayConnect] was found.");
+        [NSException raise:@"No service satisfying filter [IODisplayConnect] was found."
+                    format:@"No service satisfying filter [IODisplayConnect] was found."];
     }
     
-    NSLog(@"Brightness cannot be obtained, the default .5 value will be used. However, the application may not function properly.");
+    if (servicesFound > 1)
+    {
+        NSString *msg = [NSString stringWithFormat:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
+        NSLog(@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound);
+        [NSException raise:msg
+                    format:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
+    }
     
-    return .5;
+    return currentValue;
 }
 
 - (void)setBrightness:(float)brightness
