@@ -59,6 +59,12 @@ void handleUncaughtException(NSException * e)
     [self releaseIOServices];
 }
 
+- (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
+{
+    [_brightnessSlider setFloatValue:[updatedBrightness floatValue] * 100];
+    [self setBrightness:[updatedBrightness floatValue]];
+}
+
 - (void)pollTimerFired:(NSTimer *)timer
 {
     float currentValue = [self getCurrentBrightness];
@@ -67,8 +73,9 @@ void handleUncaughtException(NSException * e)
     
     NSLog(@"Brightness change detected outside the application: %f.", lastBrightnessValue);
 
-    [_brightnessSlider setFloatValue:currentValue * 100];
-    [self setBrightness:currentValue];
+    [self performSelectorOnMainThread:@selector(updateSliderAndSetBrightness:)
+                           withObject:[NSNumber numberWithFloat:currentValue]
+                        waitUntilDone:NO];
 }
 
 - (void)loadIOServices
