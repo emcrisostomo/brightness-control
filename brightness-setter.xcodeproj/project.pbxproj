@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9075726A19055B990076EF2B /* bs.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9075726919055B990076EF2B /* bs.icns */; };
-		9078DEA61902C7A10036D2E1 /* bs.png in Resources */ = {isa = PBXBuildFile; fileRef = 9078DEA51902C7A10036D2E1 /* bs.png */; };
+		90BB9FCC1911033500875B36 /* bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BB9FCB1911033500875B36 /* bulb.png */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D6504F1902C31F00A31E1A /* InfoPlist.strings */; };
 		90D650531902C31F00A31E1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D650521902C31F00A31E1A /* main.m */; };
@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		9075726919055B990076EF2B /* bs.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bs.icns; sourceTree = "<group>"; };
-		9078DEA51902C7A10036D2E1 /* bs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bs.png; sourceTree = "<group>"; };
+		90BB9FCB1911033500875B36 /* bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulb.png; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* brightness-setter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brightness-setter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				9075726919055B990076EF2B /* bs.icns */,
-				9078DEA51902C7A10036D2E1 /* bs.png */,
+				90BB9FCB1911033500875B36 /* bulb.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -251,11 +251,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9075726A19055B990076EF2B /* bs.icns in Resources */,
-				9078DEA61902C7A10036D2E1 /* bs.png in Resources */,
 				90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */,
 				90D6505F1902C31F00A31E1A /* Images.xcassets in Resources */,
 				90D650571902C31F00A31E1A /* Credits.rtf in Resources */,
 				90D6505D1902C31F00A31E1A /* MainMenu.xib in Resources */,
+				90BB9FCC1911033500875B36 /* bulb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
