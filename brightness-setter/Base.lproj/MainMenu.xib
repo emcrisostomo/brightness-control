@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
@@ -48,6 +48,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="restoreBrightness:" target="Voe-Tx-rLC" id="VDP-LJ-c0M"/>
+                        <binding destination="Voe-Tx-rLC" name="enabled" keyPath="restoreEnabled" id="ZGm-3X-MxR"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
@@ -724,5 +725,6 @@
                 <outlet property="delegate" destination="Voe-Tx-rLC" id="e9c-JI-HdV"/>
             </connections>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="WOs-5F-w9g"/>
     </objects>
 </document>

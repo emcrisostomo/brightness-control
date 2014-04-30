@@ -115,7 +115,7 @@ void handleUncaughtException(NSException * e)
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
     item = [bar statusItemWithLength:NSSquareStatusItemLength];
-    [item setImage:[NSImage imageNamed:@"bs.png"]];
+    [item setImage:[NSImage imageNamed:@"bulb.png"]];
     [item setHighlightMode:YES];
     [item setEnabled:TRUE];
     [item setToolTip:@"Brightness Setter"];
@@ -161,7 +161,7 @@ void handleUncaughtException(NSException * e)
         [NSException raise:msg
                     format:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
     }
-        
+
     return currentValue;
 }
 
@@ -182,8 +182,19 @@ void handleUncaughtException(NSException * e)
                                    CFSTR(kIODisplayBrightnessKey),
                                    brightness);
     }
-    
+
+    [self setRestoreEnabled:[self isRestoreEnabled]];
     [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
+}
+
+- (BOOL) restoreEnabled
+{
+    return [self isRestoreEnabled];
+}
+
+- (void) setRestoreEnabled:(BOOL)restoreEnabled
+{
+    
 }
 
 - (IBAction)updateValue:(id)sender
