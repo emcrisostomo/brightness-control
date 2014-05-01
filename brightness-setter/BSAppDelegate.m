@@ -45,7 +45,7 @@ void handleUncaughtException(NSException * e)
     {
         [self loadIOServices];
         [self createDockIcon];
-        lastBrightnessValue = [self getCurrentBrightness];
+        [self setBrightness:[self getCurrentBrightness]];
     }
     @catch (NSException * e)
     {
@@ -114,7 +114,7 @@ void handleUncaughtException(NSException * e)
     
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
-    item = [bar statusItemWithLength:NSSquareStatusItemLength];
+    item = [bar statusItemWithLength:NSVariableStatusItemLength];
     [item setImage:[NSImage imageNamed:@"bulb.png"]];
     [item setHighlightMode:YES];
     [item setEnabled:TRUE];
@@ -185,6 +185,7 @@ void handleUncaughtException(NSException * e)
 
     [self setRestoreEnabled:[self isRestoreEnabled]];
     [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
+    [item setTitle:[NSString stringWithFormat:@"%.3f", lastBrightnessValue]];
 }
 
 - (BOOL) restoreEnabled
