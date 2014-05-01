@@ -38,6 +38,10 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="tQb-Na-rTG"/>
+                <menuItem title="Show Percentage" id="ahV-9K-U03">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="nZe-bu-ecl"/>
                 <menuItem title="Save..." id="u0N-27-xp1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -726,5 +730,13 @@
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="WOs-5F-w9g"/>
+        <button verticalHuggingPriority="750" id="srH-GY-Qh2">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a9E-1m-dgQ">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+        </button>
     </objects>
 </document>
