@@ -213,7 +213,19 @@ void handleUncaughtException(NSException * e)
 
     [self setRestoreEnabled:[self isRestoreEnabled]];
     [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
-    [item setTitle:[NSString stringWithFormat:@"%.3f", lastBrightnessValue]];
+    [self updateStatusIcon];
+}
+
+- (void) updateStatusIcon
+{
+    if ([self percentageShown])
+    {
+        [item setTitle:[NSString stringWithFormat:@"%.3f", lastBrightnessValue]];
+    }
+    else
+    {
+        [item setTitle:nil];
+    }
 }
 
 - (BOOL) restoreEnabled
@@ -333,6 +345,7 @@ void handleUncaughtException(NSException * e)
                  forKey:kBSPercentageShownPropertyName];
     
     [self setPercentageShown:newPercentageShown];
+    [self updateStatusIcon];
 }
 
 - (void)saveBrightness:(float)brightness
