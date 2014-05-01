@@ -36,7 +36,6 @@
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSSlider *brightnessSlider;
 @property (weak) IBOutlet NSView *sliderView;
-@property (weak) IBOutlet NSMenuItem *RestoreMenuItem;
 @property float brightness;
 @property BOOL restoreEnabled;
 @property BOOL percentageShown;

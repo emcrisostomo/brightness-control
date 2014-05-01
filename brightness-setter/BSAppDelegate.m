@@ -244,8 +244,6 @@ void handleUncaughtException(NSException * e)
     }
 
     [self setRestoreEnabled:[self isRestoreEnabled]];
-    [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
-    //[self updateStatusIcon];
 }
 
 - (void) updateStatusIcon
@@ -377,7 +375,6 @@ void handleUncaughtException(NSException * e)
                  forKey:kBSPercentageShownPropertyName];
     
     [self setPercentageShown:newPercentageShown];
-    // [self updateStatusIcon];
 }
 
 - (void)saveBrightness:(float)brightness
