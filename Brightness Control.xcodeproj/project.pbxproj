@@ -36,12 +36,12 @@
 /* Begin PBXFileReference section */
 		9075726919055B990076EF2B /* bs.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = bs.icns; sourceTree = "<group>"; };
 		90BB9FCB1911033500875B36 /* bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulb.png; sourceTree = "<group>"; };
-		90D650431902C31F00A31E1A /* brightness-setter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "brightness-setter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		90D6504A1902C31F00A31E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		90D6504B1902C31F00A31E1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		90D6504E1902C31F00A31E1A /* brightness-setter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "brightness-setter-Info.plist"; sourceTree = "<group>"; };
+		90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness Control-Info.plist"; sourceTree = "<group>"; };
 		90D650501902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90D650521902C31F00A31E1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90D650541902C31F00A31E1A /* brightness-setter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "brightness-setter-Prefix.pch"; sourceTree = "<group>"; };
@@ -50,9 +50,9 @@
 		90D650591902C31F00A31E1A /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
 		90D6505C1902C31F00A31E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		90D6505E1902C31F00A31E1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		90D650641902C31F00A31E1A /* brightness-setterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "brightness-setterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D650641902C31F00A31E1A /* Brightness ControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brightness ControlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650651902C31F00A31E1A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		90D6506C1902C31F00A31E1A /* brightness-setterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "brightness-setterTests-Info.plist"; sourceTree = "<group>"; };
+		90D6506C1902C31F00A31E1A /* Brightness ControlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness ControlTests-Info.plist"; sourceTree = "<group>"; };
 		90D6506E1902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90D650701902C31F00A31E1A /* brightness_setterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
 		90DE962F1904180E00DF32F3 /* BSMenuItemWithView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMenuItemWithView.h; sourceTree = "<group>"; };
@@ -102,8 +102,8 @@
 		90D650441902C31F00A31E1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90D650431902C31F00A31E1A /* brightness-setter.app */,
-				90D650641902C31F00A31E1A /* brightness-setterTests.xctest */,
+				90D650431902C31F00A31E1A /* Brightness Control.app */,
+				90D650641902C31F00A31E1A /* Brightness ControlTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,7 +146,7 @@
 		90D6504D1902C31F00A31E1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90D6504E1902C31F00A31E1A /* brightness-setter-Info.plist */,
+				90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */,
 				90D6504F1902C31F00A31E1A /* InfoPlist.strings */,
 				90D650521902C31F00A31E1A /* main.m */,
 				90D650541902C31F00A31E1A /* brightness-setter-Prefix.pch */,
@@ -167,7 +167,7 @@
 		90D6506B1902C31F00A31E1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90D6506C1902C31F00A31E1A /* brightness-setterTests-Info.plist */,
+				90D6506C1902C31F00A31E1A /* Brightness ControlTests-Info.plist */,
 				90D6506D1902C31F00A31E1A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		90D650421902C31F00A31E1A /* brightness-setter */ = {
+		90D650421902C31F00A31E1A /* Brightness Control */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90D650741902C31F00A31E1A /* Build configuration list for PBXNativeTarget "brightness-setter" */;
+			buildConfigurationList = 90D650741902C31F00A31E1A /* Build configuration list for PBXNativeTarget "Brightness Control" */;
 			buildPhases = (
 				90D6503F1902C31F00A31E1A /* Sources */,
 				90D650401902C31F00A31E1A /* Frameworks */,
@@ -188,14 +188,14 @@
 			);
 			dependencies = (
 			);
-			name = "brightness-setter";
+			name = "Brightness Control";
 			productName = "brightness-setter";
-			productReference = 90D650431902C31F00A31E1A /* brightness-setter.app */;
+			productReference = 90D650431902C31F00A31E1A /* Brightness Control.app */;
 			productType = "com.apple.product-type.application";
 		};
-		90D650631902C31F00A31E1A /* brightness-setterTests */ = {
+		90D650631902C31F00A31E1A /* Brightness ControlTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90D650771902C31F00A31E1A /* Build configuration list for PBXNativeTarget "brightness-setterTests" */;
+			buildConfigurationList = 90D650771902C31F00A31E1A /* Build configuration list for PBXNativeTarget "Brightness ControlTests" */;
 			buildPhases = (
 				90D650601902C31F00A31E1A /* Sources */,
 				90D650611902C31F00A31E1A /* Frameworks */,
@@ -206,9 +206,9 @@
 			dependencies = (
 				90D650691902C31F00A31E1A /* PBXTargetDependency */,
 			);
-			name = "brightness-setterTests";
+			name = "Brightness ControlTests";
 			productName = "brightness-setterTests";
-			productReference = 90D650641902C31F00A31E1A /* brightness-setterTests.xctest */;
+			productReference = 90D650641902C31F00A31E1A /* Brightness ControlTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -226,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90D6503E1902C31F00A31E1A /* Build configuration list for PBXProject "brightness-setter" */;
+			buildConfigurationList = 90D6503E1902C31F00A31E1A /* Build configuration list for PBXProject "Brightness Control" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -239,8 +239,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				90D650421902C31F00A31E1A /* brightness-setter */,
-				90D650631902C31F00A31E1A /* brightness-setterTests */,
+				90D650421902C31F00A31E1A /* Brightness Control */,
+				90D650631902C31F00A31E1A /* Brightness ControlTests */,
 			);
 		};
 /* End PBXProject section */
@@ -293,7 +293,7 @@
 /* Begin PBXTargetDependency section */
 		90D650691902C31F00A31E1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 90D650421902C31F00A31E1A /* brightness-setter */;
+			target = 90D650421902C31F00A31E1A /* Brightness Control */;
 			targetProxy = 90D650681902C31F00A31E1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -410,9 +410,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/brightness-setter-Prefix.pch";
-				INFOPLIST_FILE = "brightness-setter/brightness-setter-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
+				INFOPLIST_FILE = "brightness-setter/Brightness Control-Info.plist";
+				PRODUCT_NAME = "Brightness Control";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -423,9 +423,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/brightness-setter-Prefix.pch";
-				INFOPLIST_FILE = "brightness-setter/brightness-setter-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
+				INFOPLIST_FILE = "brightness-setter/Brightness Control-Info.plist";
+				PRODUCT_NAME = "Brightness Control";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -445,8 +445,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "brightness-setterTests/brightness-setterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "brightness-setterTests/Brightness ControlTests-Info.plist";
+				PRODUCT_NAME = "Brightness ControlTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -463,8 +463,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "brightness-setter/brightness-setter-Prefix.pch";
-				INFOPLIST_FILE = "brightness-setterTests/brightness-setterTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "brightness-setterTests/Brightness ControlTests-Info.plist";
+				PRODUCT_NAME = "Brightness ControlTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -473,7 +473,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90D6503E1902C31F00A31E1A /* Build configuration list for PBXProject "brightness-setter" */ = {
+		90D6503E1902C31F00A31E1A /* Build configuration list for PBXProject "Brightness Control" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90D650721902C31F00A31E1A /* Debug */,
@@ -482,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90D650741902C31F00A31E1A /* Build configuration list for PBXNativeTarget "brightness-setter" */ = {
+		90D650741902C31F00A31E1A /* Build configuration list for PBXNativeTarget "Brightness Control" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90D650751902C31F00A31E1A /* Debug */,
@@ -491,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90D650771902C31F00A31E1A /* Build configuration list for PBXNativeTarget "brightness-setterTests" */ = {
+		90D650771902C31F00A31E1A /* Build configuration list for PBXNativeTarget "Brightness ControlTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90D650781902C31F00A31E1A /* Debug */,

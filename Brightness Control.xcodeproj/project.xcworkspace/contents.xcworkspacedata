@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:brightness-setter.xcodeproj">
+      location = "self:Brightness Control.xcodeproj">
    </FileRef>
 </Workspace>
