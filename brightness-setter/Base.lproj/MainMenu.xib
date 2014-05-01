@@ -31,7 +31,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="tQb-Na-rTG"/>
-                <menuItem title="Show Percentage Show Percentage" id="ahV-9K-U03">
+                <menuItem title="Show Percentage" id="ahV-9K-U03">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showPercentage:" target="Voe-Tx-rLC" id="cdZ-rw-Gwm"/>

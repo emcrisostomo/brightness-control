@@ -22,7 +22,7 @@
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations> {
     NSStatusItem *item;
-    float lastBrightnessValue;
+    float _brightness;
     NSTimer *pollTimer;
     io_iterator_t service_iterator;
 }
@@ -37,6 +37,7 @@
 @property (weak) IBOutlet NSSlider *brightnessSlider;
 @property (weak) IBOutlet NSView *sliderView;
 @property (weak) IBOutlet NSMenuItem *RestoreMenuItem;
+@property float brightness;
 @property BOOL restoreEnabled;
 @property BOOL percentageShown;
 

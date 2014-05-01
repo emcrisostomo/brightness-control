@@ -39,10 +39,12 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSSetUncaughtExceptionHandler(handleUncaughtException);
+ 
     // Make sure slider view will be as wide as the contextual menu.
     [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
 
-    NSSetUncaughtExceptionHandler(handleUncaughtException);
+    [self registerObservers];
     [self setDefaults];
     [self getDefaults];
     
@@ -57,6 +59,31 @@ void handleUncaughtException(NSException * e)
         handleUncaughtException(e);
     }
 }
+
+- (void)registerObservers
+{
+    [self addObserver:self
+           forKeyPath:@"percentageShown"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+    [self addObserver:self
+           forKeyPath:@"brightness"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void*)context
+{
+    if ([keyPath isEqualToString:@"percentageShown"] || [keyPath isEqualToString:@"brightness"])
+    {
+        [self updateStatusIcon];
+    }
+}
+
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
@@ -75,9 +102,9 @@ void handleUncaughtException(NSException * e)
 {
     float currentValue = [self getCurrentBrightness];
     
-    if (lastBrightnessValue == currentValue) return;
+    if (_brightness == currentValue) return;
     
-    NSLog(@"External brightness change detected while dock menu is open: %f.", lastBrightnessValue);
+    NSLog(@"External brightness change detected while dock menu is open: %f.", _brightness);
     
     [self performSelectorOnMainThread:@selector(updateSliderAndSetBrightness:)
                            withObject:[NSNumber numberWithFloat:currentValue]
@@ -193,10 +220,15 @@ void handleUncaughtException(NSException * e)
     return currentValue;
 }
 
+- (float)brightness
+{
+    return _brightness;
+}
+
 - (void)setBrightness:(float)brightness
 {
-    if (lastBrightnessValue == brightness) return;
-    else lastBrightnessValue = brightness;
+    if (_brightness == brightness) return;
+    else _brightness = brightness;
     
     NSLog(@"Setting brightness value: %f.", brightness);
     
@@ -213,14 +245,14 @@ void handleUncaughtException(NSException * e)
 
     [self setRestoreEnabled:[self isRestoreEnabled]];
     [self.RestoreMenuItem setEnabled:[self isRestoreEnabled]];
-    [self updateStatusIcon];
+    //[self updateStatusIcon];
 }
 
 - (void) updateStatusIcon
 {
     if ([self percentageShown])
     {
-        [item setTitle:[NSString stringWithFormat:@"%.3f", lastBrightnessValue]];
+        [item setTitle:[NSString stringWithFormat:@"%.3f", _brightness]];
     }
     else
     {
@@ -251,7 +283,7 @@ void handleUncaughtException(NSException * e)
         [pollTimer invalidate];
     }
     
-    pollTimer = [NSTimer timerWithTimeInterval:(1.0 / 10.0)
+    pollTimer = [NSTimer timerWithTimeInterval:(1.0 / 2.0)
                                         target:self
                                       selector:@selector(pollTimerFired:)
                                       userInfo:nil
@@ -274,7 +306,7 @@ void handleUncaughtException(NSException * e)
     
     NSLog(@"Current brightness %f.", currentValue);
     
-    lastBrightnessValue = currentValue;
+    _brightness = currentValue;
     
     [_brightnessSlider setFloatValue:currentValue * 100];
 
@@ -345,7 +377,7 @@ void handleUncaughtException(NSException * e)
                  forKey:kBSPercentageShownPropertyName];
     
     [self setPercentageShown:newPercentageShown];
-    [self updateStatusIcon];
+    // [self updateStatusIcon];
 }
 
 - (void)saveBrightness:(float)brightness
@@ -376,7 +408,7 @@ void handleUncaughtException(NSException * e)
 - (BOOL)isRestoreEnabled
 {
     const float savedBrightness = [self getSavedBrightnessValue];
-    return savedBrightness != lastBrightnessValue && savedBrightness >= 0 && savedBrightness <= 1;
+    return savedBrightness != _brightness && savedBrightness >= 0 && savedBrightness <= 1;
 }
 
 - (float)getSavedBrightnessValue
