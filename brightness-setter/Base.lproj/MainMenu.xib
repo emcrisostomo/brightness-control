@@ -16,30 +16,26 @@
                 <outlet property="RestoreMenuItem" destination="Rnn-cG-4EX" id="Ml5-Eg-GBf"/>
                 <outlet property="brightnessSlider" destination="RHi-Sg-RdX" id="TXN-DA-7yX"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
+                <outlet property="sliderView" destination="GeW-Lj-jmW" id="wGP-T5-t0u"/>
                 <outlet property="window" destination="f7h-QG-8mZ" id="jeB-7G-SzC"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <slider verticalHuggingPriority="750" id="RHi-Sg-RdX">
-            <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ebh-ej-qb2"/>
-            <connections>
-                <action selector="updateValue:" target="Voe-Tx-rLC" id="mVI-hB-kdE"/>
-            </connections>
-        </slider>
         <menu id="pU1-qF-Flg" userLabel="Dock Menu">
             <items>
                 <menuItem title="Slider" id="9S2-EL-NnB" customClass="BSMenuItemWithView">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="updateValue:" target="Voe-Tx-rLC" id="3t8-33-gL4"/>
-                        <outlet property="view" destination="RHi-Sg-RdX" id="f4y-lA-Jae"/>
+                        <outlet property="view" destination="GeW-Lj-jmW" id="xsC-yq-hMc"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="tQb-Na-rTG"/>
-                <menuItem title="Show Percentage" id="ahV-9K-U03">
+                <menuItem title="Show Percentage Show Percentage" id="ahV-9K-U03">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPercentage:" target="Voe-Tx-rLC" id="cdZ-rw-Gwm"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="nZe-bu-ecl"/>
                 <menuItem title="Save..." id="u0N-27-xp1">
@@ -738,5 +734,24 @@
                 <font key="font" metaFont="system"/>
             </buttonCell>
         </button>
+        <customView wantsLayer="YES" id="GeW-Lj-jmW">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RHi-Sg-RdX">
+                    <rect key="frame" x="18" y="-2" width="104" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ebh-ej-qb2"/>
+                    <connections>
+                        <action selector="updateValue:" target="Voe-Tx-rLC" id="mVI-hB-kdE"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <constraints>
+                <constraint firstItem="RHi-Sg-RdX" firstAttribute="top" secondItem="GeW-Lj-jmW" secondAttribute="top" id="HWI-XH-RWH"/>
+                <constraint firstItem="RHi-Sg-RdX" firstAttribute="leading" secondItem="GeW-Lj-jmW" secondAttribute="leading" constant="20" symbolic="YES" id="bIg-r3-jvy"/>
+                <constraint firstAttribute="trailing" secondItem="RHi-Sg-RdX" secondAttribute="trailing" constant="20" symbolic="YES" id="dCc-lI-mli"/>
+            </constraints>
+        </customView>
     </objects>
 </document>

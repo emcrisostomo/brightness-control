@@ -30,14 +30,18 @@
 - (IBAction)updateValue:(id)sender;
 - (IBAction)saveCurrentBrightness:(id)sender;
 - (IBAction)restoreBrightness:(id)sender;
+- (IBAction)showPercentage:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSSlider *brightnessSlider;
+@property (weak) IBOutlet NSView *sliderView;
 @property (weak) IBOutlet NSMenuItem *RestoreMenuItem;
 @property BOOL restoreEnabled;
+@property BOOL percentageShown;
 
 @end
 
 NSString * const kBSBrightnessPropertyName;
+NSString * const kBSPercentageShownPropertyName;
 const float      kBSBrightnessTolerance;

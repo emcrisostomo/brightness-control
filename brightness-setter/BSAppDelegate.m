@@ -21,6 +21,7 @@
 #import "BSAppDelegate.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
+NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
 const float kBSBrightnessTolerance = .01;
 
 @implementation BSAppDelegate
@@ -38,6 +39,9 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Make sure slider view will be as wide as the contextual menu.
+    [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
+
     NSSetUncaughtExceptionHandler(handleUncaughtException);
     [self setDefaults];
     [self getDefaults];
@@ -128,13 +132,15 @@ void handleUncaughtException(NSException * e)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     float f = [defaults floatForKey:kBSBrightnessPropertyName];
     NSLog(@"Currently saved brightness value: %f.", f);
+    
+    [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
 }
 
 - (void)setDefaults
 {
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
     defaults[kBSBrightnessPropertyName] = @-1.0f;
-    
+    defaults[kBSPercentageShownPropertyName] = @(NO);
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // setting defaults in shared controller
@@ -318,6 +324,17 @@ void handleUncaughtException(NSException * e)
                                 contextInfo:nil];
 }
 
+- (IBAction)showPercentage:(id)sender
+{
+    BOOL newPercentageShown = ![self percentageShown];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(newPercentageShown)
+                 forKey:kBSPercentageShownPropertyName];
+    
+    [self setPercentageShown:newPercentageShown];
+}
+
 - (void)saveBrightness:(float)brightness
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -330,10 +347,14 @@ void handleUncaughtException(NSException * e)
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
 {
     SEL act = [anItem action];
+    id obj = anItem;
     
-    if (act == @selector(restoreBrightness:))
+    if (act == @selector(showPercentage:))
     {
-        return [self isRestoreEnabled];
+        if ([obj respondsToSelector:@selector(setState:)])
+        {
+            [obj setState:([self percentageShown] ? NSOnState : NSOffState)];
+        }
     }
     
     return YES;
