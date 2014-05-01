@@ -13,7 +13,6 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="BSAppDelegate">
             <connections>
-                <outlet property="brightnessSlider" destination="RHi-Sg-RdX" id="TXN-DA-7yX"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
                 <outlet property="sliderView" destination="GeW-Lj-jmW" id="wGP-T5-t0u"/>
                 <outlet property="window" destination="f7h-QG-8mZ" id="jeB-7G-SzC"/>
@@ -743,6 +742,7 @@
                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Ebh-ej-qb2"/>
                     <connections>
                         <action selector="updateValue:" target="Voe-Tx-rLC" id="mVI-hB-kdE"/>
+                        <binding destination="Voe-Tx-rLC" name="value" keyPath="sliderValue" id="Bnb-jM-gJi"/>
                     </connections>
                 </slider>
             </subviews>

@@ -44,6 +44,7 @@ void handleUncaughtException(NSException * e)
     // Make sure slider view will be as wide as the contextual menu.
     [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
 
+    [self schedulePollTimer];
     [self registerObservers];
     [self setDefaults];
     [self getDefaults];
@@ -78,7 +79,12 @@ void handleUncaughtException(NSException * e)
                          change:(NSDictionary *)change
                         context:(void*)context
 {
-    if ([keyPath isEqualToString:@"percentageShown"] || [keyPath isEqualToString:@"brightness"])
+    if ([keyPath isEqualToString:@"percentageShown"])
+    {
+        [self updateStatusIcon];
+    }
+    
+    if ([keyPath isEqualToString:@"brightness"])
     {
         [self updateStatusIcon];
     }
@@ -94,7 +100,6 @@ void handleUncaughtException(NSException * e)
 
 - (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
 {
-    [_brightnessSlider setFloatValue:[updatedBrightness floatValue] * 100];
     [self setBrightness:[updatedBrightness floatValue]];
 }
 
@@ -243,6 +248,7 @@ void handleUncaughtException(NSException * e)
                                    brightness);
     }
 
+    [self setSliderValue:(_brightness * 100)];
     [self setRestoreEnabled:[self isRestoreEnabled]];
 }
 
@@ -265,7 +271,7 @@ void handleUncaughtException(NSException * e)
 
 - (void) setRestoreEnabled:(BOOL)restoreEnabled
 {
-    
+    // No-op, used only to trigger KVO notifications.
 }
 
 - (IBAction)updateValue:(id)sender
@@ -297,23 +303,10 @@ void handleUncaughtException(NSException * e)
 
 - (void)menuWillOpen:(NSMenu *) menu
 {
-    if (menu != _dockMenu) return;
-    
-    // set the slider to the current value
-    float currentValue = [self getCurrentBrightness];
-    
-    NSLog(@"Current brightness %f.", currentValue);
-    
-    _brightness = currentValue;
-    
-    [_brightnessSlider setFloatValue:currentValue * 100];
-
-    [self schedulePollTimer];
 }
 
 - (void)menuDidClose:(NSMenu *)menu
 {
-    //[self invalidatePollTimer];
 }
 
 - (IBAction)saveCurrentBrightness:(id)sender
