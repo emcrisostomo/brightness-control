@@ -74,6 +74,13 @@ void handleUncaughtException(NSException * e)
 
 }
 
+- (void)onUpdateBrightness
+{
+    [self updateStatusIcon];
+    [self updateSliderValue];
+    [self setRestoreEnabled:[self isRestoreEnabled]];
+}
+
 - (void) observeValueForKeyPath:(NSString *)keyPath
                        ofObject:(id)object
                          change:(NSDictionary *)change
@@ -86,7 +93,7 @@ void handleUncaughtException(NSException * e)
     
     if ([keyPath isEqualToString:@"brightness"])
     {
-        [self updateStatusIcon];
+        [self onUpdateBrightness];
     }
 }
 
@@ -247,9 +254,6 @@ void handleUncaughtException(NSException * e)
                                    CFSTR(kIODisplayBrightnessKey),
                                    brightness);
     }
-
-    [self setSliderValue:(_brightness * 100)];
-    [self setRestoreEnabled:[self isRestoreEnabled]];
 }
 
 - (void) updateStatusIcon
@@ -262,6 +266,11 @@ void handleUncaughtException(NSException * e)
     {
         [item setTitle:nil];
     }
+}
+
+- (void)updateSliderValue
+{
+    [self setSliderValue:([self brightness] * 100)];
 }
 
 - (BOOL) restoreEnabled
