@@ -31,6 +31,14 @@
     {
         [customView setEnabled:flag];
     }
+    
+    for (id subview in [[self view] subviews])
+    {
+        if ([subview respondsToSelector:@selector(setEnabled:)])
+        {
+            [subview setEnabled:flag];
+        }
+    }
 }
 
 @end
