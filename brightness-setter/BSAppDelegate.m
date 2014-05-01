@@ -21,6 +21,7 @@
 #import "BSAppDelegate.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
+const float kBSBrightnessTolerance = .01;
 
 @implementation BSAppDelegate
 
@@ -146,20 +147,41 @@ void handleUncaughtException(NSException * e)
     
     io_object_t service;
     float currentValue = .5;
-    unsigned int servicesFound = 0;
+    
+    NSMutableArray *brightnessValues = [[NSMutableArray alloc] init];
     
     while ((service = IOIteratorNext(service_iterator)))
     {
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
-        ++servicesFound;
+        [brightnessValues addObject:[NSNumber numberWithFloat:currentValue]];
+
+        NSLog(@"Found brightness value %f on service %lu.", currentValue, (unsigned long)[brightnessValues count]);
     }
 
-    if (servicesFound != 1)
+    if ([brightnessValues count] > 0)
     {
-        NSString *msg = [NSString stringWithFormat:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
-        NSLog(@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound);
-        [NSException raise:msg
-                    format:@"%d services satisfying filter [IODisplayConnect] were found.", servicesFound];
+        currentValue = [[brightnessValues objectAtIndex:0] floatValue];
+        NSLog(@"Using brightness of first monitor: %f", currentValue);
+    }
+
+    // Check that all brightness values are within a (completely arbitrary) 1%
+    // tolerance between each other.  AFAIK, the UI of OS X does not let you
+    // independently set a brightness value for each monitor, but maybe some
+    // appliance software (such as monitor calibrators) would.
+    for (unsigned int i=0; i < [brightnessValues count]; ++i)
+    {
+        const float currentMonitorBrightness = [[brightnessValues objectAtIndex:i] floatValue];
+        
+        for (unsigned int j=i + 1; j < [brightnessValues count]; ++j)
+        {
+            if (fabs([[brightnessValues objectAtIndex:j] floatValue] - currentMonitorBrightness) > kBSBrightnessTolerance)
+            {
+                NSString *msg = [NSString stringWithFormat:@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]];
+                NSLog(@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]);
+                [NSException raise:msg
+                            format:@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]];
+            }
+        }
     }
 
     return currentValue;
@@ -243,7 +265,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)menuDidClose:(NSMenu *)menu
 {
-    [self invalidatePollTimer];
+    //[self invalidatePollTimer];
 }
 
 - (IBAction)saveCurrentBrightness:(id)sender

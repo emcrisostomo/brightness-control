@@ -40,3 +40,4 @@
 @end
 
 NSString * const kBSBrightnessPropertyName;
+const float      kBSBrightnessTolerance;
