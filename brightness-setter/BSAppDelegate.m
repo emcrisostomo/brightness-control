@@ -177,12 +177,15 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Currently saved brightness value: %f.", f);
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
+    
+    //[defaults setObject:@(-1.0f)
+    //             forKey:kBSBrightnessPropertyName];
 }
 
 - (void)setDefaults
 {
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
-    defaults[kBSBrightnessPropertyName] = @-1.0f;
+    defaults[kBSBrightnessPropertyName] = @(-1.0f);
     defaults[kBSPercentageShownPropertyName] = @(NO);
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
@@ -268,6 +271,21 @@ void handleUncaughtException(NSException * e)
     {
         [item setTitle:nil];
     }
+    
+    const float savedBrightness = [self getSavedBrightnessValue];
+
+    if (![self isSavedBrightnessValid:savedBrightness])
+    {
+        [item setImage:[NSImage imageNamed:@"bulb.png"]];
+    }
+    else if ([self isRestoreEnabled])
+    {
+        [item setImage:[NSImage imageNamed:@"yellow_bulb.png"]];
+    }
+    else
+    {
+        [item setImage:[NSImage imageNamed:@"green_bulb.png"]];
+    }
 }
 
 - (void)updateSliderValue
@@ -333,6 +351,7 @@ void handleUncaughtException(NSException * e)
     {
         case NSAlertFirstButtonReturn:
             [self saveBrightness:[brightness floatValue]];
+            [self setBrightness:[brightness floatValue]];
             break;
     }
 }
@@ -349,7 +368,8 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)restoreBrightness:(id)sender
 {
-    // This is apparently needed otherwise the blue highlighting in the dock
+    // beginSheetModalForWindow:nil is apparently needed
+    // otherwise the blue highlighting in the dock
     // menu would not go away.
     const float savedBrightness = [self getSavedBrightnessValue];
     NSAlert *restoreDialog = [[NSAlert alloc] init];
@@ -401,13 +421,18 @@ void handleUncaughtException(NSException * e)
 - (BOOL)isRestoreEnabled
 {
     const float savedBrightness = [self getSavedBrightnessValue];
-    return savedBrightness != _brightness && savedBrightness >= 0 && savedBrightness <= 1;
+    return savedBrightness != _brightness && [self isSavedBrightnessValid:savedBrightness];
 }
 
 - (float)getSavedBrightnessValue
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults floatForKey:kBSBrightnessPropertyName];
+}
+
+- (BOOL)isSavedBrightnessValid:(float)savedBrightness
+{
+    return savedBrightness >= 0 && savedBrightness <= 1;
 }
 
 @end

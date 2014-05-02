@@ -20,6 +20,9 @@
 		90D650671902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D6506F1902C31F00A31E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D6506D1902C31F00A31E1A /* InfoPlist.strings */; };
 		90D650711902C31F00A31E1A /* brightness_setterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D650701902C31F00A31E1A /* brightness_setterTests.m */; };
+		90D6F2401913D1CF00851458 /* yellow_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F23F1913D1CF00851458 /* yellow_bulb.png */; };
+		90D6F2421913D42900851458 /* green_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F2411913D42900851458 /* green_bulb.png */; };
+		90D6F2441913D58E00851458 /* red_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F2431913D58E00851458 /* red_bulb.png */; };
 		90DE96311904180E00DF32F3 /* BSMenuItemWithView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DE96301904180E00DF32F3 /* BSMenuItemWithView.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		90D6506C1902C31F00A31E1A /* Brightness ControlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness ControlTests-Info.plist"; sourceTree = "<group>"; };
 		90D6506E1902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90D650701902C31F00A31E1A /* brightness_setterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
+		90D6F23F1913D1CF00851458 /* yellow_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_bulb.png; sourceTree = "<group>"; };
+		90D6F2411913D42900851458 /* green_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_bulb.png; sourceTree = "<group>"; };
+		90D6F2431913D58E00851458 /* red_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_bulb.png; sourceTree = "<group>"; };
 		90DE962F1904180E00DF32F3 /* BSMenuItemWithView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMenuItemWithView.h; sourceTree = "<group>"; };
 		90DE96301904180E00DF32F3 /* BSMenuItemWithView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMenuItemWithView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +89,9 @@
 		9078DEA71902C7AC0036D2E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90D6F2431913D58E00851458 /* red_bulb.png */,
+				90D6F2411913D42900851458 /* green_bulb.png */,
+				90D6F23F1913D1CF00851458 /* yellow_bulb.png */,
 				9075726919055B990076EF2B /* bs.icns */,
 				90BB9FCB1911033500875B36 /* bulb.png */,
 			);
@@ -251,11 +260,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9075726A19055B990076EF2B /* bs.icns in Resources */,
+				90D6F2441913D58E00851458 /* red_bulb.png in Resources */,
 				90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */,
 				90D6505F1902C31F00A31E1A /* Images.xcassets in Resources */,
 				90D650571902C31F00A31E1A /* Credits.rtf in Resources */,
 				90D6505D1902C31F00A31E1A /* MainMenu.xib in Resources */,
 				90BB9FCC1911033500875B36 /* bulb.png in Resources */,
+				90D6F2421913D42900851458 /* green_bulb.png in Resources */,
+				90D6F2401913D1CF00851458 /* yellow_bulb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
