@@ -314,14 +314,6 @@ void handleUncaughtException(NSException * e)
     pollTimer = nil;
 }
 
-- (void)menuWillOpen:(NSMenu *) menu
-{
-}
-
-- (void)menuDidClose:(NSMenu *)menu
-{
-}
-
 - (IBAction)saveCurrentBrightness:(id)sender
 {
     const float brightness = [self getCurrentBrightness];
