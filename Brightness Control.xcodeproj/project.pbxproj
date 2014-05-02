@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9003CAB4191414130018FE90 /* brightness_setterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9003CAB0191414130018FE90 /* brightness_setterTests.m */; };
 		9003CAB5191414130018FE90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9003CAB1191414130018FE90 /* InfoPlist.strings */; };
+		900C062D191456490047D717 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6A191415CC004B0680 /* Credits.rtf */; };
 		901FA89119141EA2006D73BA /* BSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF66191415CC004B0680 /* BSAppDelegate.m */; };
 		901FA89219141EA2006D73BA /* BSMenuItemWithView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF68191415CC004B0680 /* BSMenuItemWithView.m */; };
 		901FA89319141EA2006D73BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF70191415CC004B0680 /* main.m */; };
@@ -259,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900C062D191456490047D717 /* Credits.rtf in Resources */,
 				901FA89819141EE9006D73BA /* bs.iconset in Resources */,
 				901FA89419141EC0006D73BA /* bulb.png in Resources */,
 				901FA89519141EC0006D73BA /* green_bulb.png in Resources */,

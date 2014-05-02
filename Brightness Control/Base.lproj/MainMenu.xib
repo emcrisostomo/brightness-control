@@ -50,6 +50,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
+                <menuItem title="About Brightness Control" id="VcJ-Fg-x2a">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="orderFrontStandardAboutPanel:" target="-2" id="U7d-7e-jgC"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="VQH-6v-zMe"/>
                 <menuItem title="Quit" id="66c-wU-b33">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -724,14 +731,6 @@
             </connections>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="WOs-5F-w9g"/>
-        <button verticalHuggingPriority="750" id="srH-GY-Qh2">
-            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a9E-1m-dgQ">
-                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                <font key="font" metaFont="system"/>
-            </buttonCell>
-        </button>
         <customView wantsLayer="YES" id="GeW-Lj-jmW">
             <rect key="frame" x="0.0" y="0.0" width="140" height="17"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
