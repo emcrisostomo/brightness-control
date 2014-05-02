@@ -447,14 +447,14 @@
 		90D650781902C31F00A31E1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/brightness-setter.app/Contents/MacOS/brightness-setter";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Brightness Control.app/Contents/MacOS/Brightness Control";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/brightness-setter-Prefix.pch";
+				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -469,14 +469,14 @@
 		90D650791902C31F00A31E1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/brightness-setter.app/Contents/MacOS/brightness-setter";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Brightness Control.app/Contents/MacOS/Brightness Control";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/brightness-setter-Prefix.pch";
+				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
 				INFOPLIST_FILE = "brightness-setterTests/Brightness ControlTests-Info.plist";
 				PRODUCT_NAME = "Brightness ControlTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
