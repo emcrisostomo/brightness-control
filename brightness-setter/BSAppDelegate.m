@@ -84,6 +84,10 @@ void handleUncaughtException(NSException * e)
            forKeyPath:@"brightness"
               options:NSKeyValueObservingOptionNew
               context:nil];
+    [self addObserver:self
+           forKeyPath:@"restoreEnabled"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
 }
 
 - (void)onUpdateBrightness
@@ -106,6 +110,11 @@ void handleUncaughtException(NSException * e)
     if ([keyPath isEqualToString:@"brightness"])
     {
         [self onUpdateBrightness];
+    }
+    
+    if ([keyPath isEqualToString:@"restoreEnabled"])
+    {
+        [self updateStatusIcon];
     }
 }
 
@@ -178,8 +187,8 @@ void handleUncaughtException(NSException * e)
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
     
-    //[defaults setObject:@(-1.0f)
-    //             forKey:kBSBrightnessPropertyName];
+    [defaults setObject:@(-1.0f)
+                 forKey:kBSBrightnessPropertyName];
 }
 
 - (void)setDefaults
@@ -351,7 +360,7 @@ void handleUncaughtException(NSException * e)
     {
         case NSAlertFirstButtonReturn:
             [self saveBrightness:[brightness floatValue]];
-            [self setBrightness:[brightness floatValue]];
+            [self setRestoreEnabled:[self isRestoreEnabled]];
             break;
     }
 }
