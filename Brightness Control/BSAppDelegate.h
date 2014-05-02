@@ -40,6 +40,7 @@
 @property float sliderValue;
 @property BOOL restoreEnabled;
 @property BOOL percentageShown;
+@property NSTimeInterval lastStatusIconUpdate;
 
 @end
 

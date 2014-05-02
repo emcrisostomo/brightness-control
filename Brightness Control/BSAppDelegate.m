@@ -94,7 +94,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)onUpdateBrightness
 {
-    [self updateStatusIcon];
+    [self updateStatusItem];
     [self updateSliderValue];
     [self setRestoreEnabled:[self isRestoreEnabled]];
 }
@@ -106,7 +106,7 @@ void handleUncaughtException(NSException * e)
 {
     if ([keyPath isEqualToString:@"percentageShown"])
     {
-        [self updateStatusIcon];
+        [self updateStatusItem];
     }
     
     if ([keyPath isEqualToString:@"brightness"])
@@ -116,7 +116,7 @@ void handleUncaughtException(NSException * e)
     
     if ([keyPath isEqualToString:@"restoreEnabled"])
     {
-        [self updateStatusIcon];
+        [self updateStatusItem];
     }
 }
 
@@ -127,11 +127,15 @@ void handleUncaughtException(NSException * e)
 
 - (void)statusItemTimerFired:(NSTimer *)timer
 {
+    // Green bulb never polls.
     if (![self isRestoreEnabled]) return;
     
     NSDate *now = [NSDate date];
     NSTimeInterval time = [now timeIntervalSince1970];
     
+    // Start polling only when the last icon update happened after a .5 seconds.
+    if (fabs(time - [self lastStatusIconUpdate]) < 0.5) return;
+
     if (((int)time) % 2)
     {
         [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
@@ -286,7 +290,7 @@ void handleUncaughtException(NSException * e)
     }
 }
 
-- (void)updateStatusIcon
+- (void)updateStatusItem
 {
     if ([self percentageShown])
     {
@@ -297,8 +301,15 @@ void handleUncaughtException(NSException * e)
         [statusItem setTitle:nil];
     }
     
-    const float savedBrightness = [self getSavedBrightnessValue];
+    [self updateStatusIcon];
+}
 
+- (void)updateStatusIcon
+{
+    const NSDate * now = [NSDate date];
+    const NSTimeInterval currentIconUpdate = [now timeIntervalSince1970];
+    const float savedBrightness = [self getSavedBrightnessValue];
+    
     if (![self isSavedBrightnessValid:savedBrightness])
     {
         [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
@@ -311,6 +322,8 @@ void handleUncaughtException(NSException * e)
     {
         [statusItem setImage:[NSImage imageNamed:@"green_bulb.png"]];
     }
+
+    [self setLastStatusIconUpdate:currentIconUpdate];
 }
 
 - (void)updateSliderValue
