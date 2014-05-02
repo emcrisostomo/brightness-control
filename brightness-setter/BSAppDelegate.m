@@ -47,17 +47,16 @@ void handleUncaughtException(NSException * e)
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSSetUncaughtExceptionHandler(handleUncaughtException);
- 
-    // Make sure slider view will be as wide as the contextual menu.
-    [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
-
-    [self schedulePollTimer];
-    [self registerObservers];
-    [self setDefaults];
-    [self getDefaults];
     
     @try
     {
+        // Make sure slider view will be as wide as the contextual menu.
+        [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
+        
+        [self schedulePollTimer];
+        [self registerObservers];
+        [self setDefaults];
+        [self getDefaults];
         [self loadIOServices];
         [self createDockIcon];
         [self setBrightness:[self getCurrentBrightness]];
@@ -66,6 +65,13 @@ void handleUncaughtException(NSException * e)
     {
         handleUncaughtException(e);
     }
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    [self invalidatePollTimer];
+    [[NSStatusBar systemStatusBar] removeStatusItem:item];
+    [self releaseIOServices];
 }
 
 - (void)registerObservers
@@ -88,9 +94,9 @@ void handleUncaughtException(NSException * e)
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
-                       ofObject:(id)object
-                         change:(NSDictionary *)change
-                        context:(void*)context
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void*)context
 {
     if ([keyPath isEqualToString:@"percentageShown"])
     {
@@ -101,14 +107,6 @@ void handleUncaughtException(NSException * e)
     {
         [self onUpdateBrightness];
     }
-}
-
-
-- (void)applicationWillTerminate:(NSNotification *)notification
-{
-    [pollTimer invalidate];
-    [[NSStatusBar systemStatusBar] removeStatusItem:item];
-    [self releaseIOServices];
 }
 
 - (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
@@ -206,12 +204,12 @@ void handleUncaughtException(NSException * e)
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
         [brightnessValues addObject:[NSNumber numberWithFloat:currentValue]];
     }
-
+    
     if ([brightnessValues count] > 0)
     {
         currentValue = [[brightnessValues objectAtIndex:0] floatValue];
     }
-
+    
     // Check that all brightness values are within a (completely arbitrary) 1%
     // tolerance between each other.  AFAIK, the UI of OS X does not let you
     // independently set a brightness value for each monitor, but maybe some
@@ -231,7 +229,7 @@ void handleUncaughtException(NSException * e)
             }
         }
     }
-
+    
     return currentValue;
 }
 
@@ -260,7 +258,7 @@ void handleUncaughtException(NSException * e)
     }
 }
 
-- (void) updateStatusIcon
+- (void)updateStatusIcon
 {
     if ([self percentageShown])
     {
@@ -277,12 +275,12 @@ void handleUncaughtException(NSException * e)
     [self setSliderValue:([self brightness] * 100)];
 }
 
-- (BOOL) restoreEnabled
+- (BOOL)restoreEnabled
 {
     return [self isRestoreEnabled];
 }
 
-- (void) setRestoreEnabled:(BOOL)restoreEnabled
+- (void)setRestoreEnabled:(BOOL)restoreEnabled
 {
     // No-op, used only to trigger KVO notifications.
 }
@@ -327,7 +325,7 @@ void handleUncaughtException(NSException * e)
                              contextInfo:(__bridge_retained void *)@(brightness)];
 }
 
-- (void) askSaveDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)askSaveDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     NSNumber *brightness = (__bridge_transfer NSNumber *)contextInfo;
     
@@ -339,7 +337,7 @@ void handleUncaughtException(NSException * e)
     }
 }
 
-- (void) askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+- (void)askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     switch(returnCode)
     {
