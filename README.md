@@ -37,7 +37,7 @@ Users should get the binary distribution of the latest release from the
 want to compile the program from the sources, in which case XCode 5 is the
 only requirement.
 
-[repo]: https://github.com/emcrisostomo/brightness-setter
+[repo]: https://github.com/emcrisostomo/brightness-control
 
 Bug Reports
 -----------
