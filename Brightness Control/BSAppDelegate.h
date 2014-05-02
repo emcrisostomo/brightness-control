@@ -24,6 +24,7 @@
     NSStatusItem *statusItem;
     float _brightness;
     NSTimer *pollTimer;
+    NSTimer *statusItemTimer;
     io_iterator_t service_iterator;
 }
 

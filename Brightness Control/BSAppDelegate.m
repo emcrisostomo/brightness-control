@@ -54,6 +54,7 @@ void handleUncaughtException(NSException * e)
         [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
         
         [self schedulePollTimer];
+        [self scheduleStatusItemTimer];
         [self registerObservers];
         [self setDefaults];
         [self getDefaults];
@@ -69,6 +70,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
+    [self invalidateStatusItemTimer];
     [self invalidatePollTimer];
     [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     [self releaseIOServices];
@@ -121,6 +123,23 @@ void handleUncaughtException(NSException * e)
 - (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
 {
     [self setBrightness:[updatedBrightness floatValue]];
+}
+
+- (void)statusItemTimerFired:(NSTimer *)timer
+{
+    if (![self isRestoreEnabled]) return;
+    
+    NSDate *now = [NSDate date];
+    NSTimeInterval time = [now timeIntervalSince1970];
+    
+    if (((int)time) % 2)
+    {
+        [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
+    }
+    else
+    {
+        [self updateStatusIcon];
+    }
 }
 
 - (void)pollTimerFired:(NSTimer *)timer
@@ -312,6 +331,28 @@ void handleUncaughtException(NSException * e)
 - (IBAction)updateValue:(id)sender
 {
     [self setBrightness:[sender floatValue]/100];
+}
+
+- (void)scheduleStatusItemTimer
+{
+    if (statusItemTimer != nil)
+    {
+        NSLog(@"Warning: Status item timer was not null: invalidating it. This may be a bug.");
+        [statusItemTimer invalidate];
+    }
+    
+    statusItemTimer = [NSTimer timerWithTimeInterval:(1.0)
+                                        target:self
+                                      selector:@selector(statusItemTimerFired:)
+                                      userInfo:nil
+                                       repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:statusItemTimer forMode:NSRunLoopCommonModes];
+}
+
+- (void)invalidateStatusItemTimer
+{
+    [statusItemTimer invalidate];
+    statusItemTimer = nil;
 }
 
 - (void)schedulePollTimer
