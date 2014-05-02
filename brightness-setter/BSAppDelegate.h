@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations> {
-    NSStatusItem *item;
+    NSStatusItem *statusItem;
     float _brightness;
     NSTimer *pollTimer;
     io_iterator_t service_iterator;

@@ -70,7 +70,7 @@ void handleUncaughtException(NSException * e)
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     [self invalidatePollTimer];
-    [[NSStatusBar systemStatusBar] removeStatusItem:item];
+    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
     [self releaseIOServices];
 }
 
@@ -163,7 +163,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)createDockIcon
 {
-    if (item != nil)
+    if (statusItem != nil)
     {
         NSLog(@"Dock icon already set. This method should not be called twice.");
         return;
@@ -171,12 +171,12 @@ void handleUncaughtException(NSException * e)
     
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
-    item = [bar statusItemWithLength:NSVariableStatusItemLength];
-    [item setImage:[NSImage imageNamed:@"bulb.png"]];
-    [item setHighlightMode:YES];
-    [item setEnabled:TRUE];
-    [item setToolTip:@"Brightness Setter"];
-    [item setMenu:_dockMenu];
+    statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
+    [statusItem setHighlightMode:YES];
+    [statusItem setEnabled:TRUE];
+    [statusItem setToolTip:@"Brightness Setter"];
+    [statusItem setMenu:_dockMenu];
 }
 
 - (void)getDefaults
@@ -271,26 +271,26 @@ void handleUncaughtException(NSException * e)
 {
     if ([self percentageShown])
     {
-        [item setTitle:[NSString stringWithFormat:@"%.3f", _brightness]];
+        [statusItem setTitle:[NSString stringWithFormat:@"%.3f", _brightness]];
     }
     else
     {
-        [item setTitle:nil];
+        [statusItem setTitle:nil];
     }
     
     const float savedBrightness = [self getSavedBrightnessValue];
 
     if (![self isSavedBrightnessValid:savedBrightness])
     {
-        [item setImage:[NSImage imageNamed:@"bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
     }
     else if ([self isRestoreEnabled])
     {
-        [item setImage:[NSImage imageNamed:@"yellow_bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"yellow_bulb.png"]];
     }
     else
     {
-        [item setImage:[NSImage imageNamed:@"green_bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"green_bulb.png"]];
     }
 }
 
