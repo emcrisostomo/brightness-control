@@ -9,21 +9,11 @@
 /* Begin PBXBuildFile section */
 		9003CAB4191414130018FE90 /* brightness_setterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9003CAB0191414130018FE90 /* brightness_setterTests.m */; };
 		9003CAB5191414130018FE90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9003CAB1191414130018FE90 /* InfoPlist.strings */; };
-		90BB9FCC1911033500875B36 /* bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90BB9FCB1911033500875B36 /* bulb.png */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
-		90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D6504F1902C31F00A31E1A /* InfoPlist.strings */; };
-		90D650531902C31F00A31E1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D650521902C31F00A31E1A /* main.m */; };
-		90D650571902C31F00A31E1A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 90D650551902C31F00A31E1A /* Credits.rtf */; };
-		90D6505A1902C31F00A31E1A /* BSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D650591902C31F00A31E1A /* BSAppDelegate.m */; };
-		90D6505D1902C31F00A31E1A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D6505B1902C31F00A31E1A /* MainMenu.xib */; };
-		90D6505F1902C31F00A31E1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D6505E1902C31F00A31E1A /* Images.xcassets */; };
 		90D650661902C31F00A31E1A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650651902C31F00A31E1A /* XCTest.framework */; };
 		90D650671902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
-		90D6F2401913D1CF00851458 /* yellow_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F23F1913D1CF00851458 /* yellow_bulb.png */; };
-		90D6F2421913D42900851458 /* green_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F2411913D42900851458 /* green_bulb.png */; };
-		90D6F2441913D58E00851458 /* red_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F2431913D58E00851458 /* red_bulb.png */; };
-		90DE96311904180E00DF32F3 /* BSMenuItemWithView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DE96301904180E00DF32F3 /* BSMenuItemWithView.m */; };
-		90ED70FC1913FF0700ABF09E /* bs.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 90ED70FB1913FF0700ABF09E /* bs.iconset */; };
+		90D7BF751914168E004B0680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6C191415CC004B0680 /* InfoPlist.strings */; };
+		90D7BF7619141694004B0680 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF60191415CC004B0680 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,29 +31,29 @@
 		9003CAAF191414130018FE90 /* Brightness ControlTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Brightness ControlTests-Info.plist"; sourceTree = "<group>"; };
 		9003CAB0191414130018FE90 /* brightness_setterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
 		9003CAB2191414130018FE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		903842491914109A0042934A /* Brightness Control-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brightness Control-Prefix.pch"; sourceTree = "<group>"; };
-		90BB9FCB1911033500875B36 /* bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulb.png; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		90D6504A1902C31F00A31E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		90D6504B1902C31F00A31E1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness Control-Info.plist"; sourceTree = "<group>"; };
-		90D650501902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90D650521902C31F00A31E1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		90D650561902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		90D650581902C31F00A31E1A /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
-		90D650591902C31F00A31E1A /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
-		90D6505C1902C31F00A31E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		90D6505E1902C31F00A31E1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		90D650641902C31F00A31E1A /* Brightness ControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Brightness ControlTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650651902C31F00A31E1A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		90D6F23F1913D1CF00851458 /* yellow_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_bulb.png; sourceTree = "<group>"; };
-		90D6F2411913D42900851458 /* green_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_bulb.png; sourceTree = "<group>"; };
-		90D6F2431913D58E00851458 /* red_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_bulb.png; sourceTree = "<group>"; };
-		90DE962F1904180E00DF32F3 /* BSMenuItemWithView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSMenuItemWithView.h; sourceTree = "<group>"; };
-		90DE96301904180E00DF32F3 /* BSMenuItemWithView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSMenuItemWithView.m; sourceTree = "<group>"; };
-		90ED70FB1913FF0700ABF09E /* bs.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = bs.iconset; sourceTree = "<group>"; };
+		90D7BF61191415CC004B0680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		90D7BF62191415CC004B0680 /* Brightness Control-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness Control-Info.plist"; sourceTree = "<group>"; };
+		90D7BF63191415CC004B0680 /* Brightness Control-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Brightness Control-Prefix.pch"; sourceTree = "<group>"; };
+		90D7BF64191415CC004B0680 /* bs.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = bs.iconset; sourceTree = "<group>"; };
+		90D7BF65191415CC004B0680 /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
+		90D7BF66191415CC004B0680 /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
+		90D7BF67191415CC004B0680 /* BSMenuItemWithView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMenuItemWithView.h; sourceTree = "<group>"; };
+		90D7BF68191415CC004B0680 /* BSMenuItemWithView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMenuItemWithView.m; sourceTree = "<group>"; };
+		90D7BF69191415CC004B0680 /* bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulb.png; sourceTree = "<group>"; };
+		90D7BF6B191415CC004B0680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		90D7BF6D191415CC004B0680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90D7BF6E191415CC004B0680 /* green_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_bulb.png; sourceTree = "<group>"; };
+		90D7BF6F191415CC004B0680 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		90D7BF70191415CC004B0680 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		90D7BF71191415CC004B0680 /* red_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_bulb.png; sourceTree = "<group>"; };
+		90D7BF72191415CC004B0680 /* yellow_bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_bulb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,22 +95,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9078DEA71902C7AC0036D2E1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				90ED70FB1913FF0700ABF09E /* bs.iconset */,
-				90D6F2431913D58E00851458 /* red_bulb.png */,
-				90D6F2411913D42900851458 /* green_bulb.png */,
-				90D6F23F1913D1CF00851458 /* yellow_bulb.png */,
-				90BB9FCB1911033500875B36 /* bulb.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		90D6503A1902C31F00A31E1A = {
 			isa = PBXGroup;
 			children = (
-				90D6504C1902C31F00A31E1A /* Brightness Control */,
+				90D7BF5F191415CC004B0680 /* Brightness Control */,
 				9003CAAE191414130018FE90 /* Brightness ControlTests */,
 				90D650451902C31F00A31E1A /* Frameworks */,
 				9003CAA7191413910018FE90 /* InfoPlist.strings */,
@@ -157,30 +135,41 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		90D6504C1902C31F00A31E1A /* Brightness Control */ = {
+		90D7BF5F191415CC004B0680 /* Brightness Control */ = {
 			isa = PBXGroup;
 			children = (
-				90D650581902C31F00A31E1A /* BSAppDelegate.h */,
-				90D650591902C31F00A31E1A /* BSAppDelegate.m */,
-				90DE962F1904180E00DF32F3 /* BSMenuItemWithView.h */,
-				90DE96301904180E00DF32F3 /* BSMenuItemWithView.m */,
-				90D6505E1902C31F00A31E1A /* Images.xcassets */,
-				90D6505B1902C31F00A31E1A /* MainMenu.xib */,
-				9078DEA71902C7AC0036D2E1 /* Resources */,
-				90D6504D1902C31F00A31E1A /* Supporting Files */,
+				90D7BF65191415CC004B0680 /* BSAppDelegate.h */,
+				90D7BF66191415CC004B0680 /* BSAppDelegate.m */,
+				90D7BF67191415CC004B0680 /* BSMenuItemWithView.h */,
+				90D7BF68191415CC004B0680 /* BSMenuItemWithView.m */,
+				90D7BF6F191415CC004B0680 /* Images.xcassets */,
+				90D7BF60191415CC004B0680 /* MainMenu.xib */,
+				90D7BF73191415D7004B0680 /* Resources */,
+				90D7BF74191415F4004B0680 /* Supporting Files */,
 			);
-			name = "Brightness Control";
-			path = "brightness-setter";
+			path = "Brightness Control";
 			sourceTree = "<group>";
 		};
-		90D6504D1902C31F00A31E1A /* Supporting Files */ = {
+		90D7BF73191415D7004B0680 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */,
-				903842491914109A0042934A /* Brightness Control-Prefix.pch */,
-				90D650551902C31F00A31E1A /* Credits.rtf */,
-				90D6504F1902C31F00A31E1A /* InfoPlist.strings */,
-				90D650521902C31F00A31E1A /* main.m */,
+				90D7BF64191415CC004B0680 /* bs.iconset */,
+				90D7BF69191415CC004B0680 /* bulb.png */,
+				90D7BF6E191415CC004B0680 /* green_bulb.png */,
+				90D7BF71191415CC004B0680 /* red_bulb.png */,
+				90D7BF72191415CC004B0680 /* yellow_bulb.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		90D7BF74191415F4004B0680 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				90D7BF62191415CC004B0680 /* Brightness Control-Info.plist */,
+				90D7BF63191415CC004B0680 /* Brightness Control-Prefix.pch */,
+				90D7BF6A191415CC004B0680 /* Credits.rtf */,
+				90D7BF6C191415CC004B0680 /* InfoPlist.strings */,
+				90D7BF70191415CC004B0680 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -262,15 +251,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90D6F2441913D58E00851458 /* red_bulb.png in Resources */,
-				90D650511902C31F00A31E1A /* InfoPlist.strings in Resources */,
-				90D6505F1902C31F00A31E1A /* Images.xcassets in Resources */,
-				90D650571902C31F00A31E1A /* Credits.rtf in Resources */,
-				90D6505D1902C31F00A31E1A /* MainMenu.xib in Resources */,
-				90BB9FCC1911033500875B36 /* bulb.png in Resources */,
-				90D6F2421913D42900851458 /* green_bulb.png in Resources */,
-				90ED70FC1913FF0700ABF09E /* bs.iconset in Resources */,
-				90D6F2401913D1CF00851458 /* yellow_bulb.png in Resources */,
+				90D7BF7619141694004B0680 /* MainMenu.xib in Resources */,
+				90D7BF751914168E004B0680 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,9 +271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90D650531902C31F00A31E1A /* main.m in Sources */,
-				90D6505A1902C31F00A31E1A /* BSAppDelegate.m in Sources */,
-				90DE96311904180E00DF32F3 /* BSMenuItemWithView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,28 +309,28 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		90D6504F1902C31F00A31E1A /* InfoPlist.strings */ = {
+		90D7BF60191415CC004B0680 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90D650501902C31F00A31E1A /* en */,
+				90D7BF61191415CC004B0680 /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		90D650551902C31F00A31E1A /* Credits.rtf */ = {
+		90D7BF6A191415CC004B0680 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90D650561902C31F00A31E1A /* en */,
+				90D7BF6B191415CC004B0680 /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		90D6505B1902C31F00A31E1A /* MainMenu.xib */ = {
+		90D7BF6C191415CC004B0680 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90D6505C1902C31F00A31E1A /* Base */,
+				90D7BF6D191415CC004B0680 /* en */,
 			);
-			name = MainMenu.xib;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -433,8 +412,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
-				INFOPLIST_FILE = "brightness-setter/Brightness Control-Info.plist";
+				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
+				INFOPLIST_FILE = "Brightness Control/Brightness Control-Info.plist";
 				PRODUCT_NAME = "Brightness Control";
 				WRAPPER_EXTENSION = app;
 			};
@@ -446,8 +425,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
-				INFOPLIST_FILE = "brightness-setter/Brightness Control-Info.plist";
+				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
+				INFOPLIST_FILE = "Brightness Control/Brightness Control-Info.plist";
 				PRODUCT_NAME = "Brightness Control";
 				WRAPPER_EXTENSION = app;
 			};
@@ -463,7 +442,7 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
+				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -485,7 +464,7 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "brightness-setter/Brightness Control-Prefix.pch";
+				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
 				INFOPLIST_FILE = "Brightness ControlTests/Brightness ControlTests-Info.plist";
 				PRODUCT_NAME = "Brightness ControlTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
