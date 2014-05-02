@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		903842491914109A0042934A /* Brightness Control-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brightness Control-Prefix.pch"; sourceTree = "<group>"; };
 		90BB9FCB1911033500875B36 /* bulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulb.png; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -46,7 +47,6 @@
 		90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Brightness Control-Info.plist"; sourceTree = "<group>"; };
 		90D650501902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90D650521902C31F00A31E1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		90D650541902C31F00A31E1A /* brightness-setter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "brightness-setter-Prefix.pch"; sourceTree = "<group>"; };
 		90D650561902C31F00A31E1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		90D650581902C31F00A31E1A /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
 		90D650591902C31F00A31E1A /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
@@ -101,8 +101,8 @@
 		90D6503A1902C31F00A31E1A = {
 			isa = PBXGroup;
 			children = (
-				90D6504C1902C31F00A31E1A /* brightness-setter */,
-				90D6506A1902C31F00A31E1A /* brightness-setterTests */,
+				90D6504C1902C31F00A31E1A /* brightness-control */,
+				90D6506A1902C31F00A31E1A /* brightness-controlTests */,
 				90D650451902C31F00A31E1A /* Frameworks */,
 				90D650441902C31F00A31E1A /* Products */,
 			);
@@ -137,7 +137,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		90D6504C1902C31F00A31E1A /* brightness-setter */ = {
+		90D6504C1902C31F00A31E1A /* brightness-control */ = {
 			isa = PBXGroup;
 			children = (
 				90D650581902C31F00A31E1A /* BSAppDelegate.h */,
@@ -149,6 +149,7 @@
 				9078DEA71902C7AC0036D2E1 /* Resources */,
 				90D6504D1902C31F00A31E1A /* Supporting Files */,
 			);
+			name = "brightness-control";
 			path = "brightness-setter";
 			sourceTree = "<group>";
 		};
@@ -156,20 +157,21 @@
 			isa = PBXGroup;
 			children = (
 				90D6504E1902C31F00A31E1A /* Brightness Control-Info.plist */,
+				903842491914109A0042934A /* Brightness Control-Prefix.pch */,
+				90D650551902C31F00A31E1A /* Credits.rtf */,
 				90D6504F1902C31F00A31E1A /* InfoPlist.strings */,
 				90D650521902C31F00A31E1A /* main.m */,
-				90D650541902C31F00A31E1A /* brightness-setter-Prefix.pch */,
-				90D650551902C31F00A31E1A /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		90D6506A1902C31F00A31E1A /* brightness-setterTests */ = {
+		90D6506A1902C31F00A31E1A /* brightness-controlTests */ = {
 			isa = PBXGroup;
 			children = (
 				90D650701902C31F00A31E1A /* brightness_setterTests.m */,
 				90D6506B1902C31F00A31E1A /* Supporting Files */,
 			);
+			name = "brightness-controlTests";
 			path = "brightness-setterTests";
 			sourceTree = "<group>";
 		};
