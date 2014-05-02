@@ -37,6 +37,13 @@ void handleUncaughtException(NSException * e)
     [NSApp terminate:nil];
 }
 
+- (void)applicationDidChangeScreenParameters:(NSNotification *)notification
+{
+    NSLog(@"Screen configuration has changed");
+    [self releaseIOServices];
+    [self loadIOServices];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSSetUncaughtExceptionHandler(handleUncaughtException);
@@ -71,7 +78,6 @@ void handleUncaughtException(NSException * e)
            forKeyPath:@"brightness"
               options:NSKeyValueObservingOptionNew
               context:nil];
-
 }
 
 - (void)onUpdateBrightness
@@ -81,7 +87,7 @@ void handleUncaughtException(NSException * e)
     [self setRestoreEnabled:[self isRestoreEnabled]];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
+- (void)observeValueForKeyPath:(NSString *)keyPath
                        ofObject:(id)object
                          change:(NSDictionary *)change
                         context:(void*)context
@@ -116,7 +122,7 @@ void handleUncaughtException(NSException * e)
     
     if (_brightness == currentValue) return;
     
-    NSLog(@"External brightness change detected while dock menu is open: %f.", _brightness);
+    NSLog(@"External brightness change detected: %f.", currentValue);
     
     [self performSelectorOnMainThread:@selector(updateSliderAndSetBrightness:)
                            withObject:[NSNumber numberWithFloat:currentValue]
@@ -199,14 +205,11 @@ void handleUncaughtException(NSException * e)
     {
         IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
         [brightnessValues addObject:[NSNumber numberWithFloat:currentValue]];
-
-        NSLog(@"Found brightness value %f on service %lu.", currentValue, (unsigned long)[brightnessValues count]);
     }
 
     if ([brightnessValues count] > 0)
     {
         currentValue = [[brightnessValues objectAtIndex:0] floatValue];
-        NSLog(@"Using brightness of first monitor: %f", currentValue);
     }
 
     // Check that all brightness values are within a (completely arbitrary) 1%
@@ -239,8 +242,9 @@ void handleUncaughtException(NSException * e)
 
 - (void)setBrightness:(float)brightness
 {
-    if (_brightness == brightness) return;
-    else _brightness = brightness;
+    if ([self brightness] == brightness) return;
+    
+    _brightness = brightness;
     
     NSLog(@"Setting brightness value: %f.", brightness);
     
