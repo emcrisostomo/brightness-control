@@ -186,9 +186,6 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Currently saved brightness value: %f.", f);
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
-    
-    [defaults setObject:@(-1.0f)
-                 forKey:kBSBrightnessPropertyName];
 }
 
 - (void)setDefaults
