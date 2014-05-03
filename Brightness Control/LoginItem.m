@@ -31,7 +31,7 @@ CFURLRef url;
     if (self)
     {
         NSString * appPath = [[NSBundle mainBundle] bundlePath];
-        url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
+        [self initHelper:appPath];
     }
     
     return self;
@@ -53,7 +53,7 @@ CFURLRef url;
     if (self)
     {
         NSString * appPath = [bundle bundlePath];
-        url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
+        [self initHelper:appPath];
     }
     
     return self;
@@ -74,10 +74,15 @@ CFURLRef url;
     
     if (self)
     {
-        url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
+        [self initHelper:appPath];
     }
     
     return self;
+}
+
+- (void)initHelper:(NSString *)appPath
+{
+    url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
 }
 
 + (instancetype)loginItem
