@@ -32,6 +32,7 @@
 - (IBAction)saveCurrentBrightness:(id)sender;
 - (IBAction)restoreBrightness:(id)sender;
 - (IBAction)showPercentage:(id)sender;
+- (IBAction)toggleLaunchAtLogin:(id)sender;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
