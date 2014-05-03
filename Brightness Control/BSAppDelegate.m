@@ -1,6 +1,6 @@
 /*
  * BSAppDelegate.m
- * brightness-setter
+ * Brightness Control
  *
  * Copyright (C) 2014, Enrico M. Crisostomo
  *
@@ -19,12 +19,15 @@
  */
 
 #import "BSAppDelegate.h"
+#import "LoginItem.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
 const float kBSBrightnessTolerance = .01;
 
-@implementation BSAppDelegate
+@implementation BSAppDelegate {
+    LoginItem *loginItem;
+}
 
 void handleUncaughtException(NSException * e)
 {
@@ -46,6 +49,8 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    loginItem = [LoginItem loginItem];
+    
     NSSetUncaughtExceptionHandler(handleUncaughtException);
     
     @try
@@ -454,75 +459,19 @@ void handleUncaughtException(NSException * e)
 }
 
 - (IBAction)toggleLaunchAtLogin:(id)sender {
-    [self enableLoginItem:![self isLoginItem]];
+    [self enableLoginItem:![loginItem isLoginItem]];
 }
 
 - (void)enableLoginItem:(BOOL)enable
 {
     if (enable)
     {
-                [self addLoginItem];
+        [loginItem addLoginItem];
     }
     else
     {
-        [self removeLoginItem];
+        [loginItem removeLoginItem];
     }
-}
-
-- (void)removeLoginItem
-{
-    NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    CFURLRef url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
-    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
-                                                            kLSSharedFileListSessionLoginItems,
-                                                            NULL);
-    if (loginItems)
-    {
-        BOOL removed = NO;
-        UInt32 seed;
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
-        
-        for (id item in (__bridge NSArray *)loginItemsArray)
-        {
-            LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
-            
-            if (LSSharedFileListItemResolve(loginItem, 0, &url, NULL) == noErr)
-            {
-                if ([[(__bridge NSURL *)url path] hasPrefix:appPath])
-                {
-                    if (LSSharedFileListItemRemove(loginItems, loginItem) == noErr)
-                    {
-                        removed = YES;
-                        break;
-                    }
-                    else
-                    {
-                        NSLog(@"Error: Unknown error while removing login item.");
-                    }
-                }
-            }
-        }
-        
-        if (!removed)
-        {
-            NSLog(@"Error: could not find login item to remove.");
-        }
-    }
-    else
-    {
-        NSLog(@"Warning: could not get list of login items.");
-    }
-}
-
-- (void)addLoginItem
-{
-    NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
-                                                            kLSSharedFileListSessionLoginItems,
-                                                            NULL);
-    
-    CFURLRef url = (__bridge_retained CFURLRef)[NSURL fileURLWithPath:appPath];
-    LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
 }
 
 - (void)saveBrightness:(float)brightness
@@ -551,44 +500,11 @@ void handleUncaughtException(NSException * e)
     {
         if ([obj respondsToSelector:@selector(setState:)])
         {
-            [obj setState:([self isLoginItem] ? NSOnState : NSOffState)];
+            [obj setState:([loginItem isLoginItem] ? NSOnState : NSOffState)];
         }
     }
     
     return YES;
-}
-
-- (BOOL)isLoginItem
-{
-    NSString * appPath = [[NSBundle mainBundle] bundlePath];
-    CFURLRef url = (CFURLRef)CFBridgingRetain([NSURL fileURLWithPath:appPath]);
-    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
-                                                            kLSSharedFileListSessionLoginItems,
-                                                            NULL);
-    if (loginItems)
-    {
-        UInt32 seed;
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
-        
-        for (id item in (__bridge NSArray *)loginItemsArray)
-        {
-            LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
-            
-            if (LSSharedFileListItemResolve(loginItem, 0, &url, NULL) == noErr)
-            {
-                if ([[(__bridge NSURL *)url path] hasPrefix:appPath])
-                {
-                    return YES;
-                }
-            }
-        }
-    }
-    else
-    {
-        NSLog(@"Warning: could not get list of login items.");
-    }
-    
-    return NO;
 }
 
 - (BOOL)isRestoreEnabled

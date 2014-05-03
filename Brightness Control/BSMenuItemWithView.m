@@ -1,6 +1,6 @@
 /*
  * BSMenuItemWithView.m
- * brightness-setter
+ * Brightness Control
  *
  * Copyright (C) 2014, Enrico M. Crisostomo
  *
