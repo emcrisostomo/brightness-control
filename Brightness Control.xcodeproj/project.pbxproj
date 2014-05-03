@@ -18,6 +18,7 @@
 		901FA89619141EC0006D73BA /* red_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF71191415CC004B0680 /* red_bulb.png */; };
 		901FA89719141EC0006D73BA /* yellow_bulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF72191415CC004B0680 /* yellow_bulb.png */; };
 		901FA89819141EE9006D73BA /* bs.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF64191415CC004B0680 /* bs.iconset */; };
+		90D1E3DA191538F200E0F259 /* LoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D1E3D9191538F200E0F259 /* LoginItem.m */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D650661902C31F00A31E1A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650651902C31F00A31E1A /* XCTest.framework */; };
 		90D650671902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
@@ -40,6 +41,8 @@
 		9003CAAF191414130018FE90 /* Brightness ControlTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Brightness ControlTests-Info.plist"; sourceTree = "<group>"; };
 		9003CAB0191414130018FE90 /* brightness_setterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
 		9003CAB2191414130018FE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90D1E3D8191538F200E0F259 /* LoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginItem.h; path = "Brightness Control/LoginItem.h"; sourceTree = "<group>"; };
+		90D1E3D9191538F200E0F259 /* LoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginItem.m; path = "Brightness Control/LoginItem.m"; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -107,6 +110,8 @@
 		90D6503A1902C31F00A31E1A = {
 			isa = PBXGroup;
 			children = (
+				90D1E3D8191538F200E0F259 /* LoginItem.h */,
+				90D1E3D9191538F200E0F259 /* LoginItem.m */,
 				90D7BF5F191415CC004B0680 /* Brightness Control */,
 				9003CAAE191414130018FE90 /* Brightness ControlTests */,
 				90D650451902C31F00A31E1A /* Frameworks */,
@@ -288,6 +293,7 @@
 			files = (
 				901FA89119141EA2006D73BA /* BSAppDelegate.m in Sources */,
 				901FA89219141EA2006D73BA /* BSMenuItemWithView.m in Sources */,
+				90D1E3DA191538F200E0F259 /* LoginItem.m in Sources */,
 				901FA89319141EA2006D73BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
