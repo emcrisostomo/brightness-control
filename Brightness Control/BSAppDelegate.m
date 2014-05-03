@@ -458,8 +458,16 @@ void handleUncaughtException(NSException * e)
     [self setPercentageShown:newPercentageShown];
 }
 
-- (IBAction)toggleLaunchAtLogin:(id)sender {
+- (IBAction)toggleLaunchAtLogin:(id)sender
+{
     [self enableLoginItem:![loginItem isLoginItem]];
+}
+
+- (IBAction)showAboutWindow:(id)sender
+{
+    NSApplication * app = [NSApplication sharedApplication];
+    [app orderFrontStandardAboutPanel:sender];
+    [app activateIgnoringOtherApps:YES];
 }
 
 - (void)enableLoginItem:(BOOL)enable
