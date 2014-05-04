@@ -19,14 +19,14 @@
  */
 
 #import "BSAppDelegate.h"
-#import "LoginItem.h"
+#import "EMCLoginItem.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
 const float kBSBrightnessTolerance = .01;
 
 @implementation BSAppDelegate {
-    LoginItem *loginItem;
+    EMCLoginItem *loginItem;
 }
 
 void handleUncaughtException(NSException * e)
@@ -49,7 +49,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    loginItem = [LoginItem loginItem];
+    loginItem = [EMCLoginItem loginItem];
     
     NSSetUncaughtExceptionHandler(handleUncaughtException);
     

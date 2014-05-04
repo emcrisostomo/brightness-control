@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "LoginItem.h"
+#import "EMCLoginItem.h"
 
-@implementation LoginItem
+@implementation EMCLoginItem
 
 CFURLRef url;
 
@@ -87,17 +87,17 @@ CFURLRef url;
 
 + (instancetype)loginItem
 {
-    return [[LoginItem alloc] initWithBundle:[NSBundle mainBundle]];
+    return [[EMCLoginItem alloc] initWithBundle:[NSBundle mainBundle]];
 }
 
 + (instancetype)loginItemWithBundle:(NSBundle *)bundle
 {
-    return [[LoginItem alloc] initWithBundle:bundle];
+    return [[EMCLoginItem alloc] initWithBundle:bundle];
 }
 
 + (instancetype)loginItemWithPath:(NSString *)path
 {
-    return [[LoginItem alloc] initWithPath:path];
+    return [[EMCLoginItem alloc] initWithPath:path];
 }
 
 - (BOOL)isLoginItem

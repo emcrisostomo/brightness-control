@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LoginItem : NSObject
+@interface EMCLoginItem : NSObject
 
 - (instancetype)init;
 - (instancetype)initWithBundle:(NSBundle *)bundle;
