@@ -27,6 +27,11 @@ const float kBSBrightnessTolerance = .01;
 
 @implementation BSAppDelegate {
     EMCLoginItem *loginItem;
+    NSStatusItem *statusItem;
+    float _brightness;
+    NSTimer *pollTimer;
+    NSTimer *statusItemTimer;
+    io_iterator_t service_iterator;
 }
 
 void handleUncaughtException(NSException * e)
@@ -397,6 +402,9 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)saveCurrentBrightness:(id)sender
 {
+    NSApplication * app = [NSApplication sharedApplication];
+    [app activateIgnoringOtherApps:YES];
+    
     const float brightness = [self getCurrentBrightness];
     NSAlert *saveDialog = [[NSAlert alloc] init];
     [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %f?", brightness]];
@@ -433,6 +441,9 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)restoreBrightness:(id)sender
 {
+    NSApplication * app = [NSApplication sharedApplication];
+    [app activateIgnoringOtherApps:YES];
+
     // beginSheetModalForWindow:nil is apparently needed
     // otherwise the blue highlighting in the dock
     // menu would not go away.

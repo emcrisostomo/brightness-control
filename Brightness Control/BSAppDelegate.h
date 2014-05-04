@@ -20,13 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations> {
-    NSStatusItem *statusItem;
-    float _brightness;
-    NSTimer *pollTimer;
-    NSTimer *statusItemTimer;
-    io_iterator_t service_iterator;
-}
+@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations>
 
 - (IBAction)updateValue:(id)sender;
 - (IBAction)saveCurrentBrightness:(id)sender;
