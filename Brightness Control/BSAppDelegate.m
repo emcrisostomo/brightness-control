@@ -32,6 +32,7 @@ const float kBSBrightnessTolerance = .01;
     NSTimer *pollTimer;
     NSTimer *statusItemTimer;
     io_iterator_t service_iterator;
+    NSArray *overlayWindows;
 }
 
 void handleUncaughtException(NSException * e)
@@ -50,6 +51,45 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Screen configuration has changed");
     [self releaseIOServices];
     [self loadIOServices];
+    [self createOverlayWindows];
+}
+
+- (void)createOverlayWindows
+{
+    NSMutableArray *overlays = [[NSMutableArray alloc] init];
+    
+    for (id screen in [NSScreen screens])
+    {
+        NSWindow *wnd = [[NSWindow alloc] initWithContentRect:[screen frame]
+                                                    styleMask:NSBorderlessWindowMask
+                                                      backing:NSBackingStoreBuffered
+                                                        defer:YES];
+        
+        [wnd setOpaque:NO];
+        [wnd setAlphaValue:0.0];
+        [wnd setHasShadow:NO];
+        [wnd setBackgroundColor:[NSColor blackColor]];
+        [wnd setLevel:NSScreenSaverWindowLevel];
+        [wnd setIgnoresMouseEvents:YES];
+        NSUInteger collectionBehaviour;
+        collectionBehaviour = [wnd collectionBehavior];
+        collectionBehaviour |= NSWindowCollectionBehaviorCanJoinAllSpaces;
+        [wnd setCollectionBehavior:collectionBehaviour];
+        
+        [overlays addObject:wnd];
+    }
+    
+    for (id wnd in overlayWindows)
+    {
+        [wnd orderOut:nil];
+    }
+    
+    overlayWindows = overlays;
+    
+    for (id wnd in overlayWindows)
+    {
+        [wnd orderFront:nil];
+    }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -70,6 +110,7 @@ void handleUncaughtException(NSException * e)
         [self getDefaults];
         [self loadIOServices];
         [self createDockIcon];
+        [self createOverlayWindows];
         [self setBrightness:[self getCurrentBrightness]];
     }
     @catch (NSException * e)
@@ -126,6 +167,7 @@ void handleUncaughtException(NSException * e)
     
     if ([keyPath isEqualToString:@"restoreEnabled"])
     {
+        [self updateRestoreItem];
         [self updateStatusItem];
     }
 }
@@ -296,8 +338,32 @@ void handleUncaughtException(NSException * e)
         IODisplaySetFloatParameter(service,
                                    kNilOptions,
                                    CFSTR(kIODisplayBrightnessKey),
-                                   brightness);
+                                   [self brightness]);
     }
+    
+    // If brightness is in the [0, .1] range, then we linearly darken the
+    // overlay window.
+    if (_brightness <= 0.1)
+    {
+        [self setOverlayBrightness:((float)1.0 - [self brightness] * 10)];
+    } else {
+        [self setOverlayBrightness:0.0];
+    }
+}
+
+- (void)setOverlayBrightness:(float)brightness
+{
+    NSLog(@"Setting overlay brightness %f.", brightness);
+    
+    for (id wnd in overlayWindows)
+    {
+        [wnd setAlphaValue:brightness];
+    }
+}
+
+- (void)updateRestoreItem
+{
+    [[self restoreItem] setEnabled:[self isRestoreEnabled]];
 }
 
 - (void)updateStatusItem
@@ -521,6 +587,11 @@ void handleUncaughtException(NSException * e)
         {
             [obj setState:([loginItem isLoginItem] ? NSOnState : NSOffState)];
         }
+    }
+    
+    if (act == @selector(restoreBrightness:))
+    {
+        return [self isRestoreEnabled];
     }
     
     return YES;

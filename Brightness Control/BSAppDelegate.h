@@ -32,6 +32,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSView *sliderView;
+@property (weak) IBOutlet NSMenuItem *restoreItem;
 @property float brightness;
 @property float sliderValue;
 @property BOOL restoreEnabled;
