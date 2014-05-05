@@ -148,7 +148,7 @@ void handleUncaughtException(NSException * e)
 
     if (((int)time) % 2)
     {
-        [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"sun"]];
     }
     else
     {
@@ -205,7 +205,7 @@ void handleUncaughtException(NSException * e)
     NSStatusBar *bar = [NSStatusBar systemStatusBar];
     
     statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-    [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
+    [statusItem setImage:[NSImage imageNamed:@"sun"]];
     [statusItem setHighlightMode:YES];
     [statusItem setEnabled:TRUE];
     [statusItem setToolTip:@"Brightness Setter"];
@@ -322,15 +322,15 @@ void handleUncaughtException(NSException * e)
     
     if (![self isSavedBrightnessValid:savedBrightness])
     {
-        [statusItem setImage:[NSImage imageNamed:@"bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"sun"]];
     }
     else if ([self isRestoreEnabled])
     {
-        [statusItem setImage:[NSImage imageNamed:@"yellow_bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"sun_orange"]];
     }
     else
     {
-        [statusItem setImage:[NSImage imageNamed:@"green_bulb.png"]];
+        [statusItem setImage:[NSImage imageNamed:@"sun_green"]];
     }
 
     [self setLastStatusIconUpdate:currentIconUpdate];
