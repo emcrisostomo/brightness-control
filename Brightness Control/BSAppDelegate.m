@@ -19,7 +19,7 @@
  */
 
 #import "BSAppDelegate.h"
-#import "EMCLoginItem.h"
+#import <EMCLoginItem/EMCLoginItem.h>
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
