@@ -237,7 +237,7 @@
 		90D6503B1902C31F00A31E1A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = BS;
+				CLASSPREFIX = BC;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Enrico Maria Crisostomo";
 				TargetAttributes = {
