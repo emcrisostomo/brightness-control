@@ -18,9 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BSMenuItemWithView.h"
+#import "BCMenuItemWithView.h"
 
-@implementation BSMenuItemWithView
+@implementation BCMenuItemWithView
 
 - (void)setEnabled:(BOOL)flag
 {

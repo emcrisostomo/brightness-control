@@ -20,6 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BSMenuItemWithView : NSMenuItem
+@interface BCMenuItemWithView : NSMenuItem
 
 @end

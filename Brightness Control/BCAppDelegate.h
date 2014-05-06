@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BSAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations>
+@interface BCAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations>
 
 - (IBAction)updateValue:(id)sender;
 - (IBAction)saveCurrentBrightness:(id)sender;

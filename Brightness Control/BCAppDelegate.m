@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "BSAppDelegate.h"
+#import "BCAppDelegate.h"
 #import <EMCLoginItem/EMCLoginItem.h>
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
@@ -26,7 +26,7 @@ NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.bri
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-setter.useOverlay";
 const float kBSBrightnessTolerance = .01;
 
-@implementation BSAppDelegate {
+@implementation BCAppDelegate {
     EMCLoginItem *loginItem;
     NSStatusItem *statusItem;
     float _brightness;
