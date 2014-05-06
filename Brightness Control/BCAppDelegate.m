@@ -19,6 +19,7 @@
  */
 
 #import "BCAppDelegate.h"
+#import "BCUtils.h"
 #import <EMCLoginItem/EMCLoginItem.h>
 #import "BCTransparentWindowOverlay.h"
 
@@ -388,7 +389,7 @@ void handleUncaughtException(NSException * e)
     const NSTimeInterval currentIconUpdate = [now timeIntervalSince1970];
     const float savedBrightness = [self getSavedBrightnessValue];
     
-    if (![self isSavedBrightnessValid:savedBrightness])
+    if (![BCUtils isBrightnessValid:savedBrightness])
     {
         [statusItem setImage:[NSImage imageNamed:@"sun"]];
     }
@@ -621,18 +622,13 @@ void handleUncaughtException(NSException * e)
 - (BOOL)isRestoreEnabled
 {
     const float savedBrightness = [self getSavedBrightnessValue];
-    return savedBrightness != _brightness && [self isSavedBrightnessValid:savedBrightness];
+    return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
 }
 
 - (float)getSavedBrightnessValue
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults floatForKey:kBSBrightnessPropertyName];
-}
-
-- (BOOL)isSavedBrightnessValid:(float)savedBrightness
-{
-    return savedBrightness >= 0 && savedBrightness <= 1;
 }
 
 @end
