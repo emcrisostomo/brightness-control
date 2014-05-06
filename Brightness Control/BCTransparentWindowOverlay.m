@@ -1,5 +1,5 @@
 /*
- * BCTransparentWindowOverlay.h
+ * BCTransparentWindowOverlay.m
  * Brightness Control
  *
  * Copyright (C) 2014, Enrico M. Crisostomo
