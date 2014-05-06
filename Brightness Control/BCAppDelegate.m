@@ -21,9 +21,9 @@
 #import "BCAppDelegate.h"
 #import <EMCLoginItem/EMCLoginItem.h>
 
-NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
-NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
-NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-setter.useOverlay";
+NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
+NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
+NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
 const float kBSBrightnessTolerance = .01;
 
 @implementation BCAppDelegate {
@@ -335,10 +335,17 @@ void handleUncaughtException(NSException * e)
         {
             if (fabs([[brightnessValues objectAtIndex:j] floatValue] - currentMonitorBrightness) > kBSBrightnessTolerance)
             {
-                NSString *msg = [NSString stringWithFormat:@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]];
-                NSLog(@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]);
+                NSString *msg = [NSString stringWithFormat:@"%lu services satisfying filter "
+                                 "[IODisplayConnect] were found whose brightness values "
+                                 "are not within the specified tolerance.",
+                                 (unsigned long)[brightnessValues count]];
+                NSLog(@"%lu services satisfying filter [IODisplayConnect] were "
+                      "found whose brightness values are not within the specified tolerance.",
+                      (unsigned long)[brightnessValues count]);
                 [NSException raise:msg
-                            format:@"%lu services satisfying filter [IODisplayConnect] were found whose brightness values are not within the specified tolerance.", (unsigned long)[brightnessValues count]];
+                            format:@"%lu services satisfying filter [IODisplayConnect] "
+                 "were found whose brightness values are not within the specified tolerance.",
+                 (unsigned long)[brightnessValues count]];
             }
         }
     }
