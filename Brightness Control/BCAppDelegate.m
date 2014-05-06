@@ -363,11 +363,16 @@ void handleUncaughtException(NSException * e)
     [[self restoreItem] setEnabled:[self isRestoreEnabled]];
 }
 
+- (NSString *)formatBrightnessString:(float)brightness
+{
+    return [NSString stringWithFormat:@"%.2f%%", brightness * 100];
+}
+
 - (void)updateStatusItem
 {
     if ([self percentageShown])
     {
-        [statusItem setTitle:[NSString stringWithFormat:@"%.3f", _brightness]];
+        [statusItem setTitle:[self formatBrightnessString:[self brightness]]];
     }
     else
     {
@@ -470,7 +475,7 @@ void handleUncaughtException(NSException * e)
     
     const float brightness = [self getCurrentBrightness];
     NSAlert *saveDialog = [[NSAlert alloc] init];
-    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %f?", brightness]];
+    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %@?", [self formatBrightnessString:[self brightness]]]];
     [saveDialog addButtonWithTitle:@"Ok"];
     [saveDialog addButtonWithTitle:@"Cancel"];
     [saveDialog beginSheetModalForWindow:nil
@@ -512,7 +517,7 @@ void handleUncaughtException(NSException * e)
     // menu would not go away.
     const float savedBrightness = [self getSavedBrightnessValue];
     NSAlert *restoreDialog = [[NSAlert alloc] init];
-    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %f?", savedBrightness]];
+    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %@?", [self formatBrightnessString:savedBrightness]]];
     [restoreDialog addButtonWithTitle:@"Ok"];
     [restoreDialog addButtonWithTitle:@"Cancel"];
     [restoreDialog beginSheetModalForWindow:nil
