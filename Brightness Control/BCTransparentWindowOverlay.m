@@ -124,11 +124,18 @@
 
 - (void)setOverlayAlpha:(float)brightness
 {
-    float adjustedValue = brightness + 1;
-    adjustedValue = log2f(adjustedValue);
-    
     NSLog(@"Setting overlay brightness: %f.", brightness);
-    NSLog(@"Setting overlay brightness adjusted: %f.", adjustedValue);
+    
+    float adjustedValue = brightness;
+
+    // Mapping b=[0, 1] to b_a=[1, 2] and then calculating the brightness as
+    // log_2(b_a).
+    if ([self logarithmicScale])
+    {
+        adjustedValue += 1;
+        adjustedValue = log2f(adjustedValue);
+        NSLog(@"Setting overlay brightness adjusted: %f.", adjustedValue);
+    }
     
     for (id wnd in overlayWindows)
     {

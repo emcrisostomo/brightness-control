@@ -30,5 +30,6 @@
 
 @property float alpha;
 @property BOOL visible;
+@property BOOL logarithmicScale;
 
 @end
