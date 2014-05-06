@@ -20,6 +20,7 @@
 
 #import "BCAppDelegate.h"
 #import <EMCLoginItem/EMCLoginItem.h>
+#import "BCTransparentWindowOverlay.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
@@ -33,7 +34,7 @@ const float kBSBrightnessTolerance = .01;
     NSTimer *pollTimer;
     NSTimer *statusItemTimer;
     io_iterator_t service_iterator;
-    NSArray *overlayWindows;
+    BCTransparentWindowOverlay *overlayManager;
 }
 
 void handleUncaughtException(NSException * e)
@@ -52,67 +53,18 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Screen configuration has changed");
     [self releaseIOServices];
     [self loadIOServices];
-    [self createOverlayWindows];
-}
-
-- (void)createOverlayWindows
-{
-    [self destroyOverlayWindows];
-    
-    if (![self useOverlay]) {
-        return;
-    }
-    
-    NSMutableArray *overlays = [[NSMutableArray alloc] init];
-    
-    for (id screen in [NSScreen screens])
-    {
-        NSWindow *wnd = [[NSWindow alloc] initWithContentRect:[screen frame]
-                                                    styleMask:NSBorderlessWindowMask
-                                                      backing:NSBackingStoreBuffered
-                                                        defer:YES];
-        
-        [wnd setOpaque:NO];
-        [wnd setHasShadow:NO];
-        [wnd setBackgroundColor:[NSColor blackColor]];
-        [wnd setLevel:NSScreenSaverWindowLevel];
-        [wnd setIgnoresMouseEvents:YES];
-        NSUInteger collectionBehaviour;
-        collectionBehaviour = [wnd collectionBehavior];
-        collectionBehaviour |= NSWindowCollectionBehaviorCanJoinAllSpaces;
-        [wnd setCollectionBehavior:collectionBehaviour];
-        
-        [overlays addObject:wnd];
-    }
-
-    overlayWindows = overlays;
-    
-    [self updateOverlay];
-    
-    for (id wnd in overlayWindows)
-    {
-        [wnd orderFront:nil];
-    }
-}
-
-- (void)destroyOverlayWindows
-{
-    for (id wnd in overlayWindows)
-    {
-        [wnd orderOut:nil];
-    }
-    
-    overlayWindows = [[NSMutableArray alloc] init];
+    [overlayManager createOverlayWindows];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    loginItem = [EMCLoginItem loginItem];
-    
     NSSetUncaughtExceptionHandler(handleUncaughtException);
     
     @try
     {
+        loginItem = [EMCLoginItem loginItem];
+        overlayManager = [BCTransparentWindowOverlay transparentWindowOverlay];
+
         // Make sure slider view will be as wide as the contextual menu.
         [[self sliderView] setAutoresizingMask:NSViewWidthSizable];
         
@@ -123,7 +75,7 @@ void handleUncaughtException(NSException * e)
         [self getDefaults];
         [self loadIOServices];
         [self createDockIcon];
-        [self createOverlayWindows];
+        [overlayManager createOverlayWindows];
         [self setBrightness:[self getCurrentBrightness]];
     }
     @catch (NSException * e)
@@ -134,6 +86,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
+    [overlayManager setVisible:NO];
     [self invalidateStatusItemTimer];
     [self invalidatePollTimer];
     [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
@@ -196,7 +149,7 @@ void handleUncaughtException(NSException * e)
 
 - (void)onUseOverlay
 {
-    [self createOverlayWindows];
+    [overlayManager setVisible:[self useOverlay]];
 }
 
 - (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
@@ -387,19 +340,22 @@ void handleUncaughtException(NSException * e)
     if ([self brightness] <= 0.1)
     {
         [self setOverlayBrightness:((float)1.0 - [self brightness] * 10)];
+        [overlayManager setVisible:[self useOverlay]];
     } else {
         [self setOverlayBrightness:0.0];
+        [overlayManager setVisible:NO];
     }
 }
 
 - (void)setOverlayBrightness:(float)brightness
 {
-    NSLog(@"Setting overlay brightness %f.", brightness);
+    float adjustedValue = brightness + 1;
+    adjustedValue = log2f(adjustedValue);
+
+    NSLog(@"Setting overlay brightness: %f.", brightness);
+    NSLog(@"Setting overlay brightness adjusted: %f.", adjustedValue);
     
-    for (id wnd in overlayWindows)
-    {
-        [wnd setAlphaValue:brightness];
-    }
+    [overlayManager setAlpha:adjustedValue];
 }
 
 - (void)updateRestoreItem
