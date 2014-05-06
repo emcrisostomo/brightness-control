@@ -36,6 +36,12 @@
                         <action selector="showPercentage:" target="Voe-Tx-rLC" id="cdZ-rw-Gwm"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Use Overlay to Reduce Brightness" id="jJP-uJ-v7d">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleUseOverlay:" target="Voe-Tx-rLC" id="zw9-kB-vVH"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Launch at Login" id="6xn-Bm-0cj">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

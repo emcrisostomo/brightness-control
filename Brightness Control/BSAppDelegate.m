@@ -23,6 +23,7 @@
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-setter.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-setter.percentageShown";
+NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-setter.useOverlay";
 const float kBSBrightnessTolerance = .01;
 
 @implementation BSAppDelegate {
@@ -56,6 +57,12 @@ void handleUncaughtException(NSException * e)
 
 - (void)createOverlayWindows
 {
+    [self destroyOverlayWindows];
+    
+    if (![self useOverlay]) {
+        return;
+    }
+    
     NSMutableArray *overlays = [[NSMutableArray alloc] init];
     
     for (id screen in [NSScreen screens])
@@ -78,18 +85,23 @@ void handleUncaughtException(NSException * e)
         
         [overlays addObject:wnd];
     }
-    
-    for (id wnd in overlayWindows)
-    {
-        [wnd orderOut:nil];
-    }
-    
+
     overlayWindows = overlays;
     
     for (id wnd in overlayWindows)
     {
         [wnd orderFront:nil];
     }
+}
+
+- (void)destroyOverlayWindows
+{
+    for (id wnd in overlayWindows)
+    {
+        [wnd orderOut:nil];
+    }
+    
+    overlayWindows = [[NSMutableArray alloc] init];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -134,6 +146,10 @@ void handleUncaughtException(NSException * e)
               options:NSKeyValueObservingOptionNew
               context:nil];
     [self addObserver:self
+           forKeyPath:@"useOverlay"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+    [self addObserver:self
            forKeyPath:@"brightness"
               options:NSKeyValueObservingOptionNew
               context:nil];
@@ -160,6 +176,11 @@ void handleUncaughtException(NSException * e)
         [self updateStatusItem];
     }
     
+    if ([keyPath isEqualToString:@"useOverlay"])
+    {
+        [self onUseOverlay];
+    }
+    
     if ([keyPath isEqualToString:@"brightness"])
     {
         [self onUpdateBrightness];
@@ -170,6 +191,11 @@ void handleUncaughtException(NSException * e)
         [self updateRestoreItem];
         [self updateStatusItem];
     }
+}
+
+- (void)onUseOverlay
+{
+    [self createOverlayWindows];
 }
 
 - (void)updateSliderAndSetBrightness:(NSNumber *)updatedBrightness
@@ -261,6 +287,7 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Currently saved brightness value: %f.", f);
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
+    [self setUseOverlay:[defaults boolForKey:kBSUseOverlayPropertyName]];
 }
 
 - (void)setDefaults
@@ -268,6 +295,7 @@ void handleUncaughtException(NSException * e)
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
     defaults[kBSBrightnessPropertyName] = @(-1.0f);
     defaults[kBSPercentageShownPropertyName] = @(NO);
+    defaults[kBSUseOverlayPropertyName] = @(NO);
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // setting defaults in shared controller
@@ -526,13 +554,24 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)showPercentage:(id)sender
 {
-    BOOL newPercentageShown = ![self percentageShown];
+    const BOOL newPercentageShown = ![self percentageShown];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@(newPercentageShown)
                  forKey:kBSPercentageShownPropertyName];
     
     [self setPercentageShown:newPercentageShown];
+}
+
+- (IBAction)toggleUseOverlay:(id)sender
+{
+    const BOOL newUseOverlay = ![self useOverlay];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(newUseOverlay)
+                 forKey:kBSUseOverlayPropertyName];
+    
+    [self setUseOverlay:newUseOverlay];
 }
 
 - (IBAction)toggleLaunchAtLogin:(id)sender
@@ -586,6 +625,14 @@ void handleUncaughtException(NSException * e)
         if ([obj respondsToSelector:@selector(setState:)])
         {
             [obj setState:([loginItem isLoginItem] ? NSOnState : NSOffState)];
+        }
+    }
+    
+    if (act == @selector(toggleUseOverlay:))
+    {
+        if ([obj respondsToSelector:@selector(setState:)])
+        {
+            [obj setState:([self useOverlay] ? NSOnState : NSOffState)];
         }
     }
     

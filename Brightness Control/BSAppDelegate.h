@@ -26,6 +26,7 @@
 - (IBAction)saveCurrentBrightness:(id)sender;
 - (IBAction)restoreBrightness:(id)sender;
 - (IBAction)showPercentage:(id)sender;
+- (IBAction)toggleUseOverlay:(id)sender;
 - (IBAction)toggleLaunchAtLogin:(id)sender;
 - (IBAction)showAboutWindow:(id)sender;
 
@@ -37,6 +38,7 @@
 @property float sliderValue;
 @property BOOL restoreEnabled;
 @property BOOL percentageShown;
+@property BOOL useOverlay;
 @property NSTimeInterval lastStatusIconUpdate;
 
 @end
