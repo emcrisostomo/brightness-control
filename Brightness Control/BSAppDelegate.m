@@ -73,7 +73,6 @@ void handleUncaughtException(NSException * e)
                                                         defer:YES];
         
         [wnd setOpaque:NO];
-        [wnd setAlphaValue:0.0];
         [wnd setHasShadow:NO];
         [wnd setBackgroundColor:[NSColor blackColor]];
         [wnd setLevel:NSScreenSaverWindowLevel];
@@ -87,6 +86,8 @@ void handleUncaughtException(NSException * e)
     }
 
     overlayWindows = overlays;
+    
+    [self updateOverlay];
     
     for (id wnd in overlayWindows)
     {
@@ -369,9 +370,14 @@ void handleUncaughtException(NSException * e)
                                    [self brightness]);
     }
     
+    [self updateOverlay];
+}
+
+- (void)updateOverlay
+{
     // If brightness is in the [0, .1] range, then we linearly darken the
     // overlay window.
-    if (_brightness <= 0.1)
+    if ([self brightness] <= 0.1)
     {
         [self setOverlayBrightness:((float)1.0 - [self brightness] * 10)];
     } else {
