@@ -48,6 +48,9 @@
 		901D3A871916E67A00961DA2 /* EMCLoginItem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMCLoginItem.framework; path = ../../../../../Library/Frameworks/EMCLoginItem.framework; sourceTree = "<group>"; };
 		904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTransparentWindowOverlay.h; sourceTree = "<group>"; };
 		904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTransparentWindowOverlay.m; sourceTree = "<group>"; };
+		9086B6B1191AEFC000A17DE7 /* LICENSE.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = LICENSE.html; path = ../LICENSE.html; sourceTree = "<group>"; };
+		9086B6B2191AEFC000A17DE7 /* README.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = README.html; path = ../README.html; sourceTree = "<group>"; };
+		9086B6B3191AEFC000A17DE7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9088BE32191999C200AD3292 /* BCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCUtils.h; sourceTree = "<group>"; };
 		9088BE33191999C200AD3292 /* BCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCUtils.m; sourceTree = "<group>"; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,7 +201,10 @@
 				90D7BF63191415CC004B0680 /* Brightness Control-Prefix.pch */,
 				90D7BF6A191415CC004B0680 /* Credits.rtf */,
 				90D7BF6C191415CC004B0680 /* InfoPlist.strings */,
+				9086B6B1191AEFC000A17DE7 /* LICENSE.html */,
 				90D7BF70191415CC004B0680 /* main.m */,
+				9086B6B2191AEFC000A17DE7 /* README.html */,
+				9086B6B3191AEFC000A17DE7 /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
