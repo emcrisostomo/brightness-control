@@ -45,6 +45,7 @@
 		9003CAAF191414130018FE90 /* Brightness ControlTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Brightness ControlTests-Info.plist"; sourceTree = "<group>"; };
 		9003CAB0191414130018FE90 /* brightness_setterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
 		9003CAB2191414130018FE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9017D847191BD71700A78347 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; name = COPYING; path = ../COPYING; sourceTree = "<group>"; };
 		901D3A871916E67A00961DA2 /* EMCLoginItem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMCLoginItem.framework; path = ../../../../../Library/Frameworks/EMCLoginItem.framework; sourceTree = "<group>"; };
 		904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTransparentWindowOverlay.h; sourceTree = "<group>"; };
 		904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTransparentWindowOverlay.m; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 			children = (
 				90D7BF62191415CC004B0680 /* Brightness Control-Info.plist */,
 				90D7BF63191415CC004B0680 /* Brightness Control-Prefix.pch */,
+				9017D847191BD71700A78347 /* COPYING */,
 				90D7BF6A191415CC004B0680 /* Credits.rtf */,
 				90D7BF6C191415CC004B0680 /* InfoPlist.strings */,
 				9086B6B1191AEFC000A17DE7 /* LICENSE.html */,
