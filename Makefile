@@ -15,9 +15,11 @@ BrightnessControlComponent.pkg :
 distribution.dist :
 	productbuild --synthesize --product requirements.plist --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package BrightnessControlComponent.pkg distribution.dist
 
+.PHONY : clean
 clean :
 	-rm -f BrightnessControl.pkg BrightnessControlComponent.pkg
 	-rm -rf /tmp/Brightness\ Control.dst
 
+.PHONY : distclean
 distclean :
 	-rm -f distribution.dist BrightnessControl.plist
