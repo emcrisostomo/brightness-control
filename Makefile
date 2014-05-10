@@ -7,13 +7,26 @@ BrightnessControl.pkg : /tmp/Brightness\ Control.dst requirements.plist ../EMCLo
 	xcodebuild install
 
 BrightnessControl.plist :
-	pkgbuild --analyze --root /tmp/Brightness\ Control.dst BrightnessControl.plist
+	@echo "Error: Missing component pfile."
+	@echo "Create a component pfile with make compfiles."
+	@exit 1
 
 BrightnessControlComponent.pkg :
 	pkgbuild --root /tmp/Brightness\ Control.dst --component-plist BrightnessControl.plist BrightnessControlComponent.pkg
 
 distribution.dist :
-	productbuild --synthesize --product requirements.plist --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package BrightnessControlComponent.pkg distribution.dist
+	@echo "Error: Missing distribution file."
+	@echo "Create a distribution file with make distfiles."
+	@exit 1
+
+.PHONY : distfiles
+distfiles :
+	productbuild --synthesize --product requirements.plist --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package BrightnessControlComponent.pkg distribution.dist.new
+	@echo "Edit the distribution.dist.new template to create a suitable distribution.dist file."
+
+.PHONY : compfiles
+compfiles :
+	pkgbuild --analyze --root /tmp/Brightness\ Control.dst BrightnessControl.plist
 
 .PHONY : clean
 clean :
