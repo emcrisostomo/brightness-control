@@ -54,6 +54,7 @@
 		9086B6B3191AEFC000A17DE7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9088BE32191999C200AD3292 /* BCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCUtils.h; sourceTree = "<group>"; };
 		9088BE33191999C200AD3292 /* BCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCUtils.m; sourceTree = "<group>"; };
+		90D41B96191EB11F006F38CE /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = SOURCE_ROOT; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90D650491902C31F00A31E1A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -205,6 +206,7 @@
 				90D7BF6C191415CC004B0680 /* InfoPlist.strings */,
 				9086B6B1191AEFC000A17DE7 /* LICENSE.html */,
 				90D7BF70191415CC004B0680 /* main.m */,
+				90D41B96191EB11F006F38CE /* Makefile */,
 				9086B6B2191AEFC000A17DE7 /* README.html */,
 				9086B6B3191AEFC000A17DE7 /* README.md */,
 			);
