@@ -38,7 +38,8 @@ distfiles :
 
 .PHONY : compfiles
 compfiles :
-	pkgbuild --analyze --root /tmp/Brightness\ Control.dst BrightnessControl.plist
+	pkgbuild --analyze --root /tmp/Brightness\ Control.dst BrightnessControl.plist.new
+	@echo "Edit the BrightnessControl.plist.new template to create a suitable BrightnessControl.plist file."
 
 .PHONY : clean
 clean :
