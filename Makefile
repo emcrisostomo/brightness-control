@@ -19,6 +19,18 @@ distribution.dist :
 	@echo "Create a distribution file with make distfiles."
 	@exit 1
 
+.PHONY : usage
+usage :
+	@echo "Available targets."
+	@echo
+	@echo "all        Build the product package."
+	@echo "clean      Clean all intermediate files but preserve package and distribution descriptors."
+	@echo "compclean  Clean package descriptors."
+	@echo "compfiles  Create new package descriptors."
+	@echo "distclean  Clean distribution descriptors."
+	@echo "distfiles  Create new distribution descriptors."
+	@echo "usage      Prints this message."
+
 .PHONY : distfiles
 distfiles :
 	productbuild --synthesize --product requirements.plist --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package BrightnessControlComponent.pkg distribution.dist.new
@@ -35,4 +47,8 @@ clean :
 
 .PHONY : distclean
 distclean :
-	-rm -f distribution.dist BrightnessControl.plist
+	-rm -f distribution.dist 
+
+.PHONY : compclean
+compclean :
+	-rm -f BrightnessControl.plist
