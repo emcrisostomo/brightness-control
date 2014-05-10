@@ -1,20 +1,28 @@
-all : BrightnessControl.pkg
+PROGRAM = BrightnessControl
+BINARIES = /tmp/Brightness\ Control.dst
+PRODUCT = $(PROGRAM).pkg
+COMPONENT = $(PROGRAM)Component.pkg
+COMPONENT_PFILE = $(PROGRAM).plist
+DISTRIBUTION_FILE = distribution.dist
+REQUIREMENTS = requirements.plist
 
-BrightnessControl.pkg : /tmp/Brightness\ Control.dst requirements.plist ../EMCLoginItem/EMCLoginItemComponent.pkg BrightnessControl.plist BrightnessControlComponent.pkg distribution.dist
-	productbuild --distribution distribution.dist --resources . --package-path . --package-path ../EMCLoginItem BrightnessControl.pkg
+all : $(PRODUCT)
 
-/tmp/Brightness\ Control.dst :
+$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) ../EMCLoginItem/EMCLoginItemComponent.pkg $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
+	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path . --package-path ../EMCLoginItem $(PRODUCT)
+
+$(BINARIES) :
 	xcodebuild install
 
-BrightnessControl.plist :
+$(COMPONENT_PFILE) :
 	@echo "Error: Missing component pfile."
 	@echo "Create a component pfile with make compfiles."
 	@exit 1
 
-BrightnessControlComponent.pkg :
-	pkgbuild --root /tmp/Brightness\ Control.dst --component-plist BrightnessControl.plist BrightnessControlComponent.pkg
+$(COMPONENT) :
+	pkgbuild --root $(BINARIES) --component-plist $(COMPONENT_PFILE) $(COMPONENT)
 
-distribution.dist :
+$(DISTRIBUTION_FILE) :
 	@echo "Error: Missing distribution file."
 	@echo "Create a distribution file with make distfiles."
 	@exit 1
@@ -33,23 +41,23 @@ usage :
 
 .PHONY : distfiles
 distfiles :
-	productbuild --synthesize --product requirements.plist --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package BrightnessControlComponent.pkg distribution.dist.new
-	@echo "Edit the distribution.dist.new template to create a suitable distribution.dist file."
+	productbuild --synthesize --product $(REQUIREMENTS) --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package $(COMPONENT) $(DISTRIBUTION_FILE).new
+	@echo "Edit the $(DISTRIBUTION_FILE).new template to create a suitable $(DISTRIBUTION_FILE) file."
 
 .PHONY : compfiles
 compfiles :
-	pkgbuild --analyze --root /tmp/Brightness\ Control.dst BrightnessControl.plist.new
-	@echo "Edit the BrightnessControl.plist.new template to create a suitable BrightnessControl.plist file."
+	pkgbuild --analyze --root $(BINARIES) $(COMPONENT_PFILE).new
+	@echo "Edit the $(COMPONENT_PFILE).new template to create a suitable $(COMPONENT_PFILE) file."
 
 .PHONY : clean
 clean :
-	-rm -f BrightnessControl.pkg BrightnessControlComponent.pkg
-	-rm -rf /tmp/Brightness\ Control.dst
+	-rm -f $(PROGRAM) $(COMPONENT)
+	-rm -rf $(BINARIES)
 
 .PHONY : distclean
 distclean :
-	-rm -f distribution.dist 
+	-rm -f $(DISTRIBUTION_FILE)
 
 .PHONY : compclean
 compclean :
-	-rm -f BrightnessControl.plist
+	-rm -f $(COMPONENT_PFILE)
