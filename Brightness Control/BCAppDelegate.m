@@ -340,21 +340,21 @@ void handleUncaughtException(NSException * e)
     // overlay window.
     if ([self brightness] <= 0.1)
     {
-        [self setOverlayBrightness:((float)1.0 - [self brightness] * 10)];
+        [self setOverlayAlpha:((float)1.0 - [self brightness] * 10)];
         [overlayManager setVisible:[self useOverlay]];
     } else {
-        [self setOverlayBrightness:0.0];
+        [self setOverlayAlpha:0.0];
         [overlayManager setVisible:NO];
     }
 }
 
-- (void)setOverlayBrightness:(float)brightness
+- (void)setOverlayAlpha:(float)alpha
 {
-    float adjustedValue = brightness + 1;
+    float adjustedValue = alpha + 1;
     adjustedValue = log2f(adjustedValue);
 
-    NSLog(@"Setting overlay brightness: %f.", brightness);
-    NSLog(@"Setting overlay brightness adjusted: %f.", adjustedValue);
+    NSLog(@"Setting overlay alpha: %f.", alpha);
+    NSLog(@"Setting overlay alpha adjusted: %f.", adjustedValue);
     
     [overlayManager setAlpha:adjustedValue];
 }
