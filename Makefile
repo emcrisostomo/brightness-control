@@ -51,7 +51,7 @@ compfiles :
 
 .PHONY : clean
 clean :
-	-rm -f $(PROGRAM) $(COMPONENT)
+	-rm -f $(PRODUCT) $(COMPONENT)
 	-rm -rf $(BINARIES)
 
 .PHONY : distclean
