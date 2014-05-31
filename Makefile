@@ -1,15 +1,27 @@
 PROGRAM = BrightnessControl
+DISTDIR = ./dist
+DEPSDIR = ./deps
 BINARIES = /tmp/Brightness\ Control.dst
-PRODUCT = $(PROGRAM).pkg
-COMPONENT = $(PROGRAM)Component.pkg
+DMGFILE = $(PROGRAM).dmg
+PRODUCT = $(DISTDIR)/$(PROGRAM).pkg
+COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
 COMPONENT_PFILE = $(PROGRAM).plist
 DISTRIBUTION_FILE = distribution.dist
 REQUIREMENTS = requirements.plist
 
-all : $(PRODUCT)
+all : $(DISTDIR) $(DEPSDIR) $(PRODUCT) $(DMGFILE)
+
+$(DISTDIR) :
+	mkdir $(DISTDIR)
+
+$(DEPSDIR) :
+	mkdir $(DEPSDIR)
+
+$(DMGFILE) :
+	hdiutil create -volname $(PROGRAM) -srcfolder $(DISTDIR) -ov $(DMGFILE)
 
 $(PRODUCT) : $(BINARIES) $(REQUIREMENTS) ../EMCLoginItem/EMCLoginItemComponent.pkg $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
-	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path . --package-path ../EMCLoginItem $(PRODUCT)
+	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) --package-path ../EMCLoginItem $(PRODUCT)
 
 $(BINARIES) :
 	xcodebuild install
@@ -51,7 +63,7 @@ compfiles :
 
 .PHONY : clean
 clean :
-	-rm -f $(PRODUCT) $(COMPONENT)
+	-rm -f $(DMGFILE) $(PRODUCT) $(COMPONENT)
 	-rm -rf $(BINARIES)
 
 .PHONY : distclean
