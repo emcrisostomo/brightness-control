@@ -597,6 +597,13 @@ void handleUncaughtException(NSException * e)
     NSLog(@"Saved brightness: %f.", brightness);
 }
 
+- (float)getSavedBrightnessValue
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults floatForKey:kBSBrightnessPropertyName];
+}
+
+#pragma mark - Menu management
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
 {
     SEL act = [anItem action];
@@ -646,12 +653,6 @@ void handleUncaughtException(NSException * e)
 {
     const float savedBrightness = [self getSavedBrightnessValue];
     return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
-}
-
-- (float)getSavedBrightnessValue
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults floatForKey:kBSBrightnessPropertyName];
 }
 
 @end
