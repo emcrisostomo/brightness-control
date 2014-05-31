@@ -8,6 +8,8 @@ COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
 COMPONENT_PFILE = $(PROGRAM).plist
 DISTRIBUTION_FILE = distribution.dist
 REQUIREMENTS = requirements.plist
+LOGINCOMPONENTDIR = ~/Documents/github/EMCLoginItem
+LOGINCOMPONENT = $(LOGINCOMPONENTDIR)/EMCLoginItemComponent.pkg
 
 .PHONY : all
 all : $(DISTDIR) $(DEPSDIR) $(PRODUCT) $(DMGFILE)
@@ -23,8 +25,8 @@ $(DEPSDIR) :
 $(DMGFILE) : $(PRODUCT)
 	hdiutil create -volname $(PROGRAM) -srcfolder $(DISTDIR) -ov $(DMGFILE)
 
-$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) ../EMCLoginItem/EMCLoginItemComponent.pkg $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
-	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) --package-path ../EMCLoginItem $(PRODUCT)
+$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) $(LOGINCOMPONENT) $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
+	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) --package-path $(LOGINCOMPONENTDIR) $(PRODUCT)
 
 $(BINARIES) :
 	xcodebuild install
