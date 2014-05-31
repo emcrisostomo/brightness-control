@@ -34,7 +34,7 @@ $(COMPONENT_PFILE) :
 	@echo "Create a component pfile with make compfiles."
 	@exit 1
 
-$(COMPONENT) : $(BINARIES)
+$(COMPONENT) : $(BINARIES) $(COMPONENT_PFILE)
 	pkgbuild --root $(BINARIES) --component-plist $(COMPONENT_PFILE) $(COMPONENT)
 
 $(DISTRIBUTION_FILE) :
@@ -71,8 +71,8 @@ clean :
 
 .PHONY : distclean
 distclean :
-	-rm -f $(DISTRIBUTION_FILE)
+	-rm -f $(DISTRIBUTION_FILE) $(DISTRIBUTION_FILE).new
 
 .PHONY : compclean
 compclean :
-	-rm -f $(COMPONENT_PFILE)
+	-rm -f $(COMPONENT_PFILE) $(COMPONENT_PFILE).new
