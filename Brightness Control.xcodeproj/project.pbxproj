@@ -49,6 +49,11 @@
 		901D3A871916E67A00961DA2 /* EMCLoginItem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMCLoginItem.framework; path = ../../../../../Library/Frameworks/EMCLoginItem.framework; sourceTree = "<group>"; };
 		904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTransparentWindowOverlay.h; sourceTree = "<group>"; };
 		904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTransparentWindowOverlay.m; sourceTree = "<group>"; };
+		906606FD193A365A002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		906606FE193A365A002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = es; path = es.lproj/Credits.rtf; sourceTree = "<group>"; };
+		906606FF193A365B002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90660700193A365B002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90660701193A365B002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9086B6B1191AEFC000A17DE7 /* LICENSE.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = LICENSE.html; path = ../LICENSE.html; sourceTree = "<group>"; };
 		9086B6B2191AEFC000A17DE7 /* README.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = README.html; path = ../README.html; sourceTree = "<group>"; };
 		9086B6B3191AEFC000A17DE7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -273,6 +278,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"es-ES",
+				es,
 			);
 			mainGroup = 90D6503A1902C31F00A31E1A;
 			productRefGroup = 90D650441902C31F00A31E1A /* Products */;
@@ -349,6 +356,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9003CAA8191413910018FE90 /* en */,
+				90660701193A365B002F760A /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9003CAB2191414130018FE90 /* en */,
+				90660700193A365B002F760A /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -365,6 +374,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				90D7BF61191415CC004B0680 /* Base */,
+				906606FD193A365A002F760A /* es */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -373,6 +383,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				90D7BF6B191415CC004B0680 /* en */,
+				906606FE193A365A002F760A /* es */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -381,6 +392,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				90D7BF6D191415CC004B0680 /* en */,
+				906606FF193A365B002F760A /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
