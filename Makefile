@@ -9,7 +9,10 @@ COMPONENT_PFILE = $(PROGRAM).plist
 DISTRIBUTION_FILE = distribution.dist
 REQUIREMENTS = requirements.plist
 
+.PHONY : all
 all : $(DISTDIR) $(DEPSDIR) $(PRODUCT) $(DMGFILE)
+.PHONY : dmg
+dmg : $(DMGFILE)
 
 $(DISTDIR) :
 	mkdir $(DISTDIR)
@@ -17,7 +20,7 @@ $(DISTDIR) :
 $(DEPSDIR) :
 	mkdir $(DEPSDIR)
 
-$(DMGFILE) :
+$(DMGFILE) : $(PRODUCT)
 	hdiutil create -volname $(PROGRAM) -srcfolder $(DISTDIR) -ov $(DMGFILE)
 
 $(PRODUCT) : $(BINARIES) $(REQUIREMENTS) ../EMCLoginItem/EMCLoginItemComponent.pkg $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
@@ -31,7 +34,7 @@ $(COMPONENT_PFILE) :
 	@echo "Create a component pfile with make compfiles."
 	@exit 1
 
-$(COMPONENT) :
+$(COMPONENT) : $(BINARIES)
 	pkgbuild --root $(BINARIES) --component-plist $(COMPONENT_PFILE) $(COMPONENT)
 
 $(DISTRIBUTION_FILE) :
@@ -52,12 +55,12 @@ usage :
 	@echo "usage      Prints this message."
 
 .PHONY : distfiles
-distfiles :
+distfiles : $(COMPONENT)
 	productbuild --synthesize --product $(REQUIREMENTS) --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package $(COMPONENT) $(DISTRIBUTION_FILE).new
 	@echo "Edit the $(DISTRIBUTION_FILE).new template to create a suitable $(DISTRIBUTION_FILE) file."
 
 .PHONY : compfiles
-compfiles :
+compfiles : $(BINARIES)
 	pkgbuild --analyze --root $(BINARIES) $(COMPONENT_PFILE).new
 	@echo "Edit the $(COMPONENT_PFILE).new template to create a suitable $(COMPONENT_PFILE) file."
 
