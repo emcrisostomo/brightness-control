@@ -29,6 +29,7 @@
 - (void)setVisible:(BOOL)visible;
 
 @property float alpha;
+@property BOOL showMainMenuAndDock;
 @property BOOL visible;
 @property BOOL logarithmicScale;
 

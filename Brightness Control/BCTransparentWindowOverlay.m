@@ -24,6 +24,7 @@
 {
     float _alpha;
     BOOL _visible;
+    BOOL _showMainMenuAndDock;
     NSArray *overlayWindows;
 }
 
@@ -67,6 +68,33 @@
     }
 }
 
+- (void)setShowMainMenuAndDock:(BOOL)showMainMenuAndDock
+{
+    if (!(showMainMenuAndDock ^ _showMainMenuAndDock))
+    {
+        return;
+    }
+    
+    _showMainMenuAndDock = showMainMenuAndDock;
+    
+    for (id wnd in overlayWindows)
+    {
+        if (self.showMainMenuAndDock)
+        {
+            [wnd setLevel:NSFloatingWindowLevel];
+        }
+        else
+        {
+            [wnd setLevel:NSScreenSaverWindowLevel];
+        }
+    }
+}
+
+- (BOOL)showMainMenuAndDock
+{
+    return _showMainMenuAndDock;
+}
+
 - (void)destroyOverlayWindows
 {
     for (id wnd in overlayWindows)
@@ -97,7 +125,14 @@
         [wnd setOpaque:NO];
         [wnd setHasShadow:NO];
         [wnd setBackgroundColor:[NSColor blackColor]];
-        [wnd setLevel:NSScreenSaverWindowLevel];
+        if (self.showMainMenuAndDock)
+        {
+            [wnd setLevel:NSFloatingWindowLevel];
+        }
+        else
+        {
+            [wnd setLevel:NSScreenSaverWindowLevel];
+        }
         [wnd setIgnoresMouseEvents:YES];
         NSUInteger collectionBehaviour;
         collectionBehaviour = [wnd collectionBehavior];

@@ -26,6 +26,7 @@
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
+NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
 const float kBSBrightnessTolerance = .01;
 
 @implementation BCAppDelegate {
@@ -243,6 +244,7 @@ void handleUncaughtException(NSException * e)
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
     [self setUseOverlay:[defaults boolForKey:kBSUseOverlayPropertyName]];
+    [overlayManager setShowMainMenuAndDock:[defaults boolForKey:kBSOverlayBelowMainMenuPropertyName]];
 }
 
 - (void)setDefaults
@@ -251,6 +253,7 @@ void handleUncaughtException(NSException * e)
     defaults[kBSBrightnessPropertyName] = @(-1.0f);
     defaults[kBSPercentageShownPropertyName] = @(NO);
     defaults[kBSUseOverlayPropertyName] = @(NO);
+    defaults[kBSOverlayBelowMainMenuPropertyName] = @(NO);
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // setting defaults in shared controller
@@ -549,6 +552,18 @@ void handleUncaughtException(NSException * e)
     [self setUseOverlay:newUseOverlay];
 }
 
+- (IBAction)toggleOverlayBelowMenuAndDock:(id)sender
+{
+    const BOOL newOverlayBelowMenuAndDock = ![overlayManager showMainMenuAndDock];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(newOverlayBelowMenuAndDock)
+                 forKey:kBSOverlayBelowMainMenuPropertyName];
+    
+    [overlayManager setShowMainMenuAndDock:newOverlayBelowMenuAndDock];
+}
+
+
 - (IBAction)toggleLaunchAtLogin:(id)sender
 {
     [self enableLoginItem:![loginItem isLoginItem]];
@@ -608,6 +623,14 @@ void handleUncaughtException(NSException * e)
         if ([obj respondsToSelector:@selector(setState:)])
         {
             [obj setState:([self useOverlay] ? NSOnState : NSOffState)];
+        }
+    }
+    
+    if (act == @selector(toggleOverlayBelowMenuAndDock:))
+    {
+        if ([obj respondsToSelector:@selector(setState:)])
+        {
+            [obj setState:(overlayManager.showMainMenuAndDock ? NSOnState : NSOffState)];
         }
     }
     
