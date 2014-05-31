@@ -46,6 +46,11 @@
 		9003CAB0191414130018FE90 /* brightness_setterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = brightness_setterTests.m; sourceTree = "<group>"; };
 		9003CAB2191414130018FE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9017D847191BD71700A78347 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; name = COPYING; path = ../COPYING; sourceTree = "<group>"; };
+		90185FAF193A3907003D26A4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90185FB0193A3907003D26A4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		90185FB1193A3907003D26A4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = it; path = it.lproj/Credits.rtf; sourceTree = "<group>"; };
+		90185FB2193A3907003D26A4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90185FB3193A3907003D26A4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		901D3A871916E67A00961DA2 /* EMCLoginItem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMCLoginItem.framework; path = ../../../../../Library/Frameworks/EMCLoginItem.framework; sourceTree = "<group>"; };
 		904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTransparentWindowOverlay.h; sourceTree = "<group>"; };
 		904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTransparentWindowOverlay.m; sourceTree = "<group>"; };
@@ -280,6 +285,7 @@
 				Base,
 				"es-ES",
 				es,
+				it,
 			);
 			mainGroup = 90D6503A1902C31F00A31E1A;
 			productRefGroup = 90D650441902C31F00A31E1A /* Products */;
@@ -357,6 +363,7 @@
 			children = (
 				9003CAA8191413910018FE90 /* en */,
 				90660701193A365B002F760A /* es */,
+				90185FB3193A3907003D26A4 /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -366,6 +373,7 @@
 			children = (
 				9003CAB2191414130018FE90 /* en */,
 				90660700193A365B002F760A /* es */,
+				90185FB2193A3907003D26A4 /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -375,6 +383,7 @@
 			children = (
 				90D7BF61191415CC004B0680 /* Base */,
 				906606FD193A365A002F760A /* es */,
+				90185FB0193A3907003D26A4 /* it */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -384,6 +393,7 @@
 			children = (
 				90D7BF6B191415CC004B0680 /* en */,
 				906606FE193A365A002F760A /* es */,
+				90185FB1193A3907003D26A4 /* it */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -393,6 +403,7 @@
 			children = (
 				90D7BF6D191415CC004B0680 /* en */,
 				906606FF193A365B002F760A /* es */,
+				90185FAF193A3907003D26A4 /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
