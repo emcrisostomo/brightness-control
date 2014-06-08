@@ -184,6 +184,10 @@
 			children = (
 				90D7BF65191415CC004B0680 /* BCAppDelegate.h */,
 				90D7BF66191415CC004B0680 /* BCAppDelegate.m */,
+				905F359C19435F9200338BCE /* BCBrightness.h */,
+				905F359D19435F9200338BCE /* BCBrightness.m */,
+				90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */,
+				90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */,
 				90D7BF67191415CC004B0680 /* BCMenuItemWithView.h */,
 				90D7BF68191415CC004B0680 /* BCMenuItemWithView.m */,
 				904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */,
@@ -194,10 +198,6 @@
 				90D7BF60191415CC004B0680 /* MainMenu.xib */,
 				90D7BF73191415D7004B0680 /* Resources */,
 				90D7BF74191415F4004B0680 /* Supporting Files */,
-				905F359C19435F9200338BCE /* BCBrightness.h */,
-				905F359D19435F9200338BCE /* BCBrightness.m */,
-				90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */,
-				90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */,
 			);
 			path = "Brightness Control";
 			sourceTree = "<group>";
