@@ -68,6 +68,13 @@
     bcBrightness.value = @"Value2";
     
     [self.savedValuesController addObject:bcBrightness];
+    const NSUInteger index = [self.savedValuesController.arrangedObjects indexOfObject:bcBrightness];
+
+    [self.saveTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+    NSTableCellView *cellView = [self.saveTable viewAtColumn:0 row:index makeIfNecessary:YES];
+    [cellView.textField becomeFirstResponder];
+    
+    NSLog(@"Index: %lu", index);
     
     for (BCBrightness *val in self.brightnessValues)
     {
