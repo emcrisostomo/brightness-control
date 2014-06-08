@@ -10,4 +10,21 @@
 
 @implementation BCBrightness
 
+- (BOOL)isEqual:(id)other
+{
+    if (self == other)
+        return YES;
+    if (other == nil || ![other isKindOfClass:[self class]])
+        return NO;
+    
+    return [self isEqualToBrightness:other];
+}
+
+- (BOOL)isEqualToBrightness:(BCBrightness *)brightness
+{
+    if (self == brightness)
+        return YES;
+    
+    return [[self name] isEqualToString:[brightness name]];
+}
 @end
