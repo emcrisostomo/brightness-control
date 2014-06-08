@@ -54,7 +54,7 @@ void handleUncaughtException(NSException * e)
     [alert setInformativeText:[e reason]];
     [alert setAlertStyle:NSCriticalAlertStyle];
     [alert runModal];
-    
+
     [NSApp terminate:nil];
 }
 
