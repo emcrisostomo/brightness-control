@@ -68,8 +68,8 @@
 		9088BE32191999C200AD3292 /* BCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCUtils.h; sourceTree = "<group>"; };
 		9088BE33191999C200AD3292 /* BCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCUtils.m; sourceTree = "<group>"; };
 		908CEA2B1944F0CF00BD7561 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		908CEA2D1944F1E900BD7561 /* BrightnessValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrightnessValue.h; path = "Brightness Control/BrightnessValue.h"; sourceTree = "<group>"; };
-		908CEA2E1944F1E900BD7561 /* BrightnessValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrightnessValue.m; path = "Brightness Control/BrightnessValue.m"; sourceTree = "<group>"; };
+		908CEA2D1944F1E900BD7561 /* BrightnessValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessValue.h; sourceTree = "<group>"; };
+		908CEA2E1944F1E900BD7561 /* BrightnessValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessValue.m; sourceTree = "<group>"; };
 		90D41B96191EB11F006F38CE /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = SOURCE_ROOT; };
 		90D650431902C31F00A31E1A /* Brightness Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brightness Control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D650461902C31F00A31E1A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -140,12 +140,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9026B40819452D9E00ACACBA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				908CEA2D1944F1E900BD7561 /* BrightnessValue.h */,
+				908CEA2E1944F1E900BD7561 /* BrightnessValue.m */,
+				908CEA2A1944F0CF00BD7561 /* Model.xcdatamodeld */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		90D6503A1902C31F00A31E1A = {
 			isa = PBXGroup;
 			children = (
-				908CEA2A1944F0CF00BD7561 /* Model.xcdatamodeld */,
-				908CEA2D1944F1E900BD7561 /* BrightnessValue.h */,
-				908CEA2E1944F1E900BD7561 /* BrightnessValue.m */,
 				90D7BF5F191415CC004B0680 /* Brightness Control */,
 				9003CAAE191414130018FE90 /* Brightness ControlTests */,
 				90D650451902C31F00A31E1A /* Frameworks */,
@@ -198,6 +205,7 @@
 				904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */,
 				9088BE32191999C200AD3292 /* BCUtils.h */,
 				9088BE33191999C200AD3292 /* BCUtils.m */,
+				9026B40819452D9E00ACACBA /* Data */,
 				90D7BF6F191415CC004B0680 /* Images.xcassets */,
 				90D7BF60191415CC004B0680 /* MainMenu.xib */,
 				90D7BF73191415D7004B0680 /* Resources */,
@@ -602,8 +610,7 @@
 				908CEA2B1944F0CF00BD7561 /* Model.xcdatamodel */,
 			);
 			currentVersion = 908CEA2B1944F0CF00BD7561 /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = "Brightness Control/Model.xcdatamodeld";
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
