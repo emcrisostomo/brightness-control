@@ -74,13 +74,6 @@
     [self.saveTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
     NSTableCellView *cellView = [self.saveTable viewAtColumn:0 row:index makeIfNecessary:YES];
     [cellView.textField becomeFirstResponder];
-    
-    NSLog(@"Index: %lu", index);
-    
-    for (BCBrightness *val in self.brightnessValues)
-    {
-        NSLog(@"Brightness values in the array: %@, %@", val.name, val.value);
-    }
 }
 
 @end
