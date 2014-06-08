@@ -32,8 +32,6 @@ const float kBSBrightnessTolerance = .01;
 
 @interface BCAppDelegate ()
 
-@property (weak) IBOutlet NSArrayController *savedValuesController;
-@property (weak) IBOutlet NSTableView *saveTable;
 @property (unsafe_unretained) IBOutlet NSWindow *saveWindow;
 
 @end
@@ -89,15 +87,6 @@ void handleUncaughtException(NSException * e)
         [self createDockIcon];
         [overlayManager createOverlayWindows];
         [self setBrightness:[self getCurrentBrightness]];
-        
-        NSMutableArray *bv = [[NSMutableArray alloc] init];
-        BCBrightness *bcBrightness = [[BCBrightness alloc] init];
-        bcBrightness.name = @"Name";
-        bcBrightness.value = @"Value";
-        
-        [bv addObject:bcBrightness];
-        
-        self.brightnessValues = bv;
     }
     @catch (NSException * e)
     {
@@ -682,42 +671,6 @@ void handleUncaughtException(NSException * e)
 {
     [self.saveWindow makeKeyAndOrderFront:sender];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-}
-
-- (IBAction)saveBrightnessValueWithName:(id)sender
-{
-    BCBrightness *bcBrightness = [[BCBrightness alloc] init];
-    bcBrightness.name = @"Name2";
-    bcBrightness.value = @"Value2";
-    
-    [self.savedValuesController addObject:bcBrightness];
-
-    for (BCBrightness *val in self.brightnessValues)
-    {
-        NSLog(@"Brightness values in the array: %@, %@", val.name, val.value);
-    }
-}
-
-#pragma mark - Table view delegate
-
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
-{
-    NSInteger editedRow = [self.saveTable rowForView:control];
-
-    NSLog(@"Edit should end in row %ld.", (long)editedRow);
-
-    for (int i=0; i < [self.brightnessValues count]; ++i)
-    {
-        if (i == editedRow)
-            continue;
-        
-        BCBrightness *currentValue = [self.brightnessValues objectAtIndex:i];
-        
-        if ([[control stringValue] isEqualToString:currentValue.name])
-            return NO;
-    }
-    
-    return YES;
 }
 
 @end

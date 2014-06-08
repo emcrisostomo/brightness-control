@@ -15,13 +15,17 @@
             <connections>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
                 <outlet property="restoreItem" destination="Rnn-cG-4EX" id="EM1-vk-IDH"/>
-                <outlet property="saveTable" destination="Pm6-es-b6P" id="hfP-Hi-Hfi"/>
                 <outlet property="saveWindow" destination="Quh-sq-TIJ" id="izk-KL-pt9"/>
-                <outlet property="savedValuesController" destination="8VR-Tz-h13" id="mfe-7c-7Pb"/>
                 <outlet property="sliderView" destination="GeW-Lj-jmW" id="wGP-T5-t0u"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="qvD-bg-spM" customClass="BCBrightnessTableController">
+            <connections>
+                <outlet property="saveTable" destination="Pm6-es-b6P" id="Afd-by-yO1"/>
+                <outlet property="savedValuesController" destination="8VR-Tz-h13" id="Gfz-nP-BLh"/>
+            </connections>
+        </customObject>
         <menu id="pU1-qF-Flg" userLabel="Dock Menu">
             <items>
                 <menuItem title="Slider" id="9S2-EL-NnB" customClass="BCMenuItemWithView">
@@ -822,7 +826,7 @@
                                                             </textFieldCell>
                                                             <connections>
                                                                 <binding destination="egC-9s-hoT" name="value" keyPath="objectValue.name" id="eoA-Fi-YLB"/>
-                                                                <outlet property="delegate" destination="Voe-Tx-rLC" id="ZaD-EN-5FR"/>
+                                                                <outlet property="delegate" destination="qvD-bg-spM" id="W7F-uH-8zD"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -871,7 +875,7 @@
                                     </tableColumns>
                                     <connections>
                                         <binding destination="8VR-Tz-h13" name="content" keyPath="arrangedObjects" id="5Im-RF-ZIf"/>
-                                        <outlet property="delegate" destination="Voe-Tx-rLC" id="lsq-Xv-cOa"/>
+                                        <outlet property="delegate" destination="qvD-bg-spM" id="tqk-95-jp0"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -898,7 +902,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="saveBrightnessValueWithName:" target="Voe-Tx-rLC" id="1NN-6g-VZM"/>
+                            <action selector="saveBrightnessValueWithName:" target="qvD-bg-spM" id="n9N-Ds-oVM"/>
                         </connections>
                     </button>
                 </subviews>
@@ -922,7 +926,7 @@
                 </fragment>
             </attributedString>
             <connections>
-                <binding destination="Voe-Tx-rLC" name="contentArray" keyPath="brightnessValues" id="dG1-40-bZX"/>
+                <binding destination="qvD-bg-spM" name="contentArray" keyPath="brightnessValues" id="NSO-w7-bio"/>
             </connections>
         </arrayController>
     </objects>

@@ -40,7 +40,6 @@
 @property BOOL percentageShown;
 @property BOOL useOverlay;
 @property NSTimeInterval lastStatusIconUpdate;
-@property NSMutableArray *brightnessValues;
 
 @end
 

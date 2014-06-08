@@ -29,6 +29,7 @@
 		90D763461917DB000087566D /* sun_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D763441917DB000087566D /* sun_green@2x.png */; };
 		90D7BF751914168E004B0680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6C191415CC004B0680 /* InfoPlist.strings */; };
 		90D7BF7619141694004B0680 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF60191415CC004B0680 /* MainMenu.xib */; };
+		90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		90D7BF6D191415CC004B0680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		90D7BF6F191415CC004B0680 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		90D7BF70191415CC004B0680 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBrightnessTableController.h; sourceTree = "<group>"; };
+		90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBrightnessTableController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,8 @@
 				90D7BF74191415F4004B0680 /* Supporting Files */,
 				905F359C19435F9200338BCE /* BCBrightness.h */,
 				905F359D19435F9200338BCE /* BCBrightness.m */,
+				90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */,
+				90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */,
 			);
 			path = "Brightness Control";
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9088BE34191999C200AD3292 /* BCUtils.m in Sources */,
+				90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */,
 				905F359E19435F9200338BCE /* BCBrightness.m in Sources */,
 				904A5C51191962A6009713A7 /* BCTransparentWindowOverlay.m in Sources */,
 				901FA89119141EA2006D73BA /* BCAppDelegate.m in Sources */,
