@@ -16,6 +16,7 @@
 		901FA89319141EA2006D73BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF70191415CC004B0680 /* main.m */; };
 		901FA89819141EE9006D73BA /* bs.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF64191415CC004B0680 /* bs.iconset */; };
 		904A5C51191962A6009713A7 /* BCTransparentWindowOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */; };
+		905F359E19435F9200338BCE /* BCBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 905F359D19435F9200338BCE /* BCBrightness.m */; };
 		9088BE34191999C200AD3292 /* BCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9088BE33191999C200AD3292 /* BCUtils.m */; };
 		90D650471902C31F00A31E1A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650461902C31F00A31E1A /* Cocoa.framework */; };
 		90D650661902C31F00A31E1A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D650651902C31F00A31E1A /* XCTest.framework */; };
@@ -54,6 +55,8 @@
 		901D3A871916E67A00961DA2 /* EMCLoginItem.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMCLoginItem.framework; path = ../../../../../Library/Frameworks/EMCLoginItem.framework; sourceTree = "<group>"; };
 		904A5C4F191962A6009713A7 /* BCTransparentWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTransparentWindowOverlay.h; sourceTree = "<group>"; };
 		904A5C50191962A6009713A7 /* BCTransparentWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTransparentWindowOverlay.m; sourceTree = "<group>"; };
+		905F359C19435F9200338BCE /* BCBrightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBrightness.h; sourceTree = "<group>"; };
+		905F359D19435F9200338BCE /* BCBrightness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBrightness.m; sourceTree = "<group>"; };
 		906606FD193A365A002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		906606FE193A365A002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = es; path = es.lproj/Credits.rtf; sourceTree = "<group>"; };
 		906606FF193A365B002F760A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				90D7BF60191415CC004B0680 /* MainMenu.xib */,
 				90D7BF73191415D7004B0680 /* Resources */,
 				90D7BF74191415F4004B0680 /* Supporting Files */,
+				905F359C19435F9200338BCE /* BCBrightness.h */,
+				905F359D19435F9200338BCE /* BCBrightness.m */,
 			);
 			path = "Brightness Control";
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9088BE34191999C200AD3292 /* BCUtils.m in Sources */,
+				905F359E19435F9200338BCE /* BCBrightness.m in Sources */,
 				904A5C51191962A6009713A7 /* BCTransparentWindowOverlay.m in Sources */,
 				901FA89119141EA2006D73BA /* BCAppDelegate.m in Sources */,
 				901FA89219141EA2006D73BA /* BCMenuItemWithView.m in Sources */,

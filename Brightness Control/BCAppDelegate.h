@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BCAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations>
+@interface BCAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations, NSControlTextEditingDelegate>
 
 - (IBAction)updateValue:(id)sender;
 - (IBAction)saveCurrentBrightness:(id)sender;
@@ -40,6 +40,7 @@
 @property BOOL percentageShown;
 @property BOOL useOverlay;
 @property NSTimeInterval lastStatusIconUpdate;
+@property NSMutableArray *brightnessValues;
 
 @end
 

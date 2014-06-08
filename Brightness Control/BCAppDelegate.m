@@ -22,6 +22,7 @@
 #import "BCUtils.h"
 #import <EMCLoginItem/EMCLoginItem.h>
 #import "BCTransparentWindowOverlay.h"
+#import "BCBrightness.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
@@ -29,7 +30,16 @@ NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightne
 NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
 const float kBSBrightnessTolerance = .01;
 
-@implementation BCAppDelegate {
+@interface BCAppDelegate ()
+
+@property (weak) IBOutlet NSArrayController *savedValuesController;
+@property (weak) IBOutlet NSTableView *saveTable;
+@property (unsafe_unretained) IBOutlet NSWindow *saveWindow;
+
+@end
+
+@implementation BCAppDelegate
+{
     EMCLoginItem *loginItem;
     NSStatusItem *statusItem;
     float _brightness;
@@ -79,6 +89,15 @@ void handleUncaughtException(NSException * e)
         [self createDockIcon];
         [overlayManager createOverlayWindows];
         [self setBrightness:[self getCurrentBrightness]];
+        
+        NSMutableArray *bv = [[NSMutableArray alloc] init];
+        BCBrightness *bcBrightness = [[BCBrightness alloc] init];
+        bcBrightness.name = @"Name";
+        bcBrightness.value = @"Value";
+        
+        [bv addObject:bcBrightness];
+        
+        self.brightnessValues = bv;
     }
     @catch (NSException * e)
     {
@@ -418,6 +437,12 @@ void handleUncaughtException(NSException * e)
     return [self isRestoreEnabled];
 }
 
+- (BOOL)isRestoreEnabled
+{
+    const float savedBrightness = [self getSavedBrightnessValue];
+    return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
+}
+
 - (void)setRestoreEnabled:(BOOL)restoreEnabled
 {
     // No-op, used only to trigger KVO notifications.
@@ -470,35 +495,6 @@ void handleUncaughtException(NSException * e)
 {
     [pollTimer invalidate];
     pollTimer = nil;
-}
-
-- (IBAction)saveCurrentBrightness:(id)sender
-{
-    NSApplication * app = [NSApplication sharedApplication];
-    [app activateIgnoringOtherApps:YES];
-    
-    const float brightness = [self getCurrentBrightness];
-    NSAlert *saveDialog = [[NSAlert alloc] init];
-    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %@?", [self formatBrightnessString:[self brightness]]]];
-    [saveDialog addButtonWithTitle:@"Ok"];
-    [saveDialog addButtonWithTitle:@"Cancel"];
-    [saveDialog beginSheetModalForWindow:nil
-                           modalDelegate:self
-                          didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
-                             contextInfo:(__bridge_retained void *)@(brightness)];
-}
-
-- (void)askSaveDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    NSNumber *brightness = (__bridge_transfer NSNumber *)contextInfo;
-    
-    switch(returnCode)
-    {
-        case NSAlertFirstButtonReturn:
-            [self saveBrightness:[brightness floatValue]];
-            [self setRestoreEnabled:[self isRestoreEnabled]];
-            break;
-    }
 }
 
 - (void)askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -649,10 +645,79 @@ void handleUncaughtException(NSException * e)
     return YES;
 }
 
-- (BOOL)isRestoreEnabled
+#pragma mark - Save Brightness
+
+- (IBAction)saveCurrentBrightness:(id)sender
 {
-    const float savedBrightness = [self getSavedBrightnessValue];
-    return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
+    NSApplication * app = [NSApplication sharedApplication];
+    [app activateIgnoringOtherApps:YES];
+    
+    const float brightness = [self getCurrentBrightness];
+    NSAlert *saveDialog = [[NSAlert alloc] init];
+    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %@?", [self formatBrightnessString:[self brightness]]]];
+    [saveDialog addButtonWithTitle:@"Ok"];
+    [saveDialog addButtonWithTitle:@"Cancel"];
+    [saveDialog beginSheetModalForWindow:nil
+                           modalDelegate:self
+                          didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
+                             contextInfo:(__bridge_retained void *)@(brightness)];
+}
+
+- (void)askSaveDone:(NSAlert *)alert
+         returnCode:(NSInteger)returnCode
+        contextInfo:(void *)contextInfo
+{
+    NSNumber *brightness = (__bridge_transfer NSNumber *)contextInfo;
+    
+    switch(returnCode)
+    {
+        case NSAlertFirstButtonReturn:
+            [self saveBrightness:[brightness floatValue]];
+            [self setRestoreEnabled:[self isRestoreEnabled]];
+            break;
+    }
+}
+
+- (IBAction)saveWithName:(id)sender
+{
+    [self.saveWindow makeKeyAndOrderFront:sender];
+    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+}
+
+- (IBAction)saveBrightnessValueWithName:(id)sender
+{
+    BCBrightness *bcBrightness = [[BCBrightness alloc] init];
+    bcBrightness.name = @"Name2";
+    bcBrightness.value = @"Value2";
+    
+    [self.savedValuesController addObject:bcBrightness];
+
+    for (BCBrightness *val in self.brightnessValues)
+    {
+        NSLog(@"Brightness values in the array: %@, %@", val.name, val.value);
+    }
+}
+
+#pragma mark - Table view delegate
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
+{
+    NSInteger editedRow = [self.saveTable rowForView:control];
+
+    NSLog(@"Edit should end in row %ld.", (long)editedRow);
+
+    for (int i=0; i < [self.brightnessValues count]; ++i)
+    {
+        if (i == editedRow)
+            continue;
+        
+        BCBrightness *currentValue = [self.brightnessValues objectAtIndex:i];
+        
+        if ([[control stringValue] isEqualToString:currentValue.name])
+            return NO;
+    }
+    
+    return YES;
 }
 
 @end
