@@ -69,7 +69,8 @@
     
     [self.savedValuesController addObject:bcBrightness];
     const NSUInteger index = [self.savedValuesController.arrangedObjects indexOfObject:bcBrightness];
-
+    NSAssert(index != NSNotFound, @"Cannot find recently added object.");
+    
     [self.saveTable selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
     NSTableCellView *cellView = [self.saveTable viewAtColumn:0 row:index makeIfNecessary:YES];
     [cellView.textField becomeFirstResponder];
