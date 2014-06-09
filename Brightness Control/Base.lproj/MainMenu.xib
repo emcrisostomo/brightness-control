@@ -794,7 +794,7 @@
                             <rect key="frame" x="1" y="17" width="480" height="215"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" autosaveName="" rowSizeStyle="automatic" headerView="YhA-Ss-weH" viewBased="YES" id="Pm6-es-b6P">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="brightnessTableSaveName" rowSizeStyle="automatic" headerView="YhA-Ss-weH" viewBased="YES" id="Pm6-es-b6P">
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -957,7 +957,7 @@
             </attributedString>
             <connections>
                 <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Qm7-fq-Hw6"/>
-                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="u9h-YU-lK8"/>
+                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="IOh-Nk-ZIk"/>
             </connections>
         </arrayController>
     </objects>
