@@ -877,6 +877,7 @@
                                     </tableColumns>
                                     <connections>
                                         <binding destination="8VR-Tz-h13" name="content" keyPath="arrangedObjects" id="5Im-RF-ZIf"/>
+                                        <binding destination="8VR-Tz-h13" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="5Im-RF-ZIf" id="RzH-us-Vdc"/>
                                         <outlet property="delegate" destination="qvD-bg-spM" id="tqk-95-jp0"/>
                                     </connections>
                                 </tableView>
@@ -920,6 +921,10 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="remove:" target="8VR-Tz-h13" id="avd-Tv-qWy"/>
+                            <binding destination="8VR-Tz-h13" name="enabled" keyPath="canRemove" id="3UR-VQ-MKH"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
