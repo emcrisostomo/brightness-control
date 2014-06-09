@@ -23,6 +23,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="qvD-bg-spM" customClass="BCBrightnessTableController">
             <connections>
+                <outlet property="appDelegate" destination="Voe-Tx-rLC" id="v2T-HQ-CNz"/>
                 <outlet property="saveTable" destination="Pm6-es-b6P" id="Afd-by-yO1"/>
                 <outlet property="savedValuesController" destination="8VR-Tz-h13" id="Gfz-nP-BLh"/>
             </connections>

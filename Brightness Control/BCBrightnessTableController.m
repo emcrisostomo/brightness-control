@@ -7,12 +7,14 @@
 //
 
 #import "BCBrightnessTableController.h"
+#import "BCAppDelegate.h"
 #import "BrightnessValue.h"
 
 @interface BCBrightnessTableController()
 
 @property (weak) IBOutlet NSArrayController *savedValuesController;
 @property (weak) IBOutlet NSTableView *saveTable;
+@property (weak) IBOutlet BCAppDelegate *appDelegate;
 
 @end
 
@@ -64,7 +66,7 @@
     BrightnessValue *bcBrightness = [[BrightnessValue alloc] initWithEntity:entityDescription
                                              insertIntoManagedObjectContext:self.managedObjectContext];
     bcBrightness.name = @"Name2";
-    bcBrightness.brightnessValue = @1.0f;
+    bcBrightness.brightnessValue = @(self.appDelegate.brightness);
     
     [self.savedValuesController addObject:bcBrightness];
     const NSUInteger index = [self.savedValuesController.arrangedObjects indexOfObject:bcBrightness];
