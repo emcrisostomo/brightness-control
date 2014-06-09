@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="BCAppDelegate">
             <connections>
+                <outlet property="brightnessTableController" destination="qvD-bg-spM" id="QVS-7u-z5i"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
                 <outlet property="restoreItem" destination="Rnn-cG-4EX" id="EM1-vk-IDH"/>
                 <outlet property="saveWindow" destination="Quh-sq-TIJ" id="izk-KL-pt9"/>
@@ -779,7 +780,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="207" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <value key="minSize" type="size" width="480" height="270"/>
             <view key="contentView" id="v2L-m7-mEY">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
@@ -825,7 +826,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="egC-9s-hoT" name="value" keyPath="objectValue.name" id="eoA-Fi-YLB"/>
+                                                                <binding destination="egC-9s-hoT" name="value" keyPath="objectValue.name" id="VeJ-k3-Nfb"/>
                                                                 <outlet property="delegate" destination="qvD-bg-spM" id="W7F-uH-8zD"/>
                                                             </connections>
                                                         </textField>
@@ -862,7 +863,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="xM6-TR-eQ0" name="value" keyPath="objectValue.value" id="y0l-KM-eeC"/>
+                                                                <binding destination="xM6-TR-eQ0" name="value" keyPath="objectValue.brightnessValue" id="Cwx-iY-9df"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -902,7 +903,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="saveBrightnessValueWithName:" target="qvD-bg-spM" id="n9N-Ds-oVM"/>
+                            <action selector="saveBrightnessValueWithName:" target="qvD-bg-spM" id="2lJ-hJ-wMm"/>
                         </connections>
                     </button>
                 </subviews>
@@ -916,7 +917,7 @@
                 </constraints>
             </view>
         </window>
-        <arrayController objectClassName="BCBrightness" id="8VR-Tz-h13" userLabel="Saved Brightness Values">
+        <arrayController mode="entity" entityName="BrightnessValue" automaticallyPreparesContent="YES" id="8VR-Tz-h13" userLabel="Saved Brightness Values">
             <attributedString key="userComments">
                 <fragment content="aa">
                     <attributes>
@@ -926,7 +927,7 @@
                 </fragment>
             </attributedString>
             <connections>
-                <binding destination="qvD-bg-spM" name="contentArray" keyPath="brightnessValues" id="NSO-w7-bio"/>
+                <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Qm7-fq-Hw6"/>
             </connections>
         </arrayController>
     </objects>

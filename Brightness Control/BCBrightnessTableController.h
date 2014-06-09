@@ -10,7 +10,6 @@
 
 @interface BCBrightnessTableController : NSObject<NSControlTextEditingDelegate>
 
-// Left in header file because IB complains about missing key path otherwise.
-@property NSMutableArray *brightnessValues;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

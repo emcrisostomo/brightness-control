@@ -7,7 +7,7 @@
 //
 
 #import "BCBrightnessTableController.h"
-#import "BCBrightness.h"
+#import "BrightnessValue.h"
 
 @interface BCBrightnessTableController()
 
@@ -18,25 +18,6 @@
 
 @implementation BCBrightnessTableController
 
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self != nil)
-    {
-        NSMutableArray *bv = [[NSMutableArray alloc] init];
-        BCBrightness *bcBrightness = [[BCBrightness alloc] init];
-        bcBrightness.name = @"Initial Name";
-        bcBrightness.value = @"Initial Value";
-        
-        [bv addObject:bcBrightness];
-        
-        _brightnessValues = bv;
-    }
-    
-    return self;
-}
-
 #pragma mark - Table view delegate
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
@@ -45,12 +26,12 @@
     
     NSLog(@"Edit should end in row %ld.", (long)editedRow);
     
-    for (int i=0; i < [self.brightnessValues count]; ++i)
+    for (int i=0; i < [self.savedValuesController.arrangedObjects count]; ++i)
     {
         if (i == editedRow)
             continue;
         
-        BCBrightness *currentValue = [self.brightnessValues objectAtIndex:i];
+        BrightnessValue *currentValue = [self.savedValuesController.arrangedObjects objectAtIndex:i];
         
         if ([[control stringValue] isEqualToString:currentValue.name])
             return NO;
@@ -63,9 +44,13 @@
 
 - (IBAction)saveBrightnessValueWithName:(id)sender
 {
-    BCBrightness *bcBrightness = [[BCBrightness alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"BrightnessValue"
+                                                         inManagedObjectContext:self.managedObjectContext];
+    
+    BrightnessValue *bcBrightness = [[BrightnessValue alloc] initWithEntity:entityDescription
+                                             insertIntoManagedObjectContext:self.managedObjectContext];
     bcBrightness.name = @"Name2";
-    bcBrightness.value = @"Value2";
+    bcBrightness.brightnessValue = @1.0f;
     
     [self.savedValuesController addObject:bcBrightness];
     const NSUInteger index = [self.savedValuesController.arrangedObjects indexOfObject:bcBrightness];

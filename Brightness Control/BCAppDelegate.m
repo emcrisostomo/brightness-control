@@ -22,7 +22,7 @@
 #import "BCUtils.h"
 #import <EMCLoginItem/EMCLoginItem.h>
 #import "BCTransparentWindowOverlay.h"
-#import "BCBrightness.h"
+#import "BCBrightnessTableController.h"
 
 NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
@@ -33,6 +33,7 @@ const float kBSBrightnessTolerance = .01;
 @interface BCAppDelegate ()
 
 @property (unsafe_unretained) IBOutlet NSWindow *saveWindow;
+@property (weak) IBOutlet BCBrightnessTableController *brightnessTableController;
 
 @end
 
@@ -76,6 +77,8 @@ void handleUncaughtException(NSException * e)
     
     @try
     {
+        self.brightnessTableController.managedObjectContext = self.managedObjectContext;
+        
         loginItem = [EMCLoginItem loginItem];
         overlayManager = [BCTransparentWindowOverlay transparentWindowOverlay];
 
@@ -694,7 +697,7 @@ void handleUncaughtException(NSException * e)
         return _managedObjectModel;
     }
 	
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Brightness-Control" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
     return _managedObjectModel;
