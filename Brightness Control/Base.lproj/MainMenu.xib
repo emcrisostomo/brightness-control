@@ -788,14 +788,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-wm-JTc">
-                        <rect key="frame" x="-1" y="38" width="482" height="233"/>
+                        <rect key="frame" x="-1" y="40" width="482" height="231"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="6fX-0T-dkI">
-                            <rect key="frame" x="1" y="17" width="480" height="215"/>
+                            <rect key="frame" x="1" y="17" width="480" height="213"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveName="brightnessTableSaveName" rowSizeStyle="automatic" headerView="YhA-Ss-weH" viewBased="YES" id="Pm6-es-b6P">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="215"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="213"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -861,7 +861,13 @@
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YcD-Mj-FzQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="358" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yjl-Wr-bL6">
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="yjl-Wr-bL6">
+                                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.00%" negativeFormat="#,##0.00%" numberStyle="percent" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="2" maximumFractionDigits="2" id="AYU-XD-OMJ">
+                                                                    <integer key="multiplier" value="100"/>
+                                                                    <metadata>
+                                                                        <real key="inspectorSampleValue" value="0.0"/>
+                                                                    </metadata>
+                                                                </numberFormatter>
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -877,7 +883,7 @@
                                                 </tableCellView>
                                             </prototypeCellViews>
                                             <connections>
-                                                <binding destination="8VR-Tz-h13" name="value" keyPath="arrangedObjects.brightnessValue" id="3c4-lM-owv"/>
+                                                <binding destination="8VR-Tz-h13" name="value" keyPath="arrangedObjects.brightnessValue" id="d7e-sg-cdQ"/>
                                             </connections>
                                         </tableColumn>
                                     </tableColumns>
@@ -905,10 +911,11 @@
                         </tableHeaderView>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nu4-cp-qSp">
-                        <rect key="frame" x="-1" y="19" width="23" height="21"/>
+                        <rect key="frame" x="-1" y="17" width="23" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="23" id="ERS-Ix-huQ"/>
+                            <constraint firstAttribute="height" constant="23" id="NBn-2i-WA3"/>
                         </constraints>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Znx-Zk-r0T">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -919,10 +926,11 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AjO-Km-Mpt">
-                        <rect key="frame" x="20" y="19" width="23" height="21"/>
+                        <rect key="frame" x="20" y="17" width="23" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="23" id="mVD-28-1pl"/>
+                            <constraint firstAttribute="height" constant="23" id="Lpr-Fa-ThA"/>
+                            <constraint firstAttribute="width" constant="23" id="cJg-ia-iH2"/>
                         </constraints>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bfe-JQ-pWS">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -933,14 +941,31 @@
                             <binding destination="8VR-Tz-h13" name="enabled" keyPath="canRemove" id="3UR-VQ-MKH"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vEd-KH-Rhs">
+                        <rect key="frame" x="42" y="17" width="23" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="QOc-ha-ZPb"/>
+                            <constraint firstAttribute="width" constant="23" id="tL3-lH-faw"/>
+                        </constraints>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSMenuOnStateTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Kdt-oJ-agt">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="8VR-Tz-h13" name="enabled" keyPath="canRemove" id="D3V-1j-jkt"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nu4-cp-qSp" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="-1" id="3rd-Fn-u4d"/>
+                    <constraint firstItem="vEd-KH-Rhs" firstAttribute="leading" secondItem="AjO-Km-Mpt" secondAttribute="trailing" constant="-1" id="9ko-0c-Cba"/>
+                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="baseline" secondItem="vEd-KH-Rhs" secondAttribute="baseline" id="HAS-Sa-O4G"/>
+                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="baseline" secondItem="nu4-cp-qSp" secondAttribute="baseline" id="Hhd-OT-YEg"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="LXM-cB-dXa"/>
                     <constraint firstItem="nu4-cp-qSp" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="MkG-ZC-0Pd"/>
-                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="20" symbolic="YES" id="dus-W7-nab"/>
-                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="-1" id="efi-0M-mBJ"/>
-                    <constraint firstAttribute="bottom" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="38" id="elG-al-q6X"/>
+                    <constraint firstAttribute="bottom" secondItem="nu4-cp-qSp" secondAttribute="bottom" constant="18" id="NwU-X5-Xc6"/>
+                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="20" symbolic="YES" id="RWu-xi-5R1"/>
                     <constraint firstAttribute="trailing" secondItem="xPw-wm-JTc" secondAttribute="trailing" constant="-1" id="lA0-8J-nIF"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="top" secondItem="v2L-m7-mEY" secondAttribute="top" constant="-1" id="tA8-eU-nY4"/>
                 </constraints>
@@ -968,6 +993,7 @@
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSMenuOnStateTemplate" width="11" height="11"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
     </resources>
 </document>

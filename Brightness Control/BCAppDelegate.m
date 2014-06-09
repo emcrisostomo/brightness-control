@@ -653,6 +653,7 @@ void handleUncaughtException(NSException * e)
     [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %@?", [self formatBrightnessString:[self brightness]]]];
     [saveDialog addButtonWithTitle:@"Ok"];
     [saveDialog addButtonWithTitle:@"Cancel"];
+
     [saveDialog beginSheetModalForWindow:nil
                            modalDelegate:self
                           didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
