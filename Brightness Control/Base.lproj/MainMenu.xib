@@ -933,7 +933,7 @@
                 </constraints>
             </view>
         </window>
-        <arrayController mode="entity" entityName="BrightnessValue" automaticallyPreparesContent="YES" id="8VR-Tz-h13" userLabel="Saved Brightness Values">
+        <arrayController mode="entity" entityName="BrightnessValue" automaticallyPreparesContent="YES" automaticallyRearrangesObjects="YES" id="8VR-Tz-h13" userLabel="Saved Brightness Values">
             <attributedString key="userComments">
                 <fragment content="aa">
                     <attributes>
@@ -944,6 +944,7 @@
             </attributedString>
             <connections>
                 <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Qm7-fq-Hw6"/>
+                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="JrV-fv-Lgd"/>
             </connections>
         </arrayController>
     </objects>

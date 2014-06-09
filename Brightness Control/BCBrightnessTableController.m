@@ -24,6 +24,14 @@
 {
     NSInteger editedRow = [self.saveTable rowForView:control];
     
+    // Using the auto rearrange feature of the NSArrayController causes
+    // textShouldEndEditing to be called twice when a record is edited:
+    //   * The first time when the edit operation is done.
+    //   * The second time when the row is being animated to the new position,
+    //     in which case -1 is returned by rowForView.
+    if (editedRow == -1)
+        return YES;
+    
     NSLog(@"Edit should end in row %ld.", (long)editedRow);
     
     for (int i=0; i < [self.savedValuesController.arrangedObjects count]; ++i)
@@ -36,8 +44,14 @@
         if ([[control stringValue] isEqualToString:currentValue.name])
             return NO;
     }
-    
+
     return YES;
+}
+
+- (NSArray *)tableSortDescriptors
+{
+    return [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                  ascending:YES]];
 }
 
 #pragma mark - Save Brightness
