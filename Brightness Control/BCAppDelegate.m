@@ -28,6 +28,8 @@ NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightne
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
 NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
+NSString * const kBSSortDescriptorsPropertyName = @"com.blogspot.thegreyblog.brightness-control.sortDescriptors";
+
 const float kBSBrightnessTolerance = .01;
 
 @interface BCAppDelegate ()
@@ -269,6 +271,8 @@ void handleUncaughtException(NSException * e)
     defaults[kBSPercentageShownPropertyName] = @(NO);
     defaults[kBSUseOverlayPropertyName] = @(NO);
     defaults[kBSOverlayBelowMainMenuPropertyName] = @(NO);
+    defaults[kBSSortDescriptorsPropertyName] = [NSArchiver archivedDataWithRootObject:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     // setting defaults in shared controller
