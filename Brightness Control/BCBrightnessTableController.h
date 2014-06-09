@@ -11,5 +11,6 @@
 @interface BCBrightnessTableController : NSObject<NSControlTextEditingDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property NSArray *tableSortDescriptors;
 
 @end

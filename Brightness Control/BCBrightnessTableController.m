@@ -22,6 +22,19 @@
 
 #pragma mark - Table view delegate
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self != nil)
+    {
+        _tableSortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                                       ascending:YES]];
+    }
+    
+    return self;
+}
+
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
 {
     NSInteger editedRow = [self.saveTable rowForView:control];
@@ -48,12 +61,6 @@
     }
 
     return YES;
-}
-
-- (NSArray *)tableSortDescriptors
-{
-    return [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                  ascending:YES]];
 }
 
 #pragma mark - Save Brightness
