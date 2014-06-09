@@ -957,7 +957,12 @@
             </attributedString>
             <connections>
                 <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Qm7-fq-Hw6"/>
-                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="IOh-Nk-ZIk"/>
+                <binding destination="WOs-5F-w9g" name="sortDescriptors" keyPath="values.sortDescriptors" id="1Nh-YB-sD9">
+                    <dictionary key="options">
+                        <bool key="NSValidatesImmediately" value="YES"/>
+                        <string key="NSValueTransformerName">NSUnarchiveFromData</string>
+                    </dictionary>
+                </binding>
             </connections>
         </arrayController>
     </objects>
