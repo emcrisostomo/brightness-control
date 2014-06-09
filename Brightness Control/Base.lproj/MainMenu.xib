@@ -780,21 +780,21 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="207" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="480" height="270"/>
             <view key="contentView" id="v2L-m7-mEY">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-wm-JTc">
-                        <rect key="frame" x="-1" y="61" width="482" height="210"/>
+                        <rect key="frame" x="-1" y="38" width="482" height="233"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="6fX-0T-dkI">
-                            <rect key="frame" x="1" y="17" width="480" height="192"/>
+                            <rect key="frame" x="1" y="17" width="480" height="215"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="YhA-Ss-weH" viewBased="YES" id="Pm6-es-b6P">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="192"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -895,23 +895,39 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g7p-iy-JVB">
-                        <rect key="frame" x="400" y="13" width="66" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nu4-cp-qSp">
+                        <rect key="frame" x="-1" y="19" width="23" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="obx-LJ-fPh">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="23" id="ERS-Ix-huQ"/>
+                        </constraints>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Znx-Zk-r0T">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="saveBrightnessValueWithName:" target="qvD-bg-spM" id="2lJ-hJ-wMm"/>
+                            <action selector="saveBrightnessValueWithName:" target="qvD-bg-spM" id="czj-b1-T3P"/>
                         </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AjO-Km-Mpt">
+                        <rect key="frame" x="20" y="19" width="23" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="23" id="mVD-28-1pl"/>
+                        </constraints>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bfe-JQ-pWS">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="g7p-iy-JVB" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="20" symbolic="YES" id="K2a-Vj-WNm"/>
+                    <constraint firstItem="nu4-cp-qSp" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="-1" id="3rd-Fn-u4d"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="LXM-cB-dXa"/>
-                    <constraint firstAttribute="bottom" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="61" id="elG-al-q6X"/>
-                    <constraint firstAttribute="trailing" secondItem="g7p-iy-JVB" secondAttribute="trailing" constant="20" symbolic="YES" id="ikw-am-z27"/>
+                    <constraint firstItem="nu4-cp-qSp" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="MkG-ZC-0Pd"/>
+                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="20" symbolic="YES" id="dus-W7-nab"/>
+                    <constraint firstItem="AjO-Km-Mpt" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="-1" id="efi-0M-mBJ"/>
+                    <constraint firstAttribute="bottom" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="38" id="elG-al-q6X"/>
                     <constraint firstAttribute="trailing" secondItem="xPw-wm-JTc" secondAttribute="trailing" constant="-1" id="lA0-8J-nIF"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="top" secondItem="v2L-m7-mEY" secondAttribute="top" constant="-1" id="tA8-eU-nY4"/>
                 </constraints>
@@ -931,4 +947,8 @@
             </connections>
         </arrayController>
     </objects>
+    <resources>
+        <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSRemoveTemplate" width="8" height="8"/>
+    </resources>
 </document>
