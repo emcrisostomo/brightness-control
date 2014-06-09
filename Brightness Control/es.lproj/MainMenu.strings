@@ -422,6 +422,7 @@
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "Show Substitutions";
 
-"sgm-5i-VbP.title" = "Nombre";
-"fcs-eN-fTN.title" = "Valor de Brillo";
-"g7p-iy-JVB.title" = "Añadir";
+"Quh-sq-TIJ.title" = "Gestión Perfiles de Brillo";
+"dXJ-CH-0Oe.title" = "Guardar como...";
+"sgm-5i-VbP.headerCell.title" = "Nombre";
+"fcs-eN-fTN.headerCell.title" = "Valor de Brillo";

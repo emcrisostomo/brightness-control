@@ -70,7 +70,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="nZe-bu-ecl"/>
-                <menuItem title="Save with Name..." id="dXJ-CH-0Oe">
+                <menuItem title="Manage Brightness Profiles..." id="dXJ-CH-0Oe">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="saveWithName:" target="Voe-Tx-rLC" id="6iV-Bl-6J5"/>
@@ -777,7 +777,7 @@
                 <constraint firstAttribute="trailing" secondItem="RHi-Sg-RdX" secondAttribute="trailing" constant="20" symbolic="YES" id="dCc-lI-mli"/>
             </constraints>
         </customView>
-        <window title="Save Brightness" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Quh-sq-TIJ">
+        <window title="Brightness Profile Management" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Quh-sq-TIJ">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="207" width="480" height="270"/>
