@@ -884,7 +884,7 @@
                                     <connections>
                                         <binding destination="8VR-Tz-h13" name="content" keyPath="arrangedObjects" id="5Im-RF-ZIf"/>
                                         <binding destination="8VR-Tz-h13" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="5Im-RF-ZIf" id="RzH-us-Vdc"/>
-                                        <binding destination="8VR-Tz-h13" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="RzH-us-Vdc" id="Z9w-DV-oVQ"/>
+                                        <binding destination="8VR-Tz-h13" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="RzH-us-Vdc" id="aIw-aF-akF"/>
                                         <outlet property="delegate" destination="qvD-bg-spM" id="tqk-95-jp0"/>
                                     </connections>
                                 </tableView>
