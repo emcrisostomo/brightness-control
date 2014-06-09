@@ -837,6 +837,9 @@
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
+                                            <connections>
+                                                <binding destination="8VR-Tz-h13" name="value" keyPath="arrangedObjects.name" id="ieJ-4T-hjs"/>
+                                            </connections>
                                         </tableColumn>
                                         <tableColumn width="358" minWidth="40" maxWidth="1000" id="fcs-eN-fTN">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Brightness Value">
@@ -864,7 +867,7 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="xM6-TR-eQ0" name="value" keyPath="objectValue.brightnessValue" id="Cwx-iY-9df"/>
+                                                                <binding destination="xM6-TR-eQ0" name="value" keyPath="objectValue.brightnessValue" id="84i-tX-h9m"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -873,11 +876,15 @@
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
+                                            <connections>
+                                                <binding destination="8VR-Tz-h13" name="value" keyPath="arrangedObjects.brightnessValue" id="3c4-lM-owv"/>
+                                            </connections>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
                                         <binding destination="8VR-Tz-h13" name="content" keyPath="arrangedObjects" id="5Im-RF-ZIf"/>
                                         <binding destination="8VR-Tz-h13" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="5Im-RF-ZIf" id="RzH-us-Vdc"/>
+                                        <binding destination="8VR-Tz-h13" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="RzH-us-Vdc" id="Z9w-DV-oVQ"/>
                                         <outlet property="delegate" destination="qvD-bg-spM" id="tqk-95-jp0"/>
                                     </connections>
                                 </tableView>
@@ -950,7 +957,7 @@
             </attributedString>
             <connections>
                 <binding destination="Voe-Tx-rLC" name="managedObjectContext" keyPath="managedObjectContext" id="Qm7-fq-Hw6"/>
-                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="JrV-fv-Lgd"/>
+                <binding destination="qvD-bg-spM" name="sortDescriptors" keyPath="tableSortDescriptors" id="u9h-YU-lK8"/>
             </connections>
         </arrayController>
     </objects>
