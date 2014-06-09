@@ -84,4 +84,10 @@
     [cellView.textField becomeFirstResponder];
 }
 
+- (IBAction)restoreBrightness:(id)sender
+{
+    BrightnessValue *selectedObject = [self.savedValuesController.selectedObjects firstObject];
+    self.appDelegate.brightness = [selectedObject.brightnessValue floatValue];
+}
+
 @end

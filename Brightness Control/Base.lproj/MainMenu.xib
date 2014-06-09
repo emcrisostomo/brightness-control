@@ -953,6 +953,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
+                            <action selector="restoreBrightness:" target="qvD-bg-spM" id="tMM-6b-HgD"/>
                             <binding destination="8VR-Tz-h13" name="enabled" keyPath="canRemove" id="D3V-1j-jkt"/>
                         </connections>
                     </button>
