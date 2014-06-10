@@ -247,6 +247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90D650741902C31F00A31E1A /* Build configuration list for PBXNativeTarget "Brightness Control" */;
 			buildPhases = (
+				909A06B2194687E300118B6F /* ShellScript */,
 				90D6503F1902C31F00A31E1A /* Sources */,
 				90D650401902C31F00A31E1A /* Frameworks */,
 				90D650411902C31F00A31E1A /* Resources */,
@@ -342,6 +343,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		909A06B2194687E300118B6F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90D6503F1902C31F00A31E1A /* Sources */ = {
