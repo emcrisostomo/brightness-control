@@ -77,4 +77,25 @@
     self.appDelegate.brightness = [selectedObject.brightnessValue floatValue];
 }
 
+- (NSArray *)profileNames
+{
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    
+    for (BrightnessValue *bv in [self.savedValuesController arrangedObjects])
+    {
+        [names addObject:bv.name];
+    }
+    
+    return names;
+}
+
+- (float)getProfileBrightness:(NSString *)profileName
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name == %@", profileName];
+    NSArray *profilesByName = [[self.savedValuesController arrangedObjects] filteredArrayUsingPredicate:predicate];
+    NSAssert([profilesByName count] == 1, @"The profile searched for cannot be found.");
+    
+    return [[[profilesByName firstObject] brightnessValue] floatValue];
+}
+
 @end

@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (NSArray *)profileNames;
+- (float)getProfileBrightness:(NSString *)profileName;
+
 @end

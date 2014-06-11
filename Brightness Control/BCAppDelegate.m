@@ -36,6 +36,7 @@ const float kBSBrightnessTolerance = .01;
 
 @property (unsafe_unretained) IBOutlet NSWindow *saveWindow;
 @property (weak) IBOutlet BCBrightnessTableController *brightnessTableController;
+@property (weak) IBOutlet NSMenuItem *profileMenuItem;
 
 @end
 
@@ -507,6 +508,16 @@ void handleUncaughtException(NSException * e)
     }
 }
 
+- (void)selectProfile:(id)sender
+{
+    NSMenuItem *item = sender;
+    float profileBrightness = [self.brightnessTableController getProfileBrightness:item.title];
+
+    NSLog(@"Chosen: %@, %f.", item.title, profileBrightness);
+
+    [self setBrightness:profileBrightness];
+}
+
 - (IBAction)restoreBrightness:(id)sender
 {
     NSApplication * app = [NSApplication sharedApplication];
@@ -600,6 +611,20 @@ void handleUncaughtException(NSException * e)
 }
 
 #pragma mark - Menu management
+
+- (void)menuNeedsUpdate:(NSMenu *)menu
+{
+    [self.profileMenuItem.submenu removeAllItems];
+ 
+    NSArray *profileNames = self.brightnessTableController.profileNames;
+    for (NSString *profileName in profileNames)
+    {
+        [self.profileMenuItem.submenu addItemWithTitle:profileName action:@selector(selectProfile:) keyEquivalent:@""];
+    }
+    
+    [self.profileMenuItem setEnabled:([profileNames count] > 0)];
+}
+
 - (BOOL)validateUserInterfaceItem:(id<NSValidatedUserInterfaceItem>)anItem
 {
     SEL act = [anItem action];

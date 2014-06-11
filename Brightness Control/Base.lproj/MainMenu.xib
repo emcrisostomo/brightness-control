@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="brightnessTableController" destination="qvD-bg-spM" id="QVS-7u-z5i"/>
                 <outlet property="dockMenu" destination="pU1-qF-Flg" id="JfR-eW-BX8"/>
+                <outlet property="profileMenuItem" destination="xAD-Xy-NKP" id="hwN-fE-4Zn"/>
                 <outlet property="restoreItem" destination="Rnn-cG-4EX" id="EM1-vk-IDH"/>
                 <outlet property="saveWindow" destination="Quh-sq-TIJ" id="izk-KL-pt9"/>
                 <outlet property="sliderView" destination="GeW-Lj-jmW" id="wGP-T5-t0u"/>
@@ -87,6 +88,10 @@
                     <connections>
                         <action selector="restoreBrightness:" target="Voe-Tx-rLC" id="VDP-LJ-c0M"/>
                     </connections>
+                </menuItem>
+                <menuItem title="Select Profile" id="xAD-Xy-NKP">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Select Profile" id="y0f-Vc-2HS"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
                 <menuItem title="About Brightness Control" id="VcJ-Fg-x2a">
@@ -1005,6 +1010,14 @@
                 </binding>
             </connections>
         </arrayController>
+        <button verticalHuggingPriority="750" id="oar-o0-p5E">
+            <rect key="frame" x="0.0" y="0.0" width="106" height="23"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="smallSquare" title="Gradient Button" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDU-5h-jpr">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+        </button>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
