@@ -89,9 +89,9 @@
                         <action selector="restoreBrightness:" target="Voe-Tx-rLC" id="VDP-LJ-c0M"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Select Profile" id="xAD-Xy-NKP">
+                <menuItem title="Choose Profile" id="xAD-Xy-NKP">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Select Profile" id="y0f-Vc-2HS"/>
+                    <menu key="submenu" title="Choose Profile" id="y0f-Vc-2HS"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="egz-6z-ZnZ"/>
                 <menuItem title="About Brightness Control" id="VcJ-Fg-x2a">
