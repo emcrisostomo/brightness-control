@@ -957,16 +957,30 @@
                             <binding destination="8VR-Tz-h13" name="enabled" keyPath="canRemove" id="D3V-1j-jkt"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257-jE-Dh0">
+                        <rect key="frame" x="64" y="17" width="417" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="5uL-Hl-IFQ"/>
+                        </constraints>
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" refusesFirstResponder="YES" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M45-xx-Moz">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nu4-cp-qSp" firstAttribute="top" secondItem="xPw-wm-JTc" secondAttribute="bottom" constant="-1" id="3rd-Fn-u4d"/>
                     <constraint firstItem="vEd-KH-Rhs" firstAttribute="leading" secondItem="AjO-Km-Mpt" secondAttribute="trailing" constant="-1" id="9ko-0c-Cba"/>
+                    <constraint firstItem="257-jE-Dh0" firstAttribute="baseline" secondItem="vEd-KH-Rhs" secondAttribute="baseline" id="F4f-0b-Slx"/>
                     <constraint firstItem="AjO-Km-Mpt" firstAttribute="baseline" secondItem="vEd-KH-Rhs" secondAttribute="baseline" id="HAS-Sa-O4G"/>
                     <constraint firstItem="AjO-Km-Mpt" firstAttribute="baseline" secondItem="nu4-cp-qSp" secondAttribute="baseline" id="Hhd-OT-YEg"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="LXM-cB-dXa"/>
                     <constraint firstItem="nu4-cp-qSp" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="-1" id="MkG-ZC-0Pd"/>
                     <constraint firstAttribute="bottom" secondItem="nu4-cp-qSp" secondAttribute="bottom" constant="18" id="NwU-X5-Xc6"/>
                     <constraint firstItem="AjO-Km-Mpt" firstAttribute="leading" secondItem="v2L-m7-mEY" secondAttribute="leading" constant="20" symbolic="YES" id="RWu-xi-5R1"/>
+                    <constraint firstAttribute="trailing" secondItem="257-jE-Dh0" secondAttribute="trailing" constant="-1" id="hQL-iF-fqZ"/>
+                    <constraint firstItem="257-jE-Dh0" firstAttribute="leading" secondItem="vEd-KH-Rhs" secondAttribute="trailing" constant="-1" id="iWv-Ib-G2C"/>
                     <constraint firstAttribute="trailing" secondItem="xPw-wm-JTc" secondAttribute="trailing" constant="-1" id="lA0-8J-nIF"/>
                     <constraint firstItem="xPw-wm-JTc" firstAttribute="top" secondItem="v2L-m7-mEY" secondAttribute="top" constant="-1" id="tA8-eU-nY4"/>
                 </constraints>
