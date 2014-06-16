@@ -1010,14 +1010,6 @@
                 </binding>
             </connections>
         </arrayController>
-        <button verticalHuggingPriority="750" id="oar-o0-p5E">
-            <rect key="frame" x="0.0" y="0.0" width="106" height="23"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <buttonCell key="cell" type="smallSquare" title="Gradient Button" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDU-5h-jpr">
-                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                <font key="font" metaFont="system"/>
-            </buttonCell>
-        </button>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
