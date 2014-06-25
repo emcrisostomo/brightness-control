@@ -29,6 +29,7 @@ NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.bri
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
 NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
 NSString * const kBSSortDescriptorsPropertyName = @"com.blogspot.thegreyblog.brightness-control.sortDescriptors";
+NSString * const kBSActiveProfilePropertyName = @"com.blogspot.thegreyblog.brightness-control.activeProfile";
 
 const float kBSBrightnessTolerance = .01;
 
@@ -37,6 +38,7 @@ const float kBSBrightnessTolerance = .01;
 @property (unsafe_unretained) IBOutlet NSWindow *saveWindow;
 @property (weak) IBOutlet BCBrightnessTableController *brightnessTableController;
 @property (weak) IBOutlet NSMenuItem *profileMenuItem;
+@property NSString *activeProfile;
 
 @end
 
@@ -440,7 +442,12 @@ void handleUncaughtException(NSException * e)
 
 - (BOOL)isRestoreEnabled
 {
-    const float savedBrightness = [self getSavedBrightnessValue];
+    NSString *chosenProfile = self.activeProfile;
+    
+    if (chosenProfile == nil) return NO;
+    
+    const float savedBrightness = [self.brightnessTableController getProfileBrightness:chosenProfile];
+    // const float savedBrightness = [self getSavedBrightnessValue];
     return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
 }
 
@@ -514,6 +521,11 @@ void handleUncaughtException(NSException * e)
     float profileBrightness = [self.brightnessTableController getProfileBrightness:item.title];
 
     NSLog(@"Chosen: %@, %f.", item.title, profileBrightness);
+    
+    // When a profile is chosen we save its name and trigger a KVO notification
+    // on restoreEnabled through setBrightness.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.activeProfile = item.title;
 
     [self setBrightness:profileBrightness];
 }
@@ -617,9 +629,15 @@ void handleUncaughtException(NSException * e)
     [self.profileMenuItem.submenu removeAllItems];
  
     NSArray *profileNames = self.brightnessTableController.profileNames;
+    NSString *currentProfile = self.activeProfile;
+    
     for (NSString *profileName in profileNames)
     {
-        [self.profileMenuItem.submenu addItemWithTitle:profileName action:@selector(selectProfile:) keyEquivalent:@""];
+        NSMenuItem *profileItem = [self.profileMenuItem.submenu addItemWithTitle:profileName action:@selector(selectProfile:) keyEquivalent:@""];
+        //if ([profileName isEqualToString:currentProfile])
+        //{
+        //    [profileItem setState:NSOnState];
+        //}
     }
     
     [self.profileMenuItem setEnabled:([profileNames count] > 0)];
@@ -708,6 +726,20 @@ void handleUncaughtException(NSException * e)
 {
     [self.saveWindow makeKeyAndOrderFront:sender];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+}
+
+#pragma mark - Profile Management
+
+- (NSString *)activeProfile
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults stringForKey:kBSActiveProfilePropertyName];
+}
+
+- (void)setActiveProfile:(NSString *)profileName
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:profileName forKey:kBSActiveProfilePropertyName];
 }
 
 #pragma mark - Core Data methods
