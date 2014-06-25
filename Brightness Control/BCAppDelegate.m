@@ -634,10 +634,10 @@ void handleUncaughtException(NSException * e)
     for (NSString *profileName in profileNames)
     {
         NSMenuItem *profileItem = [self.profileMenuItem.submenu addItemWithTitle:profileName action:@selector(selectProfile:) keyEquivalent:@""];
-        //if ([profileName isEqualToString:currentProfile])
-        //{
-        //    [profileItem setState:NSOnState];
-        //}
+        if ([profileName isEqualToString:currentProfile])
+        {
+            [profileItem setState:NSOnState];
+        }
     }
     
     [self.profileMenuItem setEnabled:([profileNames count] > 0)];

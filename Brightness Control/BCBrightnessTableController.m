@@ -19,6 +19,9 @@
 @end
 
 @implementation BCBrightnessTableController
+{
+    BOOL savedValuesFetched;
+}
 
 #pragma mark - Table view delegate
 
@@ -91,6 +94,13 @@
 
 - (float)getProfileBrightness:(NSString *)profileName
 {
+    if (!savedValuesFetched)
+    {
+        NSError *error;
+        [self.savedValuesController fetchWithRequest:nil merge:NO error:&error];
+        savedValuesFetched = YES;
+    }
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name == %@", profileName];
     NSArray *profilesByName = [[self.savedValuesController arrangedObjects] filteredArrayUsingPredicate:predicate];
     NSAssert([profilesByName count] == 1, @"The profile searched for cannot be found.");
