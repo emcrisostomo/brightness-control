@@ -524,7 +524,6 @@ void handleUncaughtException(NSException * e)
     
     // When a profile is chosen we save its name and trigger a KVO notification
     // on restoreEnabled through setBrightness.
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.activeProfile = item.title;
 
     [self setBrightness:profileBrightness];
