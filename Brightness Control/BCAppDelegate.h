@@ -23,7 +23,6 @@
 @interface BCAppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, NSUserInterfaceValidations>
 
 - (IBAction)updateValue:(id)sender;
-- (IBAction)saveCurrentBrightness:(id)sender;
 - (IBAction)restoreBrightness:(id)sender;
 - (IBAction)showPercentage:(id)sender;
 - (IBAction)toggleUseOverlay:(id)sender;

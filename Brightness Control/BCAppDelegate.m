@@ -689,38 +689,6 @@ void handleUncaughtException(NSException * e)
 
 #pragma mark - Save Brightness
 
-- (IBAction)saveCurrentBrightness:(id)sender
-{
-    NSApplication * app = [NSApplication sharedApplication];
-    [app activateIgnoringOtherApps:YES];
-    
-    const float brightness = [self getCurrentBrightness];
-    NSAlert *saveDialog = [[NSAlert alloc] init];
-    [saveDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to save brightness value %@?", [self formatBrightnessString:[self brightness]]]];
-    [saveDialog addButtonWithTitle:@"Ok"];
-    [saveDialog addButtonWithTitle:@"Cancel"];
-
-    [saveDialog beginSheetModalForWindow:nil
-                           modalDelegate:self
-                          didEndSelector:@selector(askSaveDone:returnCode:contextInfo:)
-                             contextInfo:(__bridge_retained void *)@(brightness)];
-}
-
-- (void)askSaveDone:(NSAlert *)alert
-         returnCode:(NSInteger)returnCode
-        contextInfo:(void *)contextInfo
-{
-    NSNumber *brightness = (__bridge_transfer NSNumber *)contextInfo;
-    
-    switch(returnCode)
-    {
-        case NSAlertFirstButtonReturn:
-            [self saveBrightness:[brightness floatValue]];
-            [self setRestoreEnabled:[self isRestoreEnabled]];
-            break;
-    }
-}
-
 - (IBAction)saveWithName:(id)sender
 {
     [self.saveWindow makeKeyAndOrderFront:sender];
