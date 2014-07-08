@@ -446,8 +446,10 @@ void handleUncaughtException(NSException * e)
     
     if (chosenProfile == nil) return NO;
     
+    if (![self.brightnessTableController existsProfile:chosenProfile]) return NO;
+    
     const float savedBrightness = [self.brightnessTableController getProfileBrightness:chosenProfile];
-    // const float savedBrightness = [self getSavedBrightnessValue];
+
     return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
 }
 

@@ -92,7 +92,7 @@
     return names;
 }
 
-- (float)getProfileBrightness:(NSString *)profileName
+- (void)loadValues
 {
     if (!savedValuesFetched)
     {
@@ -100,9 +100,27 @@
         [self.savedValuesController fetchWithRequest:nil merge:NO error:&error];
         savedValuesFetched = YES;
     }
+}
+
+- (BOOL)existsProfile:(NSString *)profileName
+{
+    [self loadValues];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name == %@", profileName];
     NSArray *profilesByName = [[self.savedValuesController arrangedObjects] filteredArrayUsingPredicate:predicate];
+    
+    NSAssert([profilesByName count] <= 1, @"Duplicate profile name.");
+    
+    return ([profilesByName count] > 0);
+}
+
+- (float)getProfileBrightness:(NSString *)profileName
+{
+    [self loadValues];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name == %@", profileName];
+    NSArray *profilesByName = [[self.savedValuesController arrangedObjects] filteredArrayUsingPredicate:predicate];
+    
     NSAssert([profilesByName count] == 1, @"The profile searched for cannot be found.");
     
     return [[[profilesByName firstObject] brightnessValue] floatValue];
