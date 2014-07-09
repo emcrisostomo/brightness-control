@@ -180,8 +180,12 @@ void handleUncaughtException(NSException * e)
 
 - (void)statusItemTimerFired:(NSTimer *)timer
 {
-    // Green bulb never polls.
-    if ([self isActiveProfileValid] && ![self isRestoreEnabled]) return;
+    // Empty sun and green sun never poll.
+    if ([self isActiveProfileValid] && ![self isRestoreEnabled])
+    {
+        [self updateStatusIcon];
+        return;
+    }
     
     NSDate *now = [NSDate date];
     NSTimeInterval time = [now timeIntervalSince1970];
