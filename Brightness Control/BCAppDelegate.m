@@ -182,7 +182,7 @@ void handleUncaughtException(NSException * e)
 - (void)statusItemTimerFired:(NSTimer *)timer
 {
     // Green bulb never polls.
-    if (![self isRestoreEnabled]) return;
+    if ([self isActiveProfileValid] && ![self isRestoreEnabled]) return;
     
     NSDate *now = [NSDate date];
     NSTimeInterval time = [now timeIntervalSince1970];
@@ -440,13 +440,16 @@ void handleUncaughtException(NSException * e)
     return [self isRestoreEnabled];
 }
 
+- (BOOL)isActiveProfileValid
+{
+    return (self.activeProfile != nil && [self.brightnessTableController existsProfile:self.activeProfile]);
+}
+
 - (BOOL)isRestoreEnabled
 {
     NSString *chosenProfile = self.activeProfile;
     
-    if (chosenProfile == nil) return NO;
-    
-    if (![self.brightnessTableController existsProfile:chosenProfile]) return NO;
+    if (![self isActiveProfileValid]) return NO;
     
     const float savedBrightness = [self.brightnessTableController getProfileBrightness:chosenProfile];
 
