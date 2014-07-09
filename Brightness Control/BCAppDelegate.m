@@ -737,12 +737,15 @@ void handleUncaughtException(NSException * e)
 // Returns the persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.)
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator) {
+    if (_persistentStoreCoordinator)
+    {
         return _persistentStoreCoordinator;
     }
     
     NSManagedObjectModel *mom = [self managedObjectModel];
-    if (!mom) {
+    
+    if (!mom)
+    {
         NSLog(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
         return nil;
     }
@@ -753,17 +756,25 @@ void handleUncaughtException(NSException * e)
     
     NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
     
-    if (!properties) {
+    if (!properties)
+    {
         BOOL ok = NO;
-        if ([error code] == NSFileReadNoSuchFileError) {
+        
+        if ([error code] == NSFileReadNoSuchFileError)
+        {
             ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
         }
-        if (!ok) {
+        
+        if (!ok)
+        {
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
-    } else {
-        if (![properties[NSURLIsDirectoryKey] boolValue]) {
+    }
+    else
+    {
+        if (![properties[NSURLIsDirectoryKey] boolValue])
+        {
             // Customize and localize this error.
             NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
             
@@ -778,7 +789,9 @@ void handleUncaughtException(NSException * e)
     
     NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Brightness-Control.storedata"];
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error]) {
+    
+    if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error])
+    {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -790,12 +803,15 @@ void handleUncaughtException(NSException * e)
 // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext) {
+    if (_managedObjectContext)
+    {
         return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
+    
+    if (!coordinator)
+    {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
         [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
@@ -820,11 +836,13 @@ void handleUncaughtException(NSException * e)
 {
     NSError *error = nil;
     
-    if (![[self managedObjectContext] commitEditing]) {
+    if (![[self managedObjectContext] commitEditing])
+    {
         NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
     }
     
-    if (![[self managedObjectContext] save:&error]) {
+    if (![[self managedObjectContext] save:&error])
+    {
         [[NSApplication sharedApplication] presentError:error];
     }
 }
@@ -833,25 +851,31 @@ void handleUncaughtException(NSException * e)
 {
     // Save changes in the application's managed object context before the application terminates.
     
-    if (!_managedObjectContext) {
+    if (!_managedObjectContext)
+    {
         return NSTerminateNow;
     }
     
-    if (![[self managedObjectContext] commitEditing]) {
+    if (![[self managedObjectContext] commitEditing])
+    {
         NSLog(@"%@:%@ unable to commit editing to terminate", [self class], NSStringFromSelector(_cmd));
         return NSTerminateCancel;
     }
     
-    if (![[self managedObjectContext] hasChanges]) {
+    if (![[self managedObjectContext] hasChanges])
+    {
         return NSTerminateNow;
     }
     
     NSError *error = nil;
-    if (![[self managedObjectContext] save:&error]) {
+    
+    if (![[self managedObjectContext] save:&error])
+    {
         
         // Customize this code block to include application-specific recovery steps.
         BOOL result = [sender presentError:error];
-        if (result) {
+        if (result)
+        {
             return NSTerminateCancel;
         }
         
@@ -867,7 +891,8 @@ void handleUncaughtException(NSException * e)
         
         NSInteger answer = [alert runModal];
         
-        if (answer == NSAlertAlternateReturn) {
+        if (answer == NSAlertAlternateReturn)
+        {
             return NSTerminateCancel;
         }
     }
