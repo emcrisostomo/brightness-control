@@ -443,11 +443,9 @@ void handleUncaughtException(NSException * e)
 
 - (BOOL)isRestoreEnabled
 {
-    NSString *chosenProfile = self.activeProfile;
-    
     if (![self isActiveProfileValid]) return NO;
     
-    const float savedBrightness = [self.brightnessTableController getProfileBrightness:chosenProfile];
+    const float savedBrightness = [self.brightnessTableController getProfileBrightness:self.activeProfile];
 
     return savedBrightness != _brightness && [BCUtils isBrightnessValid:savedBrightness];
 }

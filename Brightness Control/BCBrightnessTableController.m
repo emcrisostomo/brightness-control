@@ -118,8 +118,12 @@
 {
     [self loadValues];
     
+    if (profileName == nil) return -1;
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.name == %@", profileName];
     NSArray *profilesByName = [[self.savedValuesController arrangedObjects] filteredArrayUsingPredicate:predicate];
+    
+    if ([profilesByName count] == 0) return -1;
     
     NSAssert([profilesByName count] == 1, @"The profile searched for cannot be found.");
     
