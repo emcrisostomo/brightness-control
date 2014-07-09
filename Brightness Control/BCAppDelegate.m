@@ -24,7 +24,6 @@
 #import "BCTransparentWindowOverlay.h"
 #import "BCBrightnessTableController.h"
 
-NSString * const kBSBrightnessPropertyName = @"com.blogspot.thegreyblog.brightness-control.brightness";
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
 NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
@@ -259,8 +258,6 @@ void handleUncaughtException(NSException * e)
 - (void)getDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    float f = [defaults floatForKey:kBSBrightnessPropertyName];
-    NSLog(@"Currently saved brightness value: %f.", f);
     
     [self setPercentageShown:[defaults boolForKey:kBSPercentageShownPropertyName]];
     [self setUseOverlay:[defaults boolForKey:kBSUseOverlayPropertyName]];
@@ -270,7 +267,6 @@ void handleUncaughtException(NSException * e)
 - (void)setDefaults
 {
     NSMutableDictionary *defaults = [[NSMutableDictionary alloc] init];
-    defaults[kBSBrightnessPropertyName] = @(-1.0f);
     defaults[kBSPercentageShownPropertyName] = @(NO);
     defaults[kBSUseOverlayPropertyName] = @(NO);
     defaults[kBSOverlayBelowMainMenuPropertyName] = @(NO);
@@ -412,7 +408,7 @@ void handleUncaughtException(NSException * e)
 {
     const NSDate * now = [NSDate date];
     const NSTimeInterval currentIconUpdate = [now timeIntervalSince1970];
-    const float savedBrightness = [self getSavedBrightnessValue];
+    const float savedBrightness = [self getCurrentProfileBrightnessValue];
     
     if (![BCUtils isBrightnessValid:savedBrightness])
     {
@@ -515,21 +511,26 @@ void handleUncaughtException(NSException * e)
     switch(returnCode)
     {
         case NSAlertFirstButtonReturn:
-            [self setBrightness:[self getSavedBrightnessValue]];
+            [self setBrightness:[self getCurrentProfileBrightnessValue]];
             break;
     }
 }
 
+
+
 - (void)selectProfile:(id)sender
 {
     NSMenuItem *item = sender;
-    float profileBrightness = [self.brightnessTableController getProfileBrightness:item.title];
+    
+    // saving the current profile name
+    self.activeProfile = item.title;
+
+    float profileBrightness = [self getCurrentProfileBrightnessValue];
 
     NSLog(@"Chosen: %@, %f.", item.title, profileBrightness);
     
     // When a profile is chosen we save its name and trigger a KVO notification
     // on restoreEnabled through setBrightness.
-    self.activeProfile = item.title;
 
     [self setBrightness:profileBrightness];
 }
@@ -542,7 +543,7 @@ void handleUncaughtException(NSException * e)
     // beginSheetModalForWindow:nil is apparently needed
     // otherwise the blue highlighting in the dock
     // menu would not go away.
-    const float savedBrightness = [self getSavedBrightnessValue];
+    const float savedBrightness = [self getCurrentProfileBrightnessValue];
     NSAlert *restoreDialog = [[NSAlert alloc] init];
     [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %@?", [self formatBrightnessString:savedBrightness]]];
     [restoreDialog addButtonWithTitle:@"Ok"];
@@ -611,19 +612,9 @@ void handleUncaughtException(NSException * e)
     }
 }
 
-- (void)saveBrightness:(float)brightness
+- (float)getCurrentProfileBrightnessValue
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@(brightness)
-                 forKey:kBSBrightnessPropertyName];
-    
-    NSLog(@"Saved brightness: %f.", brightness);
-}
-
-- (float)getSavedBrightnessValue
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults floatForKey:kBSBrightnessPropertyName];
+    return [self.brightnessTableController getProfileBrightness:self.activeProfile];
 }
 
 #pragma mark - Menu management

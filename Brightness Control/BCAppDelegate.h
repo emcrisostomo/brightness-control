@@ -45,7 +45,3 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
-
-NSString * const kBSBrightnessPropertyName;
-NSString * const kBSPercentageShownPropertyName;
-const float      kBSBrightnessTolerance;
