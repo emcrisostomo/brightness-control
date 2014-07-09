@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Brightness Control
+
+  Created by Enrico Maria Crisostomo on 09/07/14.
+  Copyright (c) 2014 Enrico Maria Crisostomo. All rights reserved.
+*/
+"Could not save changes while quitting. Quit anyway?" = "No se pueden grabar los cambios si se sale de la aplicación. ¿Salir de todas formas?";
+"Quitting now will lose any changes you have made since the last successful save." = "Saliendo ahora de la aplicación se perderán los cambios que se hayan producidos desde la última grabación.";
+"Quit anyway" = "Salir de todas formas";
+"Cancel" = "Anular";
+"newProfileName" = "<Nombre>";

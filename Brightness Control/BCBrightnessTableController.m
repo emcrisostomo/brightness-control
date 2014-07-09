@@ -62,7 +62,7 @@
     
     BrightnessValue *bcBrightness = [[BrightnessValue alloc] initWithEntity:entityDescription
                                              insertIntoManagedObjectContext:self.managedObjectContext];
-    bcBrightness.name = @"Name2";
+    bcBrightness.name = NSLocalizedString(@"newProfileName", nil);
     bcBrightness.brightnessValue = @(self.appDelegate.brightness);
     
     [self.savedValuesController addObject:bcBrightness];
