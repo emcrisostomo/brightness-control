@@ -550,7 +550,7 @@ void handleUncaughtException(NSException * e)
     [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %@?", [self formatBrightnessString:savedBrightness]]];
     [restoreDialog addButtonWithTitle:@"Ok"];
     [restoreDialog addButtonWithTitle:@"Cancel"];
-    [restoreDialog beginSheetModalForWindow:nil
+    [restoreDialog beginSheetModalForWindow:[self window]
                               modalDelegate:self
                              didEndSelector:@selector(askRestoreDone:returnCode:contextInfo:)
                                 contextInfo:nil];
