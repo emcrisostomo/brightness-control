@@ -20,7 +20,7 @@
 
 #import "BCAppDelegate.h"
 #import "BCUtils.h"
-#import <EMCLoginItem/EMCLoginItem.h>
+#import "EMCLoginItem/EMCLoginItem.h"
 #import "BCTransparentWindowOverlay.h"
 #import "BCBrightnessTableController.h"
 

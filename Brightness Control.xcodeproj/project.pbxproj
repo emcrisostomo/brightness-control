@@ -32,6 +32,7 @@
 		90D7BF751914168E004B0680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6C191415CC004B0680 /* InfoPlist.strings */; };
 		90D7BF7619141694004B0680 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF60191415CC004B0680 /* MainMenu.xib */; };
 		90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */; };
+		F7ECA1BE236DE869005E07D2 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ECA1BD236DE869005E07D2 /* EMCLoginItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		90D7BF70191415CC004B0680 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBrightnessTableController.h; sourceTree = "<group>"; };
 		90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBrightnessTableController.m; sourceTree = "<group>"; };
+		F7ECA1BC236DE869005E07D2 /* EMCLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
+		F7ECA1BD236DE869005E07D2 /* EMCLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,7 @@
 		90D7BF5F191415CC004B0680 /* Brightness Control */ = {
 			isa = PBXGroup;
 			children = (
+				F7ECA1BB236DE869005E07D2 /* EMCLoginItem */,
 				90D7BF65191415CC004B0680 /* BCAppDelegate.h */,
 				90D7BF66191415CC004B0680 /* BCAppDelegate.m */,
 				90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */,
@@ -244,6 +248,15 @@
 				9086B6B3191AEFC000A17DE7 /* README.md */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F7ECA1BB236DE869005E07D2 /* EMCLoginItem */ = {
+			isa = PBXGroup;
+			children = (
+				F7ECA1BC236DE869005E07D2 /* EMCLoginItem.h */,
+				F7ECA1BD236DE869005E07D2 /* EMCLoginItem.m */,
+			);
+			path = EMCLoginItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7ECA1BE236DE869005E07D2 /* EMCLoginItem.m in Sources */,
 				9088BE34191999C200AD3292 /* BCUtils.m in Sources */,
 				908CEA2F1944F1E900BD7561 /* BrightnessValue.m in Sources */,
 				90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */,
