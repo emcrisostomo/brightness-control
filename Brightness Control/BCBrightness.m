@@ -34,19 +34,48 @@ extern void   CoreDisplay_Display_SetUserBrightness(CGDirectDisplayID id, double
 extern _Bool  DisplayServicesCanChangeBrightness(CGDirectDisplayID id)                       __attribute__((weak_import));
 extern void   DisplayServicesBrightnessChanged(CGDirectDisplayID id, double brightness)      __attribute__((weak_import));
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self == nil)
+        return nil;
+
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &service_iterator);
+
+    if (result != kIOReturnSuccess)
+    {
+        NSLog(@"IOServiceGetMatchingServices failed.");
+        [NSException raise:@"IOServiceGetMatchingServices failed."
+                    format:@"IOServiceGetMatchingServices failed."];
+    }
+
+    return self;
+}
+
+- (void)dealloc
+{
+    IOObjectRelease(service_iterator);
+}
+
 - (float)getCurrentBrightness
 {
     IOIteratorReset(service_iterator);
 
     io_object_t service;
-    float currentValue = .5;
+    float currentValue = 1;
 
     NSMutableArray *brightnessValues = [[NSMutableArray alloc] init];
 
     while ((service = IOIteratorNext(service_iterator)))
     {
-        IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
+        IODisplayGetFloatParameter(service,
+                                   kNilOptions,
+                                   CFSTR(kIODisplayBrightnessKey),
+                                   &currentValue);
         [brightnessValues addObject:[NSNumber numberWithFloat:currentValue]];
+        IOObjectRelease(service);
     }
 
     if ([brightnessValues count] > 0)
@@ -70,6 +99,7 @@ extern void   DisplayServicesBrightnessChanged(CGDirectDisplayID id, double brig
                                    kNilOptions,
                                    CFSTR(kIODisplayBrightnessKey),
                                    brightness);
+        IOObjectRelease(service);
     }
 }
 
