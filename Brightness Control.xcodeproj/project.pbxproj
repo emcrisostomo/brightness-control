@@ -517,7 +517,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
 				INFOPLIST_FILE = "Brightness Control/Brightness Control-Info.plist";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_CoreDisplay_Display_GetUserBrightness",
 					"-Wl,-U,_CoreDisplay_Display_SetUserBrightness",
@@ -543,7 +543,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Brightness Control/Brightness Control-Prefix.pch";
 				INFOPLIST_FILE = "Brightness Control/Brightness Control-Info.plist";
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"-Wl,-U,_CoreDisplay_Display_GetUserBrightness",
 					"-Wl,-U,_CoreDisplay_Display_SetUserBrightness",
