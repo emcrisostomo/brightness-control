@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <installer-gui-script minSpecVersion="2">
     <title>Brightness Control</title>
-    <pkg-ref id="com.blogspot.thegreyblog.EMCLoginItem"/>
     <pkg-ref id="com.blogspot.thegreyblog.Brightness-Control"/>
     <options customize="never" require-scripts="false"/>
     <readme file="README.html"/>
@@ -13,15 +12,10 @@
     </volume-check>
     <choices-outline>
         <line choice="default">
-            <line choice="com.blogspot.thegreyblog.EMCLoginItem"/>
             <line choice="com.blogspot.thegreyblog.Brightness-Control"/>
         </line>
     </choices-outline>
     <choice id="default"/>
-    <choice id="com.blogspot.thegreyblog.EMCLoginItem" visible="false">
-        <pkg-ref id="com.blogspot.thegreyblog.EMCLoginItem"/>
-    </choice>
-    <pkg-ref id="com.blogspot.thegreyblog.EMCLoginItem" version="1.0.0" onConclusion="none">EMCLoginItemComponent.pkg</pkg-ref>
     <choice id="com.blogspot.thegreyblog.Brightness-Control" visible="false">
         <pkg-ref id="com.blogspot.thegreyblog.Brightness-Control"/>
     </choice>

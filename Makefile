@@ -8,8 +8,6 @@ COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
 COMPONENT_PFILE = $(PROGRAM).plist
 DISTRIBUTION_FILE = distribution.dist
 REQUIREMENTS = requirements.plist
-LOGINCOMPONENTDIR = ~/Documents/github/EMCLoginItem
-LOGINCOMPONENT = $(LOGINCOMPONENTDIR)/EMCLoginItemComponent.pkg
 
 .PHONY : all
 all : $(DISTDIR) $(DEPSDIR) $(PRODUCT) $(DMGFILE)
@@ -25,8 +23,8 @@ $(DEPSDIR) :
 $(DMGFILE) : $(PRODUCT)
 	hdiutil create -volname $(PROGRAM) -srcfolder $(DISTDIR) -ov $(DMGFILE)
 
-$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) $(LOGINCOMPONENT) $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
-	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) --package-path $(LOGINCOMPONENTDIR) $(PRODUCT)
+$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE)
+	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) $(PRODUCT)
 
 $(BINARIES) :
 	xcodebuild install
@@ -58,7 +56,7 @@ usage :
 
 .PHONY : distfiles
 distfiles : $(COMPONENT)
-	productbuild --synthesize --product $(REQUIREMENTS) --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package $(COMPONENT) $(DISTRIBUTION_FILE).new
+	productbuild --synthesize --product $(REQUIREMENTS) --package $(COMPONENT) $(DISTRIBUTION_FILE).new
 	@echo "Edit the $(DISTRIBUTION_FILE).new template to create a suitable $(DISTRIBUTION_FILE) file."
 
 .PHONY : compfiles
