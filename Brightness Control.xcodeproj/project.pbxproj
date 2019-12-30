@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		900C062D191456490047D717 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6A191415CC004B0680 /* Credits.rtf */; };
-		901FA89119141EA2006D73BA /* BCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF66191415CC004B0680 /* BCAppDelegate.m */; };
+		901FA89119141EA2006D73BA /* BCAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF66191415CC004B0680 /* BCAppDelegate.mm */; };
 		901FA89219141EA2006D73BA /* BCMenuItemWithView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF68191415CC004B0680 /* BCMenuItemWithView.m */; };
 		901FA89319141EA2006D73BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D7BF70191415CC004B0680 /* main.m */; };
 		901FA89819141EE9006D73BA /* bs.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF64191415CC004B0680 /* bs.iconset */; };
@@ -28,7 +28,7 @@
 		90D7BF751914168E004B0680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF6C191415CC004B0680 /* InfoPlist.strings */; };
 		90D7BF7619141694004B0680 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D7BF60191415CC004B0680 /* MainMenu.xib */; };
 		90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */; };
-		D9CB9ECF236F03DC0023BE4A /* BCBrightness.m in Sources */ = {isa = PBXBuildFile; fileRef = D9CB9ECE236F03DC0023BE4A /* BCBrightness.m */; };
+		D92D847323BA131000BADF26 /* BCDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D92D847123BA131000BADF26 /* BCDisplay.cpp */; };
 		F7ECA1BE236DE869005E07D2 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ECA1BD236DE869005E07D2 /* EMCLoginItem.m */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +78,7 @@
 		90D7BF63191415CC004B0680 /* Brightness Control-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Brightness Control-Prefix.pch"; sourceTree = "<group>"; };
 		90D7BF64191415CC004B0680 /* bs.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = bs.iconset; sourceTree = "<group>"; };
 		90D7BF65191415CC004B0680 /* BCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCAppDelegate.h; sourceTree = "<group>"; };
-		90D7BF66191415CC004B0680 /* BCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCAppDelegate.m; sourceTree = "<group>"; };
+		90D7BF66191415CC004B0680 /* BCAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BCAppDelegate.mm; sourceTree = "<group>"; };
 		90D7BF67191415CC004B0680 /* BCMenuItemWithView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCMenuItemWithView.h; sourceTree = "<group>"; };
 		90D7BF68191415CC004B0680 /* BCMenuItemWithView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCMenuItemWithView.m; sourceTree = "<group>"; };
 		90D7BF6B191415CC004B0680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -87,8 +87,9 @@
 		90D7BF70191415CC004B0680 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBrightnessTableController.h; sourceTree = "<group>"; };
 		90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBrightnessTableController.m; sourceTree = "<group>"; };
-		D9CB9ECD236F03DC0023BE4A /* BCBrightness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BCBrightness.h; sourceTree = "<group>"; };
-		D9CB9ECE236F03DC0023BE4A /* BCBrightness.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BCBrightness.m; sourceTree = "<group>"; };
+		D92D847123BA131000BADF26 /* BCDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BCDisplay.cpp; sourceTree = "<group>"; };
+		D92D847223BA131000BADF26 /* BCDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BCDisplay.hpp; sourceTree = "<group>"; };
+		D92D847423BA13E500BADF26 /* object_guard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = object_guard.h; sourceTree = "<group>"; };
 		F7ECA1BC236DE869005E07D2 /* EMCLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		F7ECA1BD236DE869005E07D2 /* EMCLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,9 +177,10 @@
 			children = (
 				F7ECA1BB236DE869005E07D2 /* EMCLoginItem */,
 				90D7BF65191415CC004B0680 /* BCAppDelegate.h */,
-				90D7BF66191415CC004B0680 /* BCAppDelegate.m */,
-				D9CB9ECD236F03DC0023BE4A /* BCBrightness.h */,
-				D9CB9ECE236F03DC0023BE4A /* BCBrightness.m */,
+				90D7BF66191415CC004B0680 /* BCAppDelegate.mm */,
+				D92D847123BA131000BADF26 /* BCDisplay.cpp */,
+				D92D847223BA131000BADF26 /* BCDisplay.hpp */,
+				D92D847423BA13E500BADF26 /* object_guard.h */,
 				90E1D5BD19448E81008C28F0 /* BCBrightnessTableController.h */,
 				90E1D5BE19448E81008C28F0 /* BCBrightnessTableController.m */,
 				9083B593196C826500CC7433 /* BCEditableTableView.h */,
@@ -338,10 +340,10 @@
 				908CEA2F1944F1E900BD7561 /* BrightnessValue.m in Sources */,
 				90E1D5BF19448E81008C28F0 /* BCBrightnessTableController.m in Sources */,
 				908CEA2C1944F0CF00BD7561 /* Model.xcdatamodeld in Sources */,
+				D92D847323BA131000BADF26 /* BCDisplay.cpp in Sources */,
 				904A5C51191962A6009713A7 /* BCTransparentWindowOverlay.m in Sources */,
 				9083B595196C826500CC7433 /* BCEditableTableView.m in Sources */,
-				901FA89119141EA2006D73BA /* BCAppDelegate.m in Sources */,
-				D9CB9ECF236F03DC0023BE4A /* BCBrightness.m in Sources */,
+				901FA89119141EA2006D73BA /* BCAppDelegate.mm in Sources */,
 				901FA89219141EA2006D73BA /* BCMenuItemWithView.m in Sources */,
 				901FA89319141EA2006D73BA /* main.m in Sources */,
 			);

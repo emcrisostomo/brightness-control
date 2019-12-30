@@ -23,14 +23,13 @@
 #import "EMCLoginItem/EMCLoginItem.h"
 #import "BCTransparentWindowOverlay.h"
 #import "BCBrightnessTableController.h"
+#import "BCDisplay.hpp"
 
 NSString * const kBSPercentageShownPropertyName = @"com.blogspot.thegreyblog.brightness-control.percentageShown";
 NSString * const kBSUseOverlayPropertyName = @"com.blogspot.thegreyblog.brightness-control.useOverlay";
 NSString * const kBSOverlayBelowMainMenuPropertyName = @"com.blogspot.thegreyblog.brightness-control.overlayBelowMainMenu";
 NSString * const kBSSortDescriptorsPropertyName = @"com.blogspot.thegreyblog.brightness-control.sortDescriptors";
 NSString * const kBSActiveProfilePropertyName = @"com.blogspot.thegreyblog.brightness-control.activeProfile";
-
-const float kBSBrightnessTolerance = .01;
 
 @interface BCAppDelegate ()
 
@@ -70,8 +69,6 @@ void handleUncaughtException(NSException * e)
 - (void)applicationDidChangeScreenParameters:(NSNotification *)notification
 {
     NSLog(@"Screen configuration has changed");
-    [self releaseIOServices];
-    [self loadIOServices];
     [overlayManager createOverlayWindows];
 }
 
@@ -94,7 +91,6 @@ void handleUncaughtException(NSException * e)
         [self registerObservers];
         [self setDefaults];
         [self getDefaults];
-        [self loadIOServices];
         [self createDockIcon];
         [overlayManager createOverlayWindows];
         [self setBrightness:[self getCurrentBrightness]];
@@ -111,7 +107,6 @@ void handleUncaughtException(NSException * e)
     [self invalidateStatusItemTimer];
     [self invalidatePollTimer];
     [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
-    [self releaseIOServices];
 }
 
 - (void)registerObservers
@@ -216,31 +211,6 @@ void handleUncaughtException(NSException * e)
                         waitUntilDone:NO];
 }
 
-- (void)loadIOServices
-{
-    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
-                                                        IOServiceMatching("IODisplayConnect"),
-                                                        &service_iterator);
-    
-    if (result != kIOReturnSuccess)
-    {
-        NSLog(@"IOServiceGetMatchingServices failed.");
-        [NSException raise:@"IOServiceGetMatchingServices failed."
-                    format:@"IOServiceGetMatchingServices failed."];
-    }
-}
-
-- (void)releaseIOServices
-{
-    IOIteratorReset(service_iterator);
-    
-    io_object_t service;
-    while ((service = IOIteratorNext(service_iterator)))
-    {
-        IOObjectRelease(service);
-    }
-}
-
 - (void)createDockIcon
 {
     if (statusItem != nil)
@@ -284,52 +254,15 @@ void handleUncaughtException(NSException * e)
 
 - (float)getCurrentBrightness
 {
-    IOIteratorReset(service_iterator);
-    
-    io_object_t service;
-    float currentValue = .5;
-    
-    NSMutableArray *brightnessValues = [[NSMutableArray alloc] init];
-    
-    while ((service = IOIteratorNext(service_iterator)))
+    std::vector<emc::display> active_displays = emc::display::find_active();
+
+    if (active_displays.size() == 0)
     {
-        IODisplayGetFloatParameter(service, kNilOptions, CFSTR(kIODisplayBrightnessKey), &currentValue);
-        [brightnessValues addObject:[NSNumber numberWithFloat:currentValue]];
+        NSLog(@"No active display have been found");
+        return [self brightness];
     }
-    
-    if ([brightnessValues count] > 0)
-    {
-        currentValue = [[brightnessValues objectAtIndex:0] floatValue];
-    }
-    
-    // Check that all brightness values are within a (completely arbitrary) 1%
-    // tolerance between each other.  AFAIK, the UI of OS X does not let you
-    // independently set a brightness value for each monitor, but maybe some
-    // appliance software (such as monitor calibrators) would.
-    for (unsigned int i=0; i < [brightnessValues count]; ++i)
-    {
-        const float currentMonitorBrightness = [[brightnessValues objectAtIndex:i] floatValue];
-        
-        for (unsigned int j=i + 1; j < [brightnessValues count]; ++j)
-        {
-            if (fabs([[brightnessValues objectAtIndex:j] floatValue] - currentMonitorBrightness) > kBSBrightnessTolerance)
-            {
-                NSString *msg = [NSString stringWithFormat:@"%lu services satisfying filter "
-                                 "[IODisplayConnect] were found whose brightness values "
-                                 "are not within the specified tolerance.",
-                                 (unsigned long)[brightnessValues count]];
-                NSLog(@"%lu services satisfying filter [IODisplayConnect] were "
-                      "found whose brightness values are not within the specified tolerance.",
-                      (unsigned long)[brightnessValues count]);
-                [NSException raise:msg
-                            format:@"%lu services satisfying filter [IODisplayConnect] "
-                 "were found whose brightness values are not within the specified tolerance.",
-                 (unsigned long)[brightnessValues count]];
-            }
-        }
-    }
-    
-    return currentValue;
+
+    return active_displays[0].get_brightness();
 }
 
 - (float)brightness
@@ -344,18 +277,19 @@ void handleUncaughtException(NSException * e)
     _brightness = brightness;
     
     NSLog(@"Setting brightness value: %f.", brightness);
-    
-    IOIteratorReset(service_iterator);
-    
-    io_object_t service;
-    while ((service = IOIteratorNext(service_iterator)))
+
+    std::vector<emc::display> active_displays = emc::display::find_active();
+    for (auto& d : active_displays)
     {
-        IODisplaySetFloatParameter(service,
-                                   kNilOptions,
-                                   CFSTR(kIODisplayBrightnessKey),
-                                   [self brightness]);
+        try {
+        d.set_brightness([self brightness]);
+        }
+        catch (const std::runtime_error& err)
+        {
+            NSLog(@"%s", err.what());
+        }
     }
-    
+
     [self updateOverlay];
 }
 
