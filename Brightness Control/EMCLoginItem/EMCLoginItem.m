@@ -132,7 +132,8 @@
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
                                                             kLSSharedFileListSessionLoginItems,
                                                             NULL);
-    
+    BOOL ret = NO;
+
     if (loginItems)
     {
         UInt32 seed;
@@ -147,7 +148,8 @@
             {
                 if (CFEqual(itemUrl, url))
                 {
-                    return YES;
+                    ret = YES;
+                    break;
                 }
             }
             else
@@ -155,13 +157,15 @@
                 NSLog(@"Error: LSSharedFileListItemResolve failed.");
             }
         }
+
+        CFRelease(loginItemsArray);
     }
     else
     {
         NSLog(@"Warning: LSSharedFileListCreate failed, could not get list of login items.");
     }
     
-    return NO;
+    return ret;
 }
 
 - (void)addLoginItem
@@ -216,6 +220,7 @@
                                    withPath:(CFURLRef)path
 {
     UInt32 seed;
+    LSSharedFileListItemRef ret = nil;
     CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
     
     for (id item in (__bridge NSArray *)loginItemsArray)
@@ -227,12 +232,15 @@
         {
             if (CFEqual(itemUrl, path))
             {
-                return loginItem;
+                ret = loginItem;
+                break;
             }
         }
     }
-    
-    return nil;
+
+    CFRelease(loginItemsArray);
+
+    return ret;
 }
 
 - (void)removeLoginItem
@@ -271,6 +279,8 @@
                 NSLog(@"Warning: LSSharedFileListItemResolve failed, could not resolve item.");
             }
         }
+
+        CFRelease(loginItemsArray);
         
         if (!removed)
         {
