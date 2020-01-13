@@ -442,18 +442,6 @@ void handleUncaughtException(NSException * e)
     pollTimer = nil;
 }
 
-- (void)askRestoreDone:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    switch(returnCode)
-    {
-        case NSAlertFirstButtonReturn:
-            [self setBrightness:[self getCurrentProfileBrightnessValue]];
-            break;
-    }
-}
-
-
-
 - (void)selectProfile:(id)sender
 {
     NSMenuItem *item = sender;
@@ -473,21 +461,7 @@ void handleUncaughtException(NSException * e)
 
 - (IBAction)restoreBrightness:(id)sender
 {
-    NSApplication * app = [NSApplication sharedApplication];
-    [app activateIgnoringOtherApps:YES];
-
-    // beginSheetModalForWindow:nil is apparently needed
-    // otherwise the blue highlighting in the dock
-    // menu would not go away.
-    const float savedBrightness = [self getCurrentProfileBrightnessValue];
-    NSAlert *restoreDialog = [[NSAlert alloc] init];
-    [restoreDialog setMessageText:[NSString stringWithFormat:@"Are you sure you want to restore brightness to %@?", [self formatBrightnessString:savedBrightness]]];
-    [restoreDialog addButtonWithTitle:@"Ok"];
-    [restoreDialog addButtonWithTitle:@"Cancel"];
-    [restoreDialog beginSheetModalForWindow:[self window]
-                              modalDelegate:self
-                             didEndSelector:@selector(askRestoreDone:returnCode:contextInfo:)
-                                contextInfo:nil];
+    [self setBrightness:[self getCurrentProfileBrightnessValue]];
 }
 
 - (IBAction)showPercentage:(id)sender
